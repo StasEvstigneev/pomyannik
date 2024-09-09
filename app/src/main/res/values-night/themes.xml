@@ -1,7 +1,14 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.PrayForThem" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorError">@color/red</item>
+        <item name="textAppearanceBody1">@color/white</item>
     </style>
 </resources>
