@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PrayForThem</string>
     <string name="heading">Заголовок</string>
+    <string name="lists">Списки</string>
+    <string name="prayers">Молитвы</string>
+    <string name="information">Информация</string>
 </resources>
