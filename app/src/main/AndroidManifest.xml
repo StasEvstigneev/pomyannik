@@ -14,7 +14,7 @@
         android:theme="@style/Theme.PrayForThem"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".RootActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait"
