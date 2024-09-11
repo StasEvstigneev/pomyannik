@@ -4,4 +4,9 @@
     <string name="lists">Списки</string>
     <string name="prayers">Молитвы</string>
     <string name="information">Информация</string>
+    <string name="for_the_health">О здравии</string>
+    <string name="for_the_repose">Об упокоении</string>
+    <string name="no_lists_added">Вы не добавили списки</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
