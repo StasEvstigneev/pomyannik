@@ -2,7 +2,7 @@
 <resources>
 
     <style name="ToolbarStyle">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/_64dp</item>
         <item name="android:paddingStart">@dimen/_16dp</item>
         <item name="buttonGravity">center_vertical</item>
@@ -15,6 +15,31 @@
         <item name="android:textSize">@dimen/_32sp</item>
         <item name="android:textColor">?attr/textAppearanceBody1</item>
         <item name="android:ellipsize">end</item>
+
+    </style>
+
+    <style name="BottomNavMenu" parent="Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+        <item name="android:background">@color/transparent</item>
+        <item name="backgroundTint">?attr/colorSurface</item>
+        <item name="itemActiveIndicatorStyle">@color/transparent</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavTextActive</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavTextInActive</item>
+        <item name="itemIconTint">@color/bottom_nav_item</item>
+        <item name="itemTextColor">@color/bottom_nav_item</item>
+
+    </style>
+
+    <style name="BottomNavTextActive">
+        <item name="android:fontFamily">@font/alumni_sans_medium</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+
+    </style>
+
+    <style name="BottomNavTextInActive">
+        <item name="android:fontFamily">@font/alumni_sans_medium</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:textColor">?attr/textAppearanceBody1</item>
 
     </style>
 

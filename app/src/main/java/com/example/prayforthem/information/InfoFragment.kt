@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.prayforthem.R
+import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentInfoBinding
+import com.example.prayforthem.setFragmentTitle
 
 class InfoFragment : Fragment() {
 
@@ -16,6 +19,7 @@ class InfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setFragmentTitle(requireActivity() as RootActivity, getString(R.string.information))
         _binding = FragmentInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
