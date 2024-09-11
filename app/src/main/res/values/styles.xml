@@ -43,5 +43,20 @@
 
     </style>
 
+    <style name="PlaceholderText">
+        <item name="android:fontFamily">@font/alumni_sans_medium</item>
+        <item name="android:textSize">@dimen/_24sp</item>
+        <item name="android:textColor">?attr/textAppearanceBody1</item>
+
+    </style>
+
+    <style name="FABstyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:layout_marginEnd">@dimen/_32dp</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:layout_marginBottom">@dimen/_32dp</item>
+        <item name="fabSize">normal</item>
+
+    </style>
+
 
 </resources>
