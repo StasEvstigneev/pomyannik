@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listsFragment"
+        android:icon="@drawable/ic_lists"
+        android:title="@string/lists" />
+
+    <item
+        android:id="@+id/prayersFragment"
+        android:icon="@drawable/ic_open_book_"
+        android:title="@string/prayers" />
+
+    <item
+        android:id="@+id/infoFragment"
+        android:icon="@drawable/ic_info"
+        android:title="@string/information" />
+
+</menu>
