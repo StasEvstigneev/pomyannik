@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".lists.ForHealthFragment">
+    android:background="?attr/background"
+    tools:context=".lists_for_health.ForHealthFragment">
 
     <TextView
         android:id="@+id/placeholder"
