@@ -15,12 +15,14 @@ import com.example.prayforthem.lists_for_health.ForHealthFragment
 import com.example.prayforthem.lists_for_repose.ForReposeFragment
 import com.example.prayforthem.setFragmentTitle
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListsFragment : Fragment() {
 
     private var _binding: FragmentListsBinding? = null
     private val binding get() = _binding!!
     private var tabsMediator: TabLayoutMediator? = null
+    private val viewModel by viewModel<ListsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
