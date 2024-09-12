@@ -1,4 +1,4 @@
-package com.example.prayforthem.information
+package com.example.prayforthem.information.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentInfoBinding
-import com.example.prayforthem.setFragmentTitle
+import com.example.prayforthem.information.presentation.InfoViewModel
+import com.example.prayforthem.utils.setFragmentTitle
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InfoFragment : Fragment() {
 
     private var _binding: FragmentInfoBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModel<InfoViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

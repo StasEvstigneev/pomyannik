@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/listsFragment"
-        android:name="com.example.prayforthem.lists.ListsFragment"
+        android:name="com.example.prayforthem.lists.ui.ListsFragment"
         android:label="fragment_lists"
         tools:layout="@layout/fragment_lists" />
     <fragment
         android:id="@+id/prayersFragment"
-        android:name="com.example.prayforthem.prayers.PrayersFragment"
+        android:name="com.example.prayforthem.prayers.ui.PrayersFragment"
         android:label="fragment_prayers"
         tools:layout="@layout/fragment_prayers" />
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.example.prayforthem.information.InfoFragment"
+        android:name="com.example.prayforthem.information.ui.InfoFragment"
         android:label="fragment_info"
         tools:layout="@layout/fragment_info" />
 </navigation>

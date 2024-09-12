@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background"
-    tools:context=".lists_for_health.ForHealthFragment">
+    tools:context=".lists_for_health.ui.ForHealthFragment">
 
     <TextView
         android:id="@+id/placeholder"
