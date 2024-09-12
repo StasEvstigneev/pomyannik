@@ -1,4 +1,4 @@
-package com.example.prayforthem.lists
+package com.example.prayforthem.lists.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,10 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentListsBinding
-import com.example.prayforthem.lists_for_health.ForHealthFragment
-import com.example.prayforthem.lists_for_repose.ForReposeFragment
-import com.example.prayforthem.setFragmentTitle
+import com.example.prayforthem.lists.presentation.ListsViewModel
+import com.example.prayforthem.lists_for_health.ui.ForHealthFragment
+import com.example.prayforthem.lists_for_repose.ui.ForReposeFragment
+import com.example.prayforthem.utils.setFragmentTitle
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,6 +1,10 @@
 package com.example.prayforthem.di
 
-import com.example.prayforthem.lists.ListsViewModel
+import com.example.prayforthem.information.presentation.InfoViewModel
+import com.example.prayforthem.lists.presentation.ListsViewModel
+import com.example.prayforthem.lists_for_health.presentation.ForHealthViewModel
+import com.example.prayforthem.lists_for_repose.repository.ForReposeViewModel
+import com.example.prayforthem.prayers.presentation.PrayersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -9,4 +13,19 @@ val viewModelModule = module {
         ListsViewModel()
     }
 
+    viewModel<ForHealthViewModel> {
+        ForHealthViewModel()
+    }
+
+    viewModel<ForReposeViewModel> {
+        ForReposeViewModel()
+    }
+
+    viewModel<PrayersViewModel> {
+        PrayersViewModel()
+    }
+
+    viewModel<InfoViewModel> {
+        InfoViewModel()
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.prayforthem.prayers
+package com.example.prayforthem.prayers.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentPrayersBinding
-import com.example.prayforthem.setFragmentTitle
+import com.example.prayforthem.prayers.presentation.PrayersViewModel
+import com.example.prayforthem.utils.setFragmentTitle
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PrayersFragment : Fragment() {
 
     private var _binding: FragmentPrayersBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModel<PrayersViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

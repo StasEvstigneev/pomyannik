@@ -1,4 +1,4 @@
-package com.example.prayforthem.lists
+package com.example.prayforthem.lists.presentation
 
 import androidx.lifecycle.ViewModel
 
