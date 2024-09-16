@@ -84,5 +84,29 @@
 
     </style>
 
+    <style name="InputTextLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginHorizontal">@dimen/_24dp</item>
+        <item name="cursorColor">?attr/textAppearanceBody1</item>
+        <item name="hintTextColor">?attr/textAppearanceBody1</item>
+
+    </style>
+
+    <style name="InputTextTextAppearance">
+        <item name="android:fontFamily">@font/alumni_sans_regular</item>
+        <item name="android:textSize">@dimen/_24sp</item>
+        <item name="android:textColor">?attr/textAppearanceBody1</item>
+
+
+    </style>
+
+    <style name="InputTextHintAppearance">
+        <item name="android:fontFamily">@font/alumni_sans_regular</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:textColor">?attr/textAppearanceBody1</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+
+    </style>
+
 
 </resources>

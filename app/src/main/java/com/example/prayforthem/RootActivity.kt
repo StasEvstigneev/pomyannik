@@ -3,6 +3,8 @@ package com.example.prayforthem
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.prayforthem.databinding.ActivityRootBinding
@@ -26,10 +28,21 @@ class RootActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.listsFragment,
                 R.id.prayersFragment,
-                R.id.infoFragment -> rootBinding.toolbar.navigationIcon = null
+                R.id.infoFragment -> {
+                    rootBinding.apply {
+                        bottomNavigation.isVisible = true
+                        toolbar.navigationIcon = null
+                    }
+                }
 
-                else -> rootBinding.toolbar.navigationIcon =
-                    AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back)
+                else -> {
+                    rootBinding.toolbar.navigationIcon =
+                        AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back)
+                    rootBinding.toolbar.setNavigationOnClickListener {
+                        findNavController(R.id.fragment_container).popBackStack()
+                    }
+                    rootBinding.bottomNavigation.isVisible = false
+                }
             }
         }
 
