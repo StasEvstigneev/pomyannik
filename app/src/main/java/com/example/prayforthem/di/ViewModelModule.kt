@@ -1,6 +1,6 @@
 package com.example.prayforthem.di
 
-import com.example.prayforthem.createlist.CreateListViewModel
+import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
 import com.example.prayforthem.lists.presentation.ListsViewModel
 import com.example.prayforthem.lists_for_health.presentation.ForHealthViewModel
