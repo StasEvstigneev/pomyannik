@@ -1,4 +1,4 @@
-package com.example.prayforthem.createlist
+package com.example.prayforthem.createlist.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
+import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel

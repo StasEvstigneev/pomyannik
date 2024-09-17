@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/createListFragment"
-        android:name="com.example.prayforthem.createlist.CreateListFragment"
+        android:name="com.example.prayforthem.createlist.ui.CreateListFragment"
         android:label="fragment_create_list"
         tools:layout="@layout/fragment_create_list" >
         <argument
