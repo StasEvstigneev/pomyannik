@@ -8,6 +8,11 @@
     <string name="for_the_repose">Об упокоении</string>
     <string name="no_lists_added">Вы не добавили списки</string>
     <string name="new_list">Новый список %1s</string>
-    <string name="title">Название</string>
+    <string name="list_title">Название списка</string>
+    <string name="you_can_add_10_names">Вы можете добавить до 10 имён в один список</string>
+    <string name="add_name">Добавить имя</string>
+    <string name="added_n_of_ten">Добавлено %1s из 10</string>
+    <string name="save">Сохранить</string>
+
 
 </resources>
