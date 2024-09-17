@@ -11,7 +11,9 @@
     <dimen name="_24sp">24sp</dimen>
     <dimen name="_32dp">32dp</dimen>
     <dimen name="_32sp">32sp</dimen>
+    <dimen name="_40dp">40dp</dimen>
     <dimen name="_48dp">48dp</dimen>
+    <dimen name="_60dp">60dp</dimen>
     <dimen name="_64dp">64dp</dimen>
     <dimen name="_80dp">80dp</dimen>
     <dimen name="progress_bar_size">44dp</dimen>
