@@ -1,12 +1,16 @@
 package com.example.prayforthem.createlist.ui
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
+import com.example.prayforthem.createlist.domain.CreateListScreenState
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
 import com.example.prayforthem.utils.setFragmentTitle
@@ -40,11 +44,44 @@ class CreateListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setListType(isForHealth)
 
+        viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
+            renderState(state)
+        }
+
+        viewModel.getSaveButtonState().observe(viewLifecycleOwner) { canSave ->
+            binding.buttonSave.isEnabled = canSave
+        }
+
+        binding.editText.doAfterTextChanged { text: Editable? ->
+            if (text.isNullOrBlank()) {
+                viewModel.updateListTitle("")
+            } else {
+                viewModel.updateListTitle(text.toString())
+            }
+        }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun renderState(state: CreateListScreenState) {
+        when (state) {
+            is CreateListScreenState.Loading -> binding.apply {
+                recyclerView.isVisible = false
+                progressBar.isVisible = true
+
+            }
+
+            is CreateListScreenState.Content -> binding.apply {
+                progressBar.isVisible = false
+                infoText.text = getString(R.string.added_n_of_ten, state.listSize.toString())
+                buttonAddName.isEnabled = !state.isListFull
+            }
+        }
+
     }
 
 }

@@ -1,12 +1,12 @@
 package com.example.prayforthem.names
 
 data class Name(
-    var id: Int,
-    var nameDisplay: String,
-    var nameNominative: String, //именительный падеж
-    var nameGenitive: String, //родительный падеж
-    var nameDative: String, //дательный падеж
-    var nameAccusative: String, //винительный падеж
-    var nameInstrumental: String, //творительный падеж
-    var namePrepositional: String //предложный падеж
+    val id: Int,
+    val nameDisplay: String,
+    val nameNominative: String, //именительный падеж
+    val nameGenitive: String, //родительный падеж
+    val nameDative: String, //дательный падеж
+    val nameAccusative: String, //винительный падеж
+    val nameInstrumental: String, //творительный падеж
+    val namePrepositional: String //предложный падеж
 )
