@@ -92,6 +92,9 @@
         <item name="boxStrokeWidth">@dimen/_1dp</item>
         <item name="boxStrokeWidthFocused">@dimen/_1dp</item>
         <item name="hintTextAppearance">@style/InputTextHintAppearance</item>
+        <item name="counterTextAppearance">@style/InputTextHintAppearance</item>
+        <item name="helperTextTextAppearance">@style/InputTextHintAppearance</item>
+        <item name="errorTextAppearance">@style/InputTextErrorTextAppearance</item>
         <item name="endIconMode">clear_text</item>
         <item name="endIconTint">?attr/textAppearanceBody1</item>
 
@@ -102,13 +105,19 @@
         <item name="android:textSize">@dimen/_24sp</item>
         <item name="android:textColor">?attr/textAppearanceBody1</item>
 
-
     </style>
 
     <style name="InputTextHintAppearance">
         <item name="android:fontFamily">@font/alumni_sans_regular</item>
         <item name="android:textSize">@dimen/_16sp</item>
         <item name="android:textColor">?attr/textAppearanceBody1</item>
+
+    </style>
+
+    <style name="InputTextErrorTextAppearance">
+        <item name="android:fontFamily">@font/alumni_sans_medium</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="android:textColor">@color/red</item>
 
     </style>
 

@@ -13,6 +13,7 @@
     <string name="add_name">Добавить имя</string>
     <string name="added_n_of_ten">Добавлено %1s из 10</string>
     <string name="save">Сохранить</string>
+    <string name="field_required">Обязательно</string>
 
 
 </resources>
