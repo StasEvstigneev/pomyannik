@@ -4,6 +4,7 @@ import com.example.prayforthem.names.Dignity
 import com.example.prayforthem.names.Name
 
 data class Person(
-    var dignity: Dignity?,
-    var name: Name
+    val id: Int,
+    val dignity: Dignity?,
+    val name: Name
 )
