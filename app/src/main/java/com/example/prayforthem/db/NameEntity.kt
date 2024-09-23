@@ -22,6 +22,6 @@ data class NameEntity(
     val nameInstrumental: String,
     @ColumnInfo(name = "name_prep")
     val namePrepositional: String,
-    @ColumnInfo(name = "custom")
-    val isCustom: Boolean
+    @ColumnInfo(name = "is_custom")
+    val isCustom: Int //0-false, 1-true
 )
