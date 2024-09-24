@@ -1,4 +1,4 @@
-package com.example.prayforthem.names
+package com.example.prayforthem.names.domain
 
 data class Name(
     val id: Int,

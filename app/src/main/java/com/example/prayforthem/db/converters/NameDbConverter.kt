@@ -1,7 +1,7 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.entities.NameEntity
-import com.example.prayforthem.names.Name
+import com.example.prayforthem.names.domain.Name
 
 class NameDbConverter(private val booleanIntDbConverter: BooleanIntDbConverter) {
 

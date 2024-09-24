@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.createlist.domain.CreateListScreenState
@@ -58,6 +59,10 @@ class CreateListFragment : Fragment() {
             } else {
                 viewModel.updateListTitle(text.toString())
             }
+        }
+
+        binding.buttonAddName.setOnClickListener {
+            findNavController().navigate(R.id.action_createListFragment_to_namesFragment)
         }
 
     }

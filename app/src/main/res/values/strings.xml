@@ -14,6 +14,9 @@
     <string name="added_n_of_ten">Добавлено %1s из 10</string>
     <string name="save">Сохранить</string>
     <string name="field_required">Обязательно</string>
+    <string name="names">Имена</string>
+    <string name="name">Имя</string>
+    <string name="dignity_description">сан/описание</string>
 
 
 </resources>

@@ -1,7 +1,7 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.entities.DignityEntity
-import com.example.prayforthem.names.Dignity
+import com.example.prayforthem.names.domain.Dignity
 
 class DignityDbConverter(private val booleanIntDbConverter: BooleanIntDbConverter) {
 
