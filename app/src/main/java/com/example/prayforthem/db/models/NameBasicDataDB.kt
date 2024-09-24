@@ -1,7 +1,12 @@
 package com.example.prayforthem.db.models
 
+import androidx.room.ColumnInfo
+
 data class NameBasicDataDB(
+    @ColumnInfo(name = "name_id")
     val nameId: Int,
-    val nameDisplay: String, //для вывода в recyclerview
-    val nameGenitive: String //для вывода в карточках о здравии, упокоении
+    @ColumnInfo(name = "name_display")
+    val nameDisplay: String,
+    @ColumnInfo(name = "name_gen")
+    val nameGenitive: String
 )
