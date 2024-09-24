@@ -1,7 +1,9 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.entities.DignityEntity
+import com.example.prayforthem.db.models.DignityBasicDataDB
 import com.example.prayforthem.names.domain.Dignity
+import com.example.prayforthem.names.domain.DignityBasicData
 
 class DignityDbConverter(private val booleanIntDbConverter: BooleanIntDbConverter) {
 
@@ -32,6 +34,14 @@ class DignityDbConverter(private val booleanIntDbConverter: BooleanIntDbConverte
             dignity.dignityPrepositional,
             dignity.dignityShort,
             booleanIntDbConverter.map(dignity.isChurchTitle)
+        )
+    }
+
+    fun map(dignity: DignityBasicDataDB): DignityBasicData {
+        return DignityBasicData(
+            dignity.dignityId,
+            dignity.dignityDisplay,
+            dignity.dignityShort,
         )
     }
 }

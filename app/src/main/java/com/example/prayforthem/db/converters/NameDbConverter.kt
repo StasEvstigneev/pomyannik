@@ -1,7 +1,9 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.entities.NameEntity
+import com.example.prayforthem.db.models.NameBasicDataDB
 import com.example.prayforthem.names.domain.Name
+import com.example.prayforthem.names.domain.NameBasicData
 
 class NameDbConverter(private val booleanIntDbConverter: BooleanIntDbConverter) {
 
@@ -30,6 +32,14 @@ class NameDbConverter(private val booleanIntDbConverter: BooleanIntDbConverter) 
             name.nameInstrumental,
             name.namePrepositional,
             booleanIntDbConverter.map(name.isCustom)
+        )
+    }
+
+    fun map(name: NameBasicDataDB): NameBasicData {
+        return NameBasicData(
+            name.nameId,
+            name.nameDisplay,
+            name.nameGenitive
         )
     }
 }
