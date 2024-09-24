@@ -1,4 +1,4 @@
-package com.example.prayforthem.names
+package com.example.prayforthem.names.domain
 
 data class Dignity(
     val id: Int,

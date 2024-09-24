@@ -44,5 +44,13 @@
         <argument
             android:name="isForHealthArg"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_createListFragment_to_namesFragment"
+            app:destination="@id/namesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/namesFragment"
+        android:name="com.example.prayforthem.names.ui.NamesFragment"
+        android:label="fragment_names"
+        tools:layout="@layout/fragment_names" />
 </navigation>
