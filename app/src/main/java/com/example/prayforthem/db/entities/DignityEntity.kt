@@ -1,4 +1,4 @@
-package com.example.prayforthem.db
+package com.example.prayforthem.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
