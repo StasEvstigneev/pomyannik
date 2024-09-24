@@ -16,7 +16,7 @@ interface NameDao {
     @Query("SELECT name_id, name_display, name_gen FROM names WHERE name_id IN (:ids)")
     suspend fun getBasicNameDataByIds(ids: List<Int>): List<NameBasicDataDB>
 
-    @Query("SELECT * FROM names WHERE name_id IN (:ids) ORDER by name_id asc")
+    @Query("SELECT * FROM names WHERE name_id IN (:ids)")
     suspend fun getNamesByIds(ids: List<Int>): List<NameEntity>
 
     @Insert(entity = NameEntity::class, onConflict = OnConflictStrategy.IGNORE)
