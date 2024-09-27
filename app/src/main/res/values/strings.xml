@@ -16,7 +16,8 @@
     <string name="field_required">Обязательно</string>
     <string name="names">Имена</string>
     <string name="name">Имя</string>
-    <string name="dignity_description">сан/описание</string>
+    <string name="dignity_description">Cан/описание</string>
+    <string name="choose_name">Выберите имя</string>
 
 
 </resources>

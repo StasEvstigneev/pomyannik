@@ -184,6 +184,7 @@
         <item name="errorTextAppearance">@style/InputTextErrorTextAppearance</item>
         <item name="endIconMode">clear_text</item>
         <item name="endIconTint">?attr/textAppearanceBody1</item>
+        <item name="background">?attr/background</item>
 
     </style>
 
