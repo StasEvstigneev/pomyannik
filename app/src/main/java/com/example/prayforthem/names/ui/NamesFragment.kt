@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentNamesBinding
+import com.example.prayforthem.names.domain.models.NameBasicData
+import com.example.prayforthem.names.domain.models.NamesScreenState
 import com.example.prayforthem.names.presentation.NamesViewModel
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,63 +28,8 @@ class NamesFragment : Fragment() {
     private var dignity = ""
     private var name = ""
 
-    private var dignityList = listOf(
-        "Патриарх",
-        "Митрополит",
-        "Епископ",
-        "Архимандрит",
-        "Иерей",
-        "Диакон",
-        "Монах",
-        "Патриарх",
-        "Митрополит",
-        "Епископ",
-        "Архимандрит",
-        "Иерей",
-        "Диакон",
-        "Монах",
-        "Патриарх",
-        "Митрополит",
-        "Епископ",
-        "Архимандрит",
-        "Иерей",
-        "Диакон",
-        "Монах",
-        "Патриарх",
-        "Митрополит",
-        "Епископ",
-        "Архимандрит",
-        "Иерей",
-        "Диакон",
-        "Монах"
-    )
-
-    private var namesList = listOf(
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя",
-        "Имя"
-    )
+    private var dignityList = ArrayList<String>()
+    private var namesList = ArrayList<NameBasicData>()
 
 
     override fun onCreateView(
@@ -101,7 +48,25 @@ class NamesFragment : Fragment() {
             ArrayAdapter<String>(requireContext(), R.layout.name_drop_down_item, dignityList)
 
         val namesAdapter =
-            ArrayAdapter<String>(requireContext(), R.layout.name_drop_down_item, namesList)
+            ArrayAdapter<NameBasicData>(requireContext(), R.layout.name_drop_down_item, namesList)
+
+        viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
+//            renderState(state)
+            when (state) {
+                is NamesScreenState.Loading -> {
+                    true
+                }
+
+                is NamesScreenState.Default -> {
+                    dignityList = state.dignity
+                    namesList = state.names
+                    dignityAdapter.clear()
+                    dignityAdapter.addAll(dignityList)
+                    namesAdapter.clear()
+                    namesAdapter.addAll(namesList)
+                }
+            }
+        }
 
         binding.inputDignity.apply {
             setAdapter(dignityAdapter)
@@ -128,6 +93,19 @@ class NamesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun renderState(state: NamesScreenState) {
+        when (state) {
+            is NamesScreenState.Loading -> {
+                true
+            }
+
+            is NamesScreenState.Default -> {
+                dignityList = state.dignity
+                namesList = state.names
+            }
+        }
     }
 
 }

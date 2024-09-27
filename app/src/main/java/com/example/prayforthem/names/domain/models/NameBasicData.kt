@@ -1,4 +1,4 @@
-package com.example.prayforthem.names.domain
+package com.example.prayforthem.names.domain.models
 
 data class NameBasicData(
     val nameId: Int,
