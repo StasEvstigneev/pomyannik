@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentNamesBinding
+import com.example.prayforthem.names.domain.models.DignityBasicData
 import com.example.prayforthem.names.domain.models.NameBasicData
 import com.example.prayforthem.names.domain.models.NamesScreenState
 import com.example.prayforthem.names.presentation.NamesViewModel
@@ -28,7 +29,7 @@ class NamesFragment : Fragment() {
     private var dignity = ""
     private var name = ""
 
-    private var dignityList = ArrayList<String>()
+    private var dignityList = ArrayList<DignityBasicData>()
     private var namesList = ArrayList<NameBasicData>()
 
 
@@ -45,7 +46,11 @@ class NamesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val dignityAdapter =
-            ArrayAdapter<String>(requireContext(), R.layout.name_drop_down_item, dignityList)
+            ArrayAdapter<DignityBasicData>(
+                requireContext(),
+                R.layout.name_drop_down_item,
+                dignityList
+            )
 
         val namesAdapter =
             ArrayAdapter<NameBasicData>(requireContext(), R.layout.name_drop_down_item, namesList)
@@ -93,6 +98,11 @@ class NamesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getNamesList()
     }
 
     private fun renderState(state: NamesScreenState) {

@@ -36,6 +36,6 @@ val viewModelModule = module {
     }
 
     viewModel<NamesViewModel> {
-        NamesViewModel(get())
+        NamesViewModel(get(), get())
     }
 }
