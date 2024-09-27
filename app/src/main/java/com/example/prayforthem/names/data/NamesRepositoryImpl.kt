@@ -14,8 +14,8 @@ class NamesRepositoryImpl(
 ) : NamesRepository {
 
     override fun getNamesBasicData(): Flow<List<NameBasicData>> = flow {
-        val namesBasicData = appDatabase.nameDao().getAllBasicNameData()
-        emit(convertNamesBasicData(namesBasicData))
+        val namesBasicDataList = appDatabase.nameDao().getAllBasicNameData()
+        emit(convertNamesBasicData(namesBasicDataList))
     }
 
     private fun convertNamesBasicData(names: List<NameBasicDataDB>): List<NameBasicData> {
