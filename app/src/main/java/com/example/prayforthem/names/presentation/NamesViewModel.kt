@@ -19,6 +19,9 @@ class NamesViewModel(
     private var namesList = ArrayList<NameBasicData>()
     private val dignityList = ArrayList<DignityBasicData>()
 
+    private var selectedDignity: DignityBasicData? = null
+    private var selectedName: NameBasicData? = null
+
     private val screenState = MutableLiveData<NamesScreenState>(NamesScreenState.Loading)
     fun getScreenState(): LiveData<NamesScreenState> = screenState
 
@@ -47,7 +50,15 @@ class NamesViewModel(
                 }
         }
     }
-    
+
+    fun updateSelectedDignity(dignity: DignityBasicData?) {
+        selectedDignity = dignity
+    }
+
+    fun updateSelectedName(name: NameBasicData?) {
+        selectedName = name
+    }
+
     private fun processNamesBasicData(updatedNamesList: List<NameBasicData>) {
         if (updatedNamesList.isNotEmpty()) {
             namesList = updatedNamesList as ArrayList<NameBasicData>
