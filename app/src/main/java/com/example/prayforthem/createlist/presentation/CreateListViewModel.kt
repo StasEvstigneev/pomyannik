@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.prayforthem.createlist.domain.CreateListScreenState
-import com.example.prayforthem.lists.domain.Person
+import com.example.prayforthem.names.domain.models.PersonBasicData
 
 class CreateListViewModel : ViewModel() {
 
     private var isForHealth = true
     private var isListFull = false
     private var listTitle = ""
-    private var list = arrayListOf<Person>()
+    private var list = arrayListOf<PersonBasicData>()
 
 
     private val screenState = MutableLiveData<CreateListScreenState>(CreateListScreenState.Loading)
@@ -38,8 +38,8 @@ class CreateListViewModel : ViewModel() {
         Log.d("TITLE", "Title after method = $listTitle")
     }
 
-    fun addNameToList(person: Person) {
-        //list.add(person)
+    fun addNameToList(person: PersonBasicData) {
+        list.add(person)
         isListFull = !(list.size < LIST_MAX_SIZE)
         screenState
             .postValue(CreateListScreenState.Content(list, list.size, isListFull))

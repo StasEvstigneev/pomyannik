@@ -18,6 +18,8 @@
     <string name="name">Имя</string>
     <string name="dignity_description">Cан/описание</string>
     <string name="choose_name">Выберите имя</string>
+    <string name="choose_dignity_helper">Выберите определение из списка, либо оставьте поле пустым</string>
+    <string name="choose_name_helper">Выберите имя из списка</string>
 
 
 </resources>
