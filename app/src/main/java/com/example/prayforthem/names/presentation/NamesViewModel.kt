@@ -1,5 +1,6 @@
 package com.example.prayforthem.names.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,10 @@ class NamesViewModel(
     private val screenState = MutableLiveData<NamesScreenState>(NamesScreenState.Loading)
     fun getScreenState(): LiveData<NamesScreenState> = screenState
 
+    private val saveButtonState = MutableLiveData<Boolean>(false)
+    fun getSaveButtonState(): LiveData<Boolean> = saveButtonState
+
+
     init {
         viewModelScope.launch {
             dignityInteractor
@@ -39,6 +44,7 @@ class NamesViewModel(
                 }
 
         }
+        saveButtonState.postValue(false)
     }
 
     fun getNamesList() {
@@ -53,10 +59,13 @@ class NamesViewModel(
 
     fun updateSelectedDignity(dignity: DignityBasicData?) {
         selectedDignity = dignity
+        Log.d("CHOSEN DIGNITY", selectedDignity?.dignityDisplay ?: "null")
     }
 
     fun updateSelectedName(name: NameBasicData?) {
         selectedName = name
+        Log.d("CHOSEN NAME", selectedName?.nameDisplay ?: "null")
+        saveButtonState.postValue(selectedName != null)
     }
 
     private fun processNamesBasicData(updatedNamesList: List<NameBasicData>) {

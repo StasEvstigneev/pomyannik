@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
@@ -23,6 +24,7 @@ class NamesFragment : Fragment() {
     private var _binding: FragmentNamesBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<NamesViewModel>()
+    private var names = ArrayList<NameBasicData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,24 +60,46 @@ class NamesFragment : Fragment() {
                             state.names
                         )
                     )
+                    names = state.names
 
                 }
             }
         }
 
+        viewModel.getSaveButtonState().observe(viewLifecycleOwner) { isEnabled ->
+            binding.buttonSave.isEnabled = isEnabled
+
+        }
+
+
         binding.inputDignity.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE)) // убирает верхние марджины в dpopdown menu
+            setOnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) showDropDown()
+            }
             setOnItemClickListener { parent, view, position, id ->
                 val selectedDignity = parent.getItemAtPosition(position) as DignityBasicData
                 viewModel.updateSelectedDignity(selectedDignity)
+            }
+            doAfterTextChanged { text ->
+                viewModel.updateSelectedDignity(null)
+
             }
         }
 
         binding.inputName.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE))
+            setOnFocusChangeListener { v, hasFocus ->
+                if (hasFocus) showDropDown()
+            }
+
             setOnItemClickListener { parent, view, position, id ->
                 val selectedName = parent.getItemAtPosition(position) as NameBasicData
                 viewModel.updateSelectedName(selectedName)
+
+            }
+            doAfterTextChanged { text ->
+                viewModel.updateSelectedName(null)
             }
         }
 

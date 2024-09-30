@@ -12,7 +12,8 @@
         style="@style/InputTextDropDownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:endIconMode="dropdown_menu"
+        app:endIconMode="clear_text"
+        app:helperText="@string/choose_dignity_helper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24dp"
-        app:endIconMode="dropdown_menu"
+        app:endIconMode="clear_text"
+        app:helperText="@string/choose_name_helper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutDignity">
@@ -46,7 +48,8 @@
             android:layout_height="match_parent"
             android:completionThreshold="1"
             android:hint="@string/choose_name"
-            android:inputType="text" />
+            android:inputType="textAutoComplete"
+            app:simpleItemSelectedColor="@color/red" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,11 +59,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_56dp"
-        android:enabled="true"
+        android:enabled="false"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutName" />
+
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

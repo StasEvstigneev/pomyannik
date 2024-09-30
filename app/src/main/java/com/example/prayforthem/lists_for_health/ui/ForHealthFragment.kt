@@ -38,7 +38,9 @@ class ForHealthFragment : Fragment() {
     }
 
     private fun navigate() {
-        val action = ListsFragmentDirections.actionListsFragmentToCreateListFragment(IS_FOR_HEALTH)
+        val action = ListsFragmentDirections.actionListsFragmentToCreateListFragment(
+            isForHealthArg = IS_FOR_HEALTH
+        )
         findNavController().navigate(action)
     }
 
