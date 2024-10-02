@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.prayforthem.createlist.domain.CreateListScreenState
-import com.example.prayforthem.names.domain.models.PersonBasicData
+import com.example.prayforthem.lists.domain.PersonBasicData
 
 class CreateListViewModel : ViewModel() {
 

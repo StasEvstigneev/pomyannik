@@ -1,6 +1,6 @@
 package com.example.prayforthem.createlist.domain
 
-import com.example.prayforthem.names.domain.models.PersonBasicData
+import com.example.prayforthem.lists.domain.PersonBasicData
 
 sealed class CreateListScreenState() {
     data object Loading : CreateListScreenState()

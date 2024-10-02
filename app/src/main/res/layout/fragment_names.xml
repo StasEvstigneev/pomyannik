@@ -48,6 +48,7 @@
             android:layout_height="match_parent"
             android:completionThreshold="1"
             android:hint="@string/choose_name"
+            android:imeOptions="actionDone"
             android:inputType="textAutoComplete"
             app:simpleItemSelectedColor="@color/red" />
 
@@ -58,12 +59,46 @@
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_56dp"
+        android:layout_marginBottom="@dimen/_48dp"
         android:enabled="false"
         android:text="@string/save"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/placeholderNoNames"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="noNameNotification, buttonAddNewName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayoutName" />
+
+    <TextView
+        android:id="@+id/noNameNotification"
+        style="@style/NotificationText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_56dp"
+        android:text="@string/no_such_name_in_db"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAddNewName"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12dp"
+        android:text="@string/add_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/noNameNotification" />
 
     <View
         android:id="@+id/overlay"

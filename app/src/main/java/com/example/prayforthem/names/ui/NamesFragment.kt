@@ -3,10 +3,12 @@ package com.example.prayforthem.names.ui
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import com.example.prayforthem.R
@@ -24,7 +26,6 @@ class NamesFragment : Fragment() {
     private var _binding: FragmentNamesBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<NamesViewModel>()
-    private var names = ArrayList<NameBasicData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,30 +48,24 @@ class NamesFragment : Fragment() {
 
                 is NamesScreenState.Default -> {
                     binding.inputDignity.setAdapter(
-                        ArrayAdapter(
+                        CustomArrayAdapter(
                             requireContext(),
-                            R.layout.name_drop_down_item,
                             state.dignity
                         )
                     )
                     binding.inputName.setAdapter(
-                        ArrayAdapter(
+                        CustomArrayAdapter(
                             requireContext(),
-                            R.layout.name_drop_down_item,
                             state.names
                         )
                     )
-                    names = state.names
-
                 }
             }
         }
 
         viewModel.getSaveButtonState().observe(viewLifecycleOwner) { isEnabled ->
             binding.buttonSave.isEnabled = isEnabled
-
         }
-
 
         binding.inputDignity.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE)) // убирает верхние марджины в dpopdown menu
@@ -83,8 +78,8 @@ class NamesFragment : Fragment() {
             }
             doAfterTextChanged { text ->
                 viewModel.updateSelectedDignity(null)
-
             }
+
         }
 
         binding.inputName.apply {
@@ -96,16 +91,37 @@ class NamesFragment : Fragment() {
             setOnItemClickListener { parent, view, position, id ->
                 val selectedName = parent.getItemAtPosition(position) as NameBasicData
                 viewModel.updateSelectedName(selectedName)
+                binding.placeholderNoNames.isVisible = false
 
             }
-            doAfterTextChanged { text ->
-                viewModel.updateSelectedName(null)
-            }
+
+            addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.updateSelectedName(null)
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (adapter.count > 0 || s.isNullOrBlank()) {
+                        binding.placeholderNoNames.isVisible = false
+                    } else {
+                        binding.placeholderNoNames.isVisible = true
+                    }
+                }
+
+            })
+
         }
 
-        binding.buttonSave.setOnClickListener {
-
-        }
+        binding.buttonSave.setOnClickListener {}
     }
 
     override fun onDestroyView() {
