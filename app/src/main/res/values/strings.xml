@@ -20,6 +20,7 @@
     <string name="choose_name">Выберите имя</string>
     <string name="choose_dignity_helper">Выберите определение из списка, либо оставьте поле пустым</string>
     <string name="choose_name_helper">Выберите имя из списка</string>
+    <string name="no_such_name_in_db">Такого имени нет в базе. Вы можете самостоятельно добавить его</string>
 
 
 </resources>
