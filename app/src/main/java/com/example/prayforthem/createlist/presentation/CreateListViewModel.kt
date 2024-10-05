@@ -12,15 +12,13 @@ class CreateListViewModel : ViewModel() {
     private var isForHealth = true
     private var isListFull = false
     private var listTitle = ""
-    private var list = arrayListOf<PersonBasicData>()
-
+    private var list = ArrayList<PersonBasicData>()
 
     private val screenState = MutableLiveData<CreateListScreenState>(CreateListScreenState.Loading)
     fun getScreenState(): LiveData<CreateListScreenState> = screenState
 
     private val saveButtonState = MutableLiveData<Boolean>(checkSavingPossibility())
     fun getSaveButtonState(): LiveData<Boolean> = saveButtonState
-
 
     init {
         screenState
@@ -38,14 +36,17 @@ class CreateListViewModel : ViewModel() {
         Log.d("TITLE", "Title after method = $listTitle")
     }
 
-    fun addNameToList(person: PersonBasicData) {
-        list.add(person)
-        isListFull = !(list.size < LIST_MAX_SIZE)
-        screenState
-            .postValue(CreateListScreenState.Content(list, list.size, isListFull))
-        saveButtonState.postValue(checkSavingPossibility())
+    fun addPersonToList(person: PersonBasicData) {
+        if (list.size < LIST_MAX_SIZE) {
+            list.add(person)
+            isListFull = list.size >= LIST_MAX_SIZE
+            screenState
+                .postValue(CreateListScreenState.Content(list, list.size, isListFull))
+            saveButtonState.postValue(checkSavingPossibility())
+            Log.d("ADDED PERSON", "$person")
+            Log.d("ADDED PERSON", "$list")
+        }
     }
-
 
     private fun checkSavingPossibility(): Boolean {
         return (listTitle.isNotEmpty() && list.size != ZERO)

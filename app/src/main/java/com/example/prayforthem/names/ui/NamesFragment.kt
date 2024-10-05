@@ -5,12 +5,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentNamesBinding
@@ -27,12 +29,25 @@ class NamesFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModel<NamesViewModel>()
 
+    private lateinit var dignityAdapter: CustomArrayAdapter<DignityBasicData>
+    private lateinit var namesAdapter: CustomArrayAdapter<NameBasicData>
+
+    private var selectedDignity: DignityBasicData? = null
+    private var selectedName: NameBasicData? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         setFragmentTitle(requireActivity() as RootActivity, getString(R.string.names))
         _binding = FragmentNamesBinding.inflate(inflater, container, false)
+
+        dignityAdapter = CustomArrayAdapter(requireContext(), listOf())
+        binding.inputDignity.setAdapter(dignityAdapter)
+
+        namesAdapter = CustomArrayAdapter(requireContext(), listOf())
+        binding.inputName.setAdapter(namesAdapter)
+
         return binding.root
     }
 
@@ -40,59 +55,54 @@ class NamesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
-
-            when (state) {
-                is NamesScreenState.Loading -> {
-                    true
-                }
-
-                is NamesScreenState.Default -> {
-                    binding.inputDignity.setAdapter(
-                        CustomArrayAdapter(
-                            requireContext(),
-                            state.dignity
-                        )
-                    )
-                    binding.inputName.setAdapter(
-                        CustomArrayAdapter(
-                            requireContext(),
-                            state.names
-                        )
-                    )
-                }
-            }
+            renderState(state)
         }
 
-        viewModel.getSaveButtonState().observe(viewLifecycleOwner) { isEnabled ->
-            binding.buttonSave.isEnabled = isEnabled
+        viewModel.getSelectedDignity().observe(viewLifecycleOwner) { dignity ->
+            selectedDignity = dignity
+        }
+
+        viewModel.getSelectedName().observe(viewLifecycleOwner) { name ->
+            selectedName = name
+            binding.buttonSave.isEnabled = (name != null)
         }
 
         binding.inputDignity.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE)) // убирает верхние марджины в dpopdown menu
+
             setOnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) showDropDown()
-            }
-            setOnItemClickListener { parent, view, position, id ->
-                val selectedDignity = parent.getItemAtPosition(position) as DignityBasicData
-                viewModel.updateSelectedDignity(selectedDignity)
-            }
-            doAfterTextChanged { text ->
-                viewModel.updateSelectedDignity(null)
+
             }
 
+            setOnItemClickListener { parent, view, position, id ->
+                val dignity = parent.getItemAtPosition(position) as DignityBasicData
+                selectedDignity = dignity
+                viewModel.updateSelectedDignity(dignity)
+                Log.d("CHOSEN DIGNITY FRAGMENT", selectedDignity?.dignityDisplay ?: "null")
+            }
+
+            doAfterTextChanged { text ->
+                viewModel.updateSelectedDignity(null)
+
+                if (text.isNullOrEmpty()) {
+                    viewModel.updateSelectedDignity(null)
+                }
+
+                Log.d(
+                    "CHOSEN DIGNITY AFTER TEXT CHANGED",
+                    selectedDignity?.dignityDisplay ?: "null"
+                )
+            }
         }
 
         binding.inputName.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE))
-            setOnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) showDropDown()
-            }
 
             setOnItemClickListener { parent, view, position, id ->
-                val selectedName = parent.getItemAtPosition(position) as NameBasicData
-                viewModel.updateSelectedName(selectedName)
-                binding.placeholderNoNames.isVisible = false
-
+                val name = parent.getItemAtPosition(position) as NameBasicData
+                selectedName = name
+                viewModel.updateSelectedName(name)
+                Log.d("CHOSEN NAME FRAGMENT", selectedName?.nameDisplay ?: "null")
             }
 
             addTextChangedListener(object : TextWatcher {
@@ -101,27 +111,44 @@ class NamesFragment : Fragment() {
                     start: Int,
                     count: Int,
                     after: Int
-                ) {
-                }
+                ) = Unit
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    viewModel.updateSelectedName(null)
-
-                }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
                 override fun afterTextChanged(s: Editable?) {
-                    if (adapter.count > 0 || s.isNullOrBlank()) {
-                        binding.placeholderNoNames.isVisible = false
-                    } else {
-                        binding.placeholderNoNames.isVisible = true
+                    binding.placeholderNoNames.isVisible = (adapter.count == 0)
+                    viewModel.updateSelectedName(null)
+                    if (s.isNullOrEmpty()) {
+                        viewModel.updateSelectedName(null)
                     }
+                    Log.d("CHOSEN NAME AFTER TEXT CHANGED", selectedName?.nameDisplay ?: "null")
                 }
-
             })
 
         }
 
-        binding.buttonSave.setOnClickListener {}
+        binding.buttonSave.setOnClickListener {
+            val action = NamesFragmentDirections
+                .actionNamesFragmentToCreateListFragment(
+                    dignityArg = selectedDignity,
+                    nameArg = selectedName
+                )
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun renderState(state: NamesScreenState) {
+        when (state) {
+            is NamesScreenState.Loading -> {
+                true
+            }
+
+            is NamesScreenState.Default -> {
+                dignityAdapter.updateList(state.dignity)
+                namesAdapter.updateList(state.names)
+            }
+        }
+
     }
 
     override fun onDestroyView() {
@@ -131,7 +158,19 @@ class NamesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        viewModel.updateSelectedName(selectedName)
+        viewModel.updateSelectedDignity(selectedDignity)
         viewModel.getNamesList()
+        binding.placeholderNoNames.isVisible =
+            !binding.inputName.text.isNullOrEmpty() && !namesAdapter.getAllItems()
+                .contains(binding.inputName.text.toString())
+
+        Log.d("CHOSEN DIGNITY RESUME FRAGMENT", selectedDignity?.dignityDisplay ?: "null")
+        Log.d("CHOSEN DIGNITY RESUME VM", viewModel.selectedDignity.value?.dignityDisplay ?: "null")
+        Log.d("CHOSEN NAME RESUME FRAGMENT", selectedName?.nameDisplay ?: "null")
+        Log.d("CHOSEN INPUT FIELD", binding.inputName.text.toString())
+        Log.d("CHOSEN NAME RESUME VM", viewModel.selectedName.value?.nameDisplay ?: "null")
+
     }
 
 }

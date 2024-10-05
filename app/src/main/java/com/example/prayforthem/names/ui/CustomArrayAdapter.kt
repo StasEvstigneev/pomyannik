@@ -8,7 +8,7 @@ import com.example.prayforthem.R
 
 class CustomArrayAdapter<T>(
     context: Context,
-    private val items: List<T>
+    private var items: List<T>
 ) : ArrayAdapter<T>(context, R.layout.name_drop_down_item, items), Filterable {
 
     private var filteredItems: List<T> = items
@@ -46,7 +46,19 @@ class CustomArrayAdapter<T>(
         }
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
+    fun updateList(newItems: List<T>) {
+        items = newItems
+        filteredItems = newItems
+        notifyDataSetChanged()
+
     }
+
+    fun getAllItems(): List<String> {
+        val tempList = ArrayList<String>()
+        items.forEach { item ->
+            tempList.add(item.toString())
+        }
+        return tempList
+    }
+
 }
