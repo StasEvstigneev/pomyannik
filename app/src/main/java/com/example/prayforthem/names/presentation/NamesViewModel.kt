@@ -20,15 +20,14 @@ class NamesViewModel(
     private var namesList = ArrayList<NameBasicData>()
     private val dignityList = ArrayList<DignityBasicData>()
 
-    private var selectedDignity: DignityBasicData? = null
-    private var selectedName: NameBasicData? = null
-
     private val screenState = MutableLiveData<NamesScreenState>(NamesScreenState.Loading)
     fun getScreenState(): LiveData<NamesScreenState> = screenState
 
-    private val saveButtonState = MutableLiveData<Boolean>(false)
-    fun getSaveButtonState(): LiveData<Boolean> = saveButtonState
+    var selectedDignity = MutableLiveData<DignityBasicData?>(null)
+    fun getSelectedDignity(): LiveData<DignityBasicData?> = selectedDignity
 
+    var selectedName = MutableLiveData<NameBasicData?>(null)
+    fun getSelectedName(): LiveData<NameBasicData?> = selectedName
 
     init {
         viewModelScope.launch {
@@ -44,10 +43,10 @@ class NamesViewModel(
                 }
 
         }
-        saveButtonState.postValue(false)
     }
 
     fun getNamesList() {
+        screenState.postValue(NamesScreenState.Loading)
         viewModelScope.launch {
             namesInteractor
                 .getNamesBasicData()
@@ -58,14 +57,13 @@ class NamesViewModel(
     }
 
     fun updateSelectedDignity(dignity: DignityBasicData?) {
-        selectedDignity = dignity
-        Log.d("CHOSEN DIGNITY", selectedDignity?.dignityDisplay ?: "null")
+        selectedDignity.postValue(dignity)
+        Log.d("CHOSEN DIGNITY", selectedDignity.value?.dignityDisplay ?: "null")
     }
 
     fun updateSelectedName(name: NameBasicData?) {
-        selectedName = name
-        Log.d("CHOSEN NAME", selectedName?.nameDisplay ?: "null")
-        saveButtonState.postValue(selectedName != null)
+        selectedName.postValue(name)
+        Log.d("CHOSEN NAME", selectedName.value?.nameDisplay ?: "null")
     }
 
     private fun processNamesBasicData(updatedNamesList: List<NameBasicData>) {

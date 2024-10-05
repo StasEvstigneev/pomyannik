@@ -14,6 +14,7 @@ import com.example.prayforthem.RootActivity
 import com.example.prayforthem.createlist.domain.CreateListScreenState
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
+import com.example.prayforthem.lists.domain.PersonBasicData
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
@@ -72,12 +73,22 @@ class CreateListFragment : Fragment() {
         _binding = null
     }
 
+    override fun onResume() {
+        super.onResume()
+        val selectedDignity = CreateListFragmentArgs.fromBundle(requireArguments()).dignityArg
+        val selectedName = CreateListFragmentArgs.fromBundle(requireArguments()).nameArg
+        if (selectedName != null) {
+            viewModel.addPersonToList(PersonBasicData(selectedDignity, selectedName))
+            requireArguments().clear()
+        }
+
+    }
+
     private fun renderState(state: CreateListScreenState) {
         when (state) {
             is CreateListScreenState.Loading -> binding.apply {
                 recyclerView.isVisible = false
                 progressBar.isVisible = true
-
             }
 
             is CreateListScreenState.Content -> binding.apply {
