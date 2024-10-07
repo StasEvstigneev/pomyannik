@@ -11,6 +11,9 @@ interface DignityDao {
     @Query("SELECT dignity_id, dignity_display, dignity_short FROM dignity ORDER by dignity_id asc")
     suspend fun getAllBasicDignityData(): List<DignityBasicDataDB>
 
+    @Query("SELECT dignity_id, dignity_display, dignity_short FROM dignity WHERE dignity_id = :id")
+    suspend fun getDignityBasicDataById(id: Int): DignityBasicDataDB
+
     @Query("SELECT dignity_id, dignity_display, dignity_short FROM dignity WHERE dignity_id IN (:ids)")
     suspend fun getBasicDignityDataByIds(ids: List<Int>): List<DignityBasicDataDB>
 

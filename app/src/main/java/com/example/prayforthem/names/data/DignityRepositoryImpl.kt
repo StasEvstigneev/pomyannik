@@ -21,6 +21,10 @@ class DignityRepositoryImpl(
         emit(convertDignityBasicData(dignityBasicDataList))
     }
 
+    override suspend fun getDignityBasicDataById(id: Int): DignityBasicData {
+        return dignityDbConverter.map(appDatabase.dignityDao().getDignityBasicDataById(id))
+    }
+
     private fun convertDignityBasicData(list: List<DignityBasicDataDB>): List<DignityBasicData> {
         return list.map { dignity -> dignityDbConverter.map(dignity) }
     }

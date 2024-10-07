@@ -9,9 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
@@ -20,6 +22,7 @@ import com.example.prayforthem.names.domain.models.DignityBasicData
 import com.example.prayforthem.names.domain.models.NameBasicData
 import com.example.prayforthem.names.domain.models.NamesScreenState
 import com.example.prayforthem.names.presentation.NamesViewModel
+import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -128,12 +131,15 @@ class NamesFragment : Fragment() {
         }
 
         binding.buttonSave.setOnClickListener {
-            val action = NamesFragmentDirections
-                .actionNamesFragmentToCreateListFragment(
-                    dignityArg = selectedDignity,
-                    nameArg = selectedName
+            val dignityId = if (selectedDignity != null) selectedDignity!!.dignityId else null
+            setFragmentResult(
+                Constants.REQUEST_PERSON_KEY,
+                bundleOf(
+                    Constants.DIGNITY_KEY to dignityId,
+                    Constants.NAME_KEY to selectedName?.nameId
                 )
-            findNavController().navigate(action)
+            )
+            findNavController().popBackStack()
         }
     }
 

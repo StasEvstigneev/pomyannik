@@ -10,4 +10,8 @@ class NamesInteractorImpl(private val namesRepository: NamesRepository) : NamesI
     override fun getNamesBasicData(): Flow<List<NameBasicData>> {
         return namesRepository.getNamesBasicData()
     }
+
+    override suspend fun getNameBasicDataById(id: Int): NameBasicData {
+        return namesRepository.getNameBasicDataById(id)
+    }
 }

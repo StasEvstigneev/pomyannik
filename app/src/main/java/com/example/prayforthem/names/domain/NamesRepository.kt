@@ -7,4 +7,6 @@ interface NamesRepository {
 
     fun getNamesBasicData(): Flow<List<NameBasicData>>
 
+    suspend fun getNameBasicDataById(id: Int): NameBasicData
+
 }

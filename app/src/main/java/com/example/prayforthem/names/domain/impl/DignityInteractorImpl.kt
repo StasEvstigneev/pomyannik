@@ -10,4 +10,8 @@ class DignityInteractorImpl(private val dignityRepository: DignityRepository) : 
     override fun getAllBasicDignityData(): Flow<List<DignityBasicData>> {
         return dignityRepository.getAllBasicDignityData()
     }
+
+    override suspend fun getDignityBasicDataById(id: Int): DignityBasicData {
+        return dignityRepository.getDignityBasicDataById(id)
+    }
 }

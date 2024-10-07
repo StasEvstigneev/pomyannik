@@ -48,16 +48,6 @@
         <action
             android:id="@+id/action_createListFragment_to_namesFragment"
             app:destination="@id/namesFragment" />
-        <argument
-            android:name="dignityArg"
-            app:argType="com.example.prayforthem.names.domain.models.DignityBasicData"
-            app:nullable="true"
-            android:defaultValue="@null" />
-        <argument
-            android:name="nameArg"
-            app:argType="com.example.prayforthem.names.domain.models.NameBasicData"
-            app:nullable="true"
-            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/namesFragment"
@@ -66,7 +56,6 @@
         tools:layout="@layout/fragment_names" >
         <action
             android:id="@+id/action_namesFragment_to_createListFragment"
-            app:destination="@id/createListFragment"
-            app:popUpTo="@id/createListFragment" />
+            app:destination="@id/createListFragment" />
     </fragment>
 </navigation>
