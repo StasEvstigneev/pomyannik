@@ -13,6 +13,9 @@ interface NameDao {
     @Query("SELECT name_id, name_display, name_gen FROM names ORDER by name_id asc")
     suspend fun getAllBasicNameData(): List<NameBasicDataDB>
 
+    @Query("SELECT name_id, name_display, name_gen FROM names WHERE name_id = :id")
+    suspend fun getNameBasicDataById(id: Int): NameBasicDataDB
+
     @Query("SELECT name_id, name_display, name_gen FROM names WHERE name_id IN (:ids)")
     suspend fun getBasicNameDataByIds(ids: List<Int>): List<NameBasicDataDB>
 

@@ -7,4 +7,6 @@ interface DignityInteractor {
 
     fun getAllBasicDignityData(): Flow<List<DignityBasicData>>
 
+    suspend fun getDignityBasicDataById(id: Int): DignityBasicData
+
 }

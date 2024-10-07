@@ -32,7 +32,7 @@ val viewModelModule = module {
     }
 
     viewModel<CreateListViewModel> {
-        CreateListViewModel()
+        CreateListViewModel(get(), get())
     }
 
     viewModel<NamesViewModel> {

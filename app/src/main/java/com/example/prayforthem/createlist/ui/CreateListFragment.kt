@@ -2,19 +2,21 @@ package com.example.prayforthem.createlist.ui
 
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.createlist.domain.CreateListScreenState
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
-import com.example.prayforthem.lists.domain.PersonBasicData
+import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
@@ -75,13 +77,21 @@ class CreateListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val selectedDignity = CreateListFragmentArgs.fromBundle(requireArguments()).dignityArg
-        val selectedName = CreateListFragmentArgs.fromBundle(requireArguments()).nameArg
-        if (selectedName != null) {
-            viewModel.addPersonToList(PersonBasicData(selectedDignity, selectedName))
-            requireArguments().clear()
-        }
+        setFragmentResultListener(Constants.REQUEST_PERSON_KEY) { _, bundle ->
+            val dignityId = bundle.getInt(Constants.DIGNITY_KEY)
+            val nameId = bundle.getInt(Constants.NAME_KEY)
 
+            Log.d("RECEIVED DIG_id FRAGMENT", "$dignityId")
+            Log.d("RECEIVED NAME_id FRAGMENT", "$nameId")
+
+            if (dignityId != NULL) {
+                viewModel.createNewPerson(dignityId, nameId)
+            } else {
+                viewModel.createNewPerson(null, nameId)
+
+            }
+            parentFragmentManager.clearFragmentResult(Constants.REQUEST_PERSON_KEY)
+        }
     }
 
     private fun renderState(state: CreateListScreenState) {
@@ -98,6 +108,10 @@ class CreateListFragment : Fragment() {
             }
         }
 
+    }
+
+    companion object {
+        private const val NULL = 0
     }
 
 }
