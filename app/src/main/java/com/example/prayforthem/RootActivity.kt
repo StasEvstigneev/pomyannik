@@ -31,6 +31,7 @@ class RootActivity : AppCompatActivity() {
                 R.id.infoFragment -> {
                     rootBinding.apply {
                         bottomNavigation.isVisible = true
+                        divider.isVisible = true
                         toolbar.navigationIcon = null
                     }
                 }
@@ -42,6 +43,10 @@ class RootActivity : AppCompatActivity() {
                         findNavController(R.id.fragment_container).popBackStack()
                     }
                     rootBinding.bottomNavigation.isVisible = false
+                    rootBinding.apply {
+                        bottomNavigation.isVisible = false
+                        divider.isVisible = false
+                    }
                 }
             }
         }

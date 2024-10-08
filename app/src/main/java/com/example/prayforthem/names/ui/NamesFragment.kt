@@ -1,5 +1,6 @@
 package com.example.prayforthem.names.ui
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -73,15 +75,12 @@ class NamesFragment : Fragment() {
         binding.inputDignity.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE)) // убирает верхние марджины в dpopdown menu
 
-            setOnFocusChangeListener { v, hasFocus ->
-
-            }
-
             setOnItemClickListener { parent, view, position, id ->
                 val dignity = parent.getItemAtPosition(position) as DignityBasicData
                 selectedDignity = dignity
                 viewModel.updateSelectedDignity(dignity)
                 Log.d("CHOSEN DIGNITY FRAGMENT", selectedDignity?.dignityDisplay ?: "null")
+                hideKeyboard()
             }
 
             doAfterTextChanged { text ->
@@ -106,6 +105,7 @@ class NamesFragment : Fragment() {
                 selectedName = name
                 viewModel.updateSelectedName(name)
                 Log.d("CHOSEN NAME FRAGMENT", selectedName?.nameDisplay ?: "null")
+                hideKeyboard()
             }
 
             addTextChangedListener(object : TextWatcher {
@@ -155,6 +155,12 @@ class NamesFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun hideKeyboard() {
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     override fun onDestroyView() {
