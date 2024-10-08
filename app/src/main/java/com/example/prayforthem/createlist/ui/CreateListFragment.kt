@@ -11,22 +11,25 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.R
 import com.example.prayforthem.RootActivity
 import com.example.prayforthem.createlist.domain.CreateListScreenState
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
+import com.example.prayforthem.lists.domain.PersonBasicData
 import com.example.prayforthem.utils.Constants
+import com.example.prayforthem.utils.RecyclerViewClickInterface
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
-class CreateListFragment : Fragment() {
+class CreateListFragment : Fragment(), RecyclerViewClickInterface<PersonBasicData> {
 
     private var _binding: FragmentCreateListBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<CreateListViewModel>()
-
+    private val personAdapter = PersonBDAdapter(this)
     private var isForHealth: Boolean = true
     private lateinit var listType: String
 
@@ -47,6 +50,17 @@ class CreateListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setListType(isForHealth)
+
+        binding.recyclerView.apply {
+            adapter = personAdapter
+            layoutManager =
+                LinearLayoutManager(
+                    requireContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+        }
+
 
         viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
             renderState(state)
@@ -103,15 +117,26 @@ class CreateListFragment : Fragment() {
 
             is CreateListScreenState.Content -> binding.apply {
                 progressBar.isVisible = false
+                recyclerView.isVisible = true
                 infoText.text = getString(R.string.added_n_of_ten, state.listSize.toString())
                 buttonAddName.isEnabled = !state.isListFull
+                personAdapter.submitList(state.list)
             }
         }
 
     }
 
+    override fun onItemClick(item: PersonBasicData) {
+
+    }
+
+    override fun onTrashBinClick(position: Int) {
+        viewModel.removePersonFromList(position)
+    }
+
     companion object {
         private const val NULL = 0
     }
+
 
 }
