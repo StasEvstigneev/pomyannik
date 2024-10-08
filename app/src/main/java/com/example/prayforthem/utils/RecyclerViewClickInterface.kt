@@ -4,5 +4,4 @@ interface RecyclerViewClickInterface<T> {
 
     fun onItemClick(item: T)
 
-    fun onTrashBinClick(position: Int)
 }

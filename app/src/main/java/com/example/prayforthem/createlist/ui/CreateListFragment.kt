@@ -17,19 +17,20 @@ import com.example.prayforthem.RootActivity
 import com.example.prayforthem.createlist.domain.CreateListScreenState
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
-import com.example.prayforthem.lists.domain.PersonBasicData
 import com.example.prayforthem.utils.Constants
-import com.example.prayforthem.utils.RecyclerViewClickInterface
 import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
-class CreateListFragment : Fragment(), RecyclerViewClickInterface<PersonBasicData> {
+class CreateListFragment : Fragment(), TempPersonClickInterface {
 
     private var _binding: FragmentCreateListBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<CreateListViewModel>()
-    private val personAdapter = PersonBDAdapter(this)
+    private val personAdapter = TempPersonListAdapter(
+        ArrayList(),
+        this
+    )
     private var isForHealth: Boolean = true
     private lateinit var listType: String
 
@@ -60,7 +61,6 @@ class CreateListFragment : Fragment(), RecyclerViewClickInterface<PersonBasicDat
                     false
                 )
         }
-
 
         viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
             renderState(state)
@@ -120,13 +120,10 @@ class CreateListFragment : Fragment(), RecyclerViewClickInterface<PersonBasicDat
                 recyclerView.isVisible = true
                 infoText.text = getString(R.string.added_n_of_ten, state.listSize.toString())
                 buttonAddName.isEnabled = !state.isListFull
-                personAdapter.submitList(state.list)
+                personAdapter.list = state.list
+                personAdapter.notifyDataSetChanged()
             }
         }
-
-    }
-
-    override fun onItemClick(item: PersonBasicData) {
 
     }
 
