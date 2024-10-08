@@ -72,12 +72,21 @@ class CreateListViewModel(
                 val name = namesInteractor.getNameBasicDataById(nameId)
                 if (dignityId != null) dignity =
                     dignityInteractor.getDignityBasicDataById(dignityId)
-                Log.d("RECEIVED DIG_id VM", "$dignity")
-                Log.d("RECEIVED NAME_id VM", "$name")
                 addPersonToList(PersonBasicData(dignity, name))
             }
         }
 
+    }
+
+    fun removePersonFromList(position: Int) {
+        listOfPeople.removeAt(position)
+        screenState.postValue(
+            CreateListScreenState.Content(
+                listOfPeople,
+                listOfPeople.size,
+                listOfPeople.size >= LIST_MAX_SIZE
+            )
+        )
     }
 
     private fun checkSavingPossibility(): Boolean {
