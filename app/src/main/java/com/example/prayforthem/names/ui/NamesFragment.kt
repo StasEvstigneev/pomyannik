@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -25,6 +26,7 @@ import com.example.prayforthem.names.domain.models.NamesScreenState
 import com.example.prayforthem.names.presentation.NamesViewModel
 import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.setFragmentTitle
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NamesFragment : Fragment() {
@@ -38,6 +40,9 @@ class NamesFragment : Fragment() {
 
     private var selectedDignity: DignityBasicData? = null
     private var selectedName: NameBasicData? = null
+
+    private lateinit var exitDialog: MaterialAlertDialogBuilder
+    private var showExitDialog = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,6 +74,7 @@ class NamesFragment : Fragment() {
         viewModel.getSelectedName().observe(viewLifecycleOwner) { name ->
             selectedName = name
             binding.buttonSave.isEnabled = (name != null)
+            showExitDialog = (name != null)
         }
 
         binding.inputDignity.apply {
@@ -132,6 +138,30 @@ class NamesFragment : Fragment() {
             )
             findNavController().popBackStack()
         }
+
+        exitDialog = MaterialAlertDialogBuilder(requireContext(), R.style.CustomExitDialogTheme)
+            .setTitle(R.string.close)
+            .setMessage(R.string.are_you_sure_you_want_to_leave)
+            .setPositiveButton(R.string.exit) { dialog, _ ->
+                findNavController().popBackStack()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                binding.overlay.isVisible = false
+            }
+
+        (requireActivity() as RootActivity)
+            .rootBinding
+            .toolbar
+            .setNavigationOnClickListener { leaveFragment() }
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    leaveFragment()
+                }
+            })
+
     }
 
     private fun renderState(state: NamesScreenState) {
@@ -151,6 +181,16 @@ class NamesFragment : Fragment() {
         val imm =
             requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun leaveFragment() {
+        if (showExitDialog) {
+            binding.overlay.isVisible = true
+            exitDialog.show()
+        } else {
+            findNavController().popBackStack()
+        }
+
     }
 
     override fun onDestroyView() {
