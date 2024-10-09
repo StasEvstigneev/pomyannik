@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,13 +72,12 @@ class NamesFragment : Fragment() {
         }
 
         binding.inputDignity.apply {
-            setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE)) // убирает верхние марджины в dpopdown menu
+            setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE))
 
             setOnItemClickListener { parent, view, position, id ->
                 val dignity = parent.getItemAtPosition(position) as DignityBasicData
                 selectedDignity = dignity
                 viewModel.updateSelectedDignity(dignity)
-                Log.d("CHOSEN DIGNITY FRAGMENT", selectedDignity?.dignityDisplay ?: "null")
                 hideKeyboard()
             }
 
@@ -89,11 +87,6 @@ class NamesFragment : Fragment() {
                 if (text.isNullOrEmpty()) {
                     viewModel.updateSelectedDignity(null)
                 }
-
-                Log.d(
-                    "CHOSEN DIGNITY AFTER TEXT CHANGED",
-                    selectedDignity?.dignityDisplay ?: "null"
-                )
             }
         }
 
@@ -104,7 +97,6 @@ class NamesFragment : Fragment() {
                 val name = parent.getItemAtPosition(position) as NameBasicData
                 selectedName = name
                 viewModel.updateSelectedName(name)
-                Log.d("CHOSEN NAME FRAGMENT", selectedName?.nameDisplay ?: "null")
                 hideKeyboard()
             }
 
@@ -124,7 +116,6 @@ class NamesFragment : Fragment() {
                     if (s.isNullOrEmpty()) {
                         viewModel.updateSelectedName(null)
                     }
-                    Log.d("CHOSEN NAME AFTER TEXT CHANGED", selectedName?.nameDisplay ?: "null")
                 }
             })
 
@@ -154,7 +145,6 @@ class NamesFragment : Fragment() {
                 namesAdapter.updateList(state.names)
             }
         }
-
     }
 
     private fun hideKeyboard() {
@@ -176,12 +166,6 @@ class NamesFragment : Fragment() {
         binding.placeholderNoNames.isVisible =
             !binding.inputName.text.isNullOrEmpty() && !namesAdapter.getAllItems()
                 .contains(binding.inputName.text.toString())
-
-        Log.d("CHOSEN DIGNITY RESUME FRAGMENT", selectedDignity?.dignityDisplay ?: "null")
-        Log.d("CHOSEN DIGNITY RESUME VM", viewModel.selectedDignity.value?.dignityDisplay ?: "null")
-        Log.d("CHOSEN NAME RESUME FRAGMENT", selectedName?.nameDisplay ?: "null")
-        Log.d("CHOSEN INPUT FIELD", binding.inputName.text.toString())
-        Log.d("CHOSEN NAME RESUME VM", viewModel.selectedName.value?.nameDisplay ?: "null")
 
     }
 
