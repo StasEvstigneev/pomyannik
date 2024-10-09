@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -18,14 +19,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
-import com.example.prayforthem.RootActivity
 import com.example.prayforthem.databinding.FragmentNamesBinding
 import com.example.prayforthem.names.domain.models.DignityBasicData
 import com.example.prayforthem.names.domain.models.NameBasicData
 import com.example.prayforthem.names.domain.models.NamesScreenState
 import com.example.prayforthem.names.presentation.NamesViewModel
 import com.example.prayforthem.utils.Constants
-import com.example.prayforthem.utils.setFragmentTitle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -48,7 +47,6 @@ class NamesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setFragmentTitle(requireActivity() as RootActivity, getString(R.string.names))
         _binding = FragmentNamesBinding.inflate(inflater, container, false)
 
         dignityAdapter = CustomArrayAdapter(requireContext(), listOf())
@@ -62,6 +60,13 @@ class NamesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolbar.apply {
+            navigationIcon =
+                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                leaveFragment()
+            }
+        }
 
         viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
             renderState(state)
@@ -148,11 +153,6 @@ class NamesFragment : Fragment() {
             .setNegativeButton(R.string.cancel) { dialog, _ ->
                 binding.overlay.isVisible = false
             }
-
-        (requireActivity() as RootActivity)
-            .rootBinding
-            .toolbar
-            .setNavigationOnClickListener { leaveFragment() }
 
         requireActivity()
             .onBackPressedDispatcher
