@@ -7,6 +7,14 @@
     android:background="?attr/background"
     tools:context=".names.ui.NamesFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/names" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutDignity"
         style="@style/InputTextDropDownMenu"
@@ -16,7 +24,7 @@
         app:helperText="@string/choose_dignity_helper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/inputDignity"
