@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -13,12 +14,10 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.R
-import com.example.prayforthem.RootActivity
 import com.example.prayforthem.createlist.domain.CreateListScreenState
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.databinding.FragmentCreateListBinding
 import com.example.prayforthem.utils.Constants
-import com.example.prayforthem.utils.setFragmentTitle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
@@ -44,13 +43,20 @@ class CreateListFragment : Fragment(), TempPersonClickInterface {
             if (isForHealth) getString(R.string.for_the_health)
                 .lowercase(Locale.getDefault())
             else getString(R.string.for_the_repose)
-        setFragmentTitle(requireActivity() as RootActivity, getString(R.string.new_list, listType))
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setListType(isForHealth)
+        binding.toolbar.apply {
+            title = getString(R.string.new_list, listType)
+            navigationIcon =
+                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
 
         binding.recyclerView.apply {
             adapter = personAdapter
@@ -134,6 +140,5 @@ class CreateListFragment : Fragment(), TempPersonClickInterface {
     companion object {
         private const val NULL = 0
     }
-
 
 }
