@@ -87,6 +87,7 @@ class CreateListViewModel(
                 listOfPeople.size >= LIST_MAX_SIZE
             )
         )
+        saveButtonState.postValue(checkSavingPossibility())
     }
 
     private fun checkSavingPossibility(): Boolean {
