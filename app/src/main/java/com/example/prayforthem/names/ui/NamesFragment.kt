@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -61,8 +60,6 @@ class NamesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.apply {
-            navigationIcon =
-                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
                 leaveFragment()
             }
@@ -74,6 +71,7 @@ class NamesFragment : Fragment() {
 
         viewModel.getSelectedDignity().observe(viewLifecycleOwner) { dignity ->
             selectedDignity = dignity
+            showExitDialog = (dignity != null)
         }
 
         viewModel.getSelectedName().observe(viewLifecycleOwner) { name ->
@@ -132,6 +130,11 @@ class NamesFragment : Fragment() {
 
         }
 
+        binding.buttonAddNewName.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_namesFragment_to_addNameFragment)
+        }
+
         binding.buttonSave.setOnClickListener {
             val dignityId = if (selectedDignity != null) selectedDignity!!.dignityId else null
             setFragmentResult(
@@ -153,6 +156,7 @@ class NamesFragment : Fragment() {
             .setNegativeButton(R.string.cancel) { dialog, _ ->
                 binding.overlay.isVisible = false
             }
+            .setCancelable(false)
 
         requireActivity()
             .onBackPressedDispatcher

@@ -4,6 +4,7 @@ import com.example.prayforthem.db.AppDatabase
 import com.example.prayforthem.db.converters.NameDbConverter
 import com.example.prayforthem.db.models.NameBasicDataDB
 import com.example.prayforthem.names.domain.NamesRepository
+import com.example.prayforthem.names.domain.models.Name
 import com.example.prayforthem.names.domain.models.NameBasicData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -20,6 +21,10 @@ class NamesRepositoryImpl(
 
     override suspend fun getNameBasicDataById(id: Int): NameBasicData {
         return nameDbConverter.map(appDatabase.nameDao().getNameBasicDataById(id))
+    }
+
+    override suspend fun addCustomName(name: Name) {
+        appDatabase.nameDao().addName(nameDbConverter.map(name))
     }
 
     private fun convertNamesBasicData(names: List<NameBasicDataDB>): List<NameBasicData> {

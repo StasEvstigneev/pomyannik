@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -51,8 +50,6 @@ class CreateListFragment : Fragment(), TempPersonClickInterface {
         viewModel.setListType(isForHealth)
         binding.toolbar.apply {
             title = getString(R.string.new_list, listType)
-            navigationIcon =
-                AppCompatResources.getDrawable(requireContext(), R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
                 findNavController().popBackStack()
             }

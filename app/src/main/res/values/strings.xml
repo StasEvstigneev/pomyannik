@@ -20,10 +20,23 @@
     <string name="choose_name">Выберите имя</string>
     <string name="choose_dignity_helper">Выберите определение из списка, либо оставьте поле пустым</string>
     <string name="choose_name_helper">Выберите имя из списка</string>
-    <string name="no_such_name_in_db">Такого имени нет в Святцах. Вы можете самостоятельно добавить его</string>
+    <string name="no_such_name_in_db">Такого имени нет в базе приложения. Вы можете самостоятельно добавить его</string>
     <string name="close">Закрыть</string>
     <string name="exit">Выйти</string>
     <string name="cancel">Отмена</string>
     <string name="are_you_sure_you_want_to_leave">Вы уверены, что хотите выйти? Все несохраненные данные будут потеряны.</string>
+    <string name="add_name_to_db">Добавить имя базу</string>
+    <string name="name_in_nominative">Имя в именительном падеже</string>
+    <string name="name_nominative_helper">Пример: Кто? - Иоанн</string>
+    <string name="name_in_genitive">Имя в родительном падеже</string>
+    <string name="name_genitive_helper">Пример: Кого? - Иоанна</string>
+    <string name="name_in_dative">Имя в дательном падеже</string>
+    <string name="name_dative_helper">Пример: Кому? - Иоанну</string>
+    <string name="name_in_accusative">Имя в винительном падеже</string>
+    <string name="name_accusative_helper">Пример: Кого? - Иоанна</string>
+    <string name="name_in_instrumental">Имя в творительном падеже</string>
+    <string name="name_instrumental_helper">Пример: Кем? - Иоанном</string>
+    <string name="name_in_prepositional">Имя в предложном падеже</string>
+    <string name="name_prepositional_helper">Пример: О ком? - Иоанне</string>
 
 </resources>
