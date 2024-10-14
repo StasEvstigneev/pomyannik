@@ -1,4 +1,4 @@
-package com.example.prayforthem.addname
+package com.example.prayforthem.addname.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +11,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
+import com.example.prayforthem.addname.presentation.AddNameViewModel
 import com.example.prayforthem.databinding.FragmentAddNameBinding
 import com.example.prayforthem.utils.NameForms
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
-        android:name="com.example.prayforthem.addname.AddNameFragment"
+        android:name="com.example.prayforthem.addname.ui.AddNameFragment"
         android:label="fragment_add_name"
         tools:layout="@layout/fragment_add_name" />
 </navigation>
