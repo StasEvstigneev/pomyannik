@@ -1,4 +1,4 @@
-package com.example.prayforthem.addname
+package com.example.prayforthem.addname.presentation
 
 import android.text.Editable
 import androidx.lifecycle.LiveData

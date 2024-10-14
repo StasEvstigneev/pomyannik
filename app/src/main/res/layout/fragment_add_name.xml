@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addname.AddNameFragment">
+    tools:context=".addname.ui.AddNameFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -35,7 +35,8 @@
             style="@style/EditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_in_nominative" />
+            android:hint="@string/name_in_nominative"
+            android:inputType="textCapWords|textNoSuggestions" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +59,8 @@
             style="@style/EditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_in_genitive" />
+            android:hint="@string/name_in_genitive"
+            android:inputType="textCapWords|textNoSuggestions" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +83,8 @@
             style="@style/EditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_in_dative" />
+            android:hint="@string/name_in_dative"
+            android:inputType="textCapWords|textNoSuggestions" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +107,8 @@
             style="@style/EditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_in_accusative" />
+            android:hint="@string/name_in_accusative"
+            android:inputType="textCapWords|textNoSuggestions" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +131,8 @@
             style="@style/EditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_in_instrumental" />
+            android:hint="@string/name_in_instrumental"
+            android:inputType="textCapWords|textNoSuggestions" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,7 +156,8 @@
             style="@style/EditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_in_prepositional" />
+            android:hint="@string/name_in_prepositional"
+            android:inputType="textCapWords|textNoSuggestions" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
