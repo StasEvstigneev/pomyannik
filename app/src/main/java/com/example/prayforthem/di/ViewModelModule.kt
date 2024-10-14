@@ -1,5 +1,6 @@
 package com.example.prayforthem.di
 
+import com.example.prayforthem.addname.AddNameViewModel
 import com.example.prayforthem.createlist.presentation.CreateListViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
 import com.example.prayforthem.lists.presentation.ListsViewModel
@@ -37,5 +38,9 @@ val viewModelModule = module {
 
     viewModel<NamesViewModel> {
         NamesViewModel(get(), get())
+    }
+
+    viewModel<AddNameViewModel> {
+        AddNameViewModel(get())
     }
 }

@@ -1,7 +1,7 @@
 package com.example.prayforthem.names.domain.models
 
 data class Name(
-    val id: Int,
+    val id: Int?,
     val nameDisplay: String,
     val nameNominative: String, //именительный падеж
     val nameGenitive: String, //родительный падеж
