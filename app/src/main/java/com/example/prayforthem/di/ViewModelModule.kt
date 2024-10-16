@@ -1,19 +1,19 @@
 package com.example.prayforthem.di
 
 import com.example.prayforthem.addname.presentation.AddNameViewModel
-import com.example.prayforthem.createlist.presentation.CreateListViewModel
+import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
-import com.example.prayforthem.lists.presentation.ListsViewModel
-import com.example.prayforthem.lists_for_health.presentation.ForHealthViewModel
-import com.example.prayforthem.lists_for_repose.repository.ForReposeViewModel
+import com.example.prayforthem.listings.presentation.ListingsViewModel
+import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
+import com.example.prayforthem.listings_for_repose.repository.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
 import com.example.prayforthem.prayers.presentation.PrayersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel<ListsViewModel> {
-        ListsViewModel()
+    viewModel<ListingsViewModel> {
+        ListingsViewModel()
     }
 
     viewModel<ForHealthViewModel> {
@@ -32,8 +32,8 @@ val viewModelModule = module {
         InfoViewModel()
     }
 
-    viewModel<CreateListViewModel> {
-        CreateListViewModel(get(), get())
+    viewModel<CreateListingViewModel> {
+        CreateListingViewModel(get(), get(), get(), get())
     }
 
     viewModel<NamesViewModel> {

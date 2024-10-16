@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/listsFragment"
-        android:name="com.example.prayforthem.lists.ui.ListsFragment"
+        android:name="com.example.prayforthem.listings.ui.ListingsFragment"
         android:label="fragment_lists"
-        tools:layout="@layout/fragment_lists" >
+        tools:layout="@layout/fragment_listings" >
         <action
             android:id="@+id/action_listsFragment_to_createListFragment"
             app:destination="@id/createListFragment" />
@@ -26,21 +26,21 @@
         tools:layout="@layout/fragment_info" />
     <fragment
         android:id="@+id/forHealthFragment"
-        android:name="com.example.prayforthem.lists_for_health.ui.ForHealthFragment"
+        android:name="com.example.prayforthem.listings_for_health.ui.ForHealthFragment"
         android:label="fragment_for_health"
         tools:layout="@layout/fragment_for_health" >
     </fragment>
     <fragment
         android:id="@+id/forReposeFragment"
-        android:name="com.example.prayforthem.lists_for_repose.ui.ForReposeFragment"
+        android:name="com.example.prayforthem.listings_for_repose.ui.ForReposeFragment"
         android:label="fragment_for_repose"
         tools:layout="@layout/fragment_for_repose" >
     </fragment>
     <fragment
         android:id="@+id/createListFragment"
-        android:name="com.example.prayforthem.createlist.ui.CreateListFragment"
+        android:name="com.example.prayforthem.createlisting.ui.CreateListingFragment"
         android:label="fragment_create_list"
-        tools:layout="@layout/fragment_create_list" >
+        tools:layout="@layout/fragment_create_listing" >
         <argument
             android:name="isForHealthArg"
             app:argType="boolean"
