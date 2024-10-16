@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background"
-    tools:context=".lists_for_repose.ui.ForReposeFragment">
+    tools:context=".listings_for_repose.ui.ForReposeFragment">
 
     <TextView
         android:id="@+id/placeholder"

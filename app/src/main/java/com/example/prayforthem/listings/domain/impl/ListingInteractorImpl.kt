@@ -1,0 +1,16 @@
+package com.example.prayforthem.listings.domain.impl
+
+import com.example.prayforthem.listings.domain.ListingInteractor
+import com.example.prayforthem.listings.domain.ListingRepository
+import com.example.prayforthem.listings.domain.models.Listing
+import com.example.prayforthem.listings.domain.models.ListingWithPerson
+
+class ListingInteractorImpl(private val repository: ListingRepository) : ListingInteractor {
+    override suspend fun saveListing(listing: Listing): Long {
+        return repository.saveListing(listing)
+    }
+
+    override suspend fun getListingById(id: Int): List<ListingWithPerson> {
+        return repository.getListingById(id)
+    }
+}
