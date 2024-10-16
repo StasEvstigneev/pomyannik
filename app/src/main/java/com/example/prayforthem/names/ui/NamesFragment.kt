@@ -171,10 +171,13 @@ class NamesFragment : Fragment() {
     private fun renderState(state: NamesScreenState) {
         when (state) {
             is NamesScreenState.Loading -> {
-                true
+                binding.apply {
+                    progressBar.isVisible = true
+                }
             }
 
             is NamesScreenState.Default -> {
+                binding.progressBar.isVisible = false
                 dignityAdapter.updateList(state.dignity)
                 namesAdapter.updateList(state.names)
             }

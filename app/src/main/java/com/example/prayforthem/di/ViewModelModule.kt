@@ -17,7 +17,7 @@ val viewModelModule = module {
     }
 
     viewModel<ForHealthViewModel> {
-        ForHealthViewModel()
+        ForHealthViewModel(get())
     }
 
     viewModel<ForReposeViewModel> {

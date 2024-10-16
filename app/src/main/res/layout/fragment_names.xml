@@ -63,6 +63,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/ProgressBar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/button_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutName"
+        tools:visibility="invisible" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_save"
         style="@style/ButtonStyle"

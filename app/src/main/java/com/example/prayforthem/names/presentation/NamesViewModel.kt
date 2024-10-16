@@ -30,6 +30,7 @@ class NamesViewModel(
     fun getSelectedName(): LiveData<NameBasicData?> = selectedName
 
     init {
+        screenState.postValue(NamesScreenState.Loading)
         viewModelScope.launch {
             dignityInteractor
                 .getAllBasicDignityData()
