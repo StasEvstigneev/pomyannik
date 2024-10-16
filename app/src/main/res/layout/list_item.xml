@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/cross_orthodox_red_alt" />
 
     <TextView
-        android:id="@+id/listName"
+        android:id="@+id/listingName"
         style="@style/ListItemHeadingTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,8 +40,8 @@
         android:layout_marginBottom="@dimen/_8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/basket"
-        app:layout_constraintStart_toStartOf="@id/listName"
-        app:layout_constraintTop_toBottomOf="@+id/listName"
+        app:layout_constraintStart_toStartOf="@id/listingName"
+        app:layout_constraintTop_toBottomOf="@+id/listingName"
         tools:text="Имя 1, Имя 2, Имя 3, Имя 4, имя 5, Имя 6, Имя 7, Имя 8, имя 9" />
 
     <androidx.appcompat.widget.AppCompatImageView
