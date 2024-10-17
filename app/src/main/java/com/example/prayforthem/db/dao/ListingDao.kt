@@ -12,7 +12,7 @@ import com.example.prayforthem.db.models.ListingWithPersonDB
 @Dao
 interface ListingDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addListing(listing: ListingEntity): Long
 
     @Transaction

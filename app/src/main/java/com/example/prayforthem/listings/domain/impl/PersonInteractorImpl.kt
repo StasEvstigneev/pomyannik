@@ -5,7 +5,7 @@ import com.example.prayforthem.listings.domain.PersonRepository
 import com.example.prayforthem.listings.domain.models.Person
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 
-class PersonInteractorImpl(private val personRepository: PersonRepository): PersonInteractor {
+class PersonInteractorImpl(private val personRepository: PersonRepository) : PersonInteractor {
 
     override suspend fun savePerson(person: Person) {
         personRepository.savePerson(person)
@@ -13,5 +13,9 @@ class PersonInteractorImpl(private val personRepository: PersonRepository): Pers
 
     override suspend fun getPersonById(id: Int): PersonDignityName {
         return personRepository.getPersonById(id)
+    }
+
+    override suspend fun deletePerson(person: Person) {
+        personRepository.deletePerson(person)
     }
 }

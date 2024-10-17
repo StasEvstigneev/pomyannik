@@ -23,4 +23,12 @@ class PersonRepositoryImpl(
         return personDbConverter
             .map(database.personDao().getPersonById(id))
     }
+
+    override suspend fun deletePerson(person: Person) {
+        database
+            .personDao()
+            .deletePerson(
+                personDbConverter.map(person)
+            )
+    }
 }

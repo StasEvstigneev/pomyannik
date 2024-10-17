@@ -50,7 +50,7 @@ class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWith
                 )
 
             }
-            return result.joinToString(separator = ",")
+            return result.joinToString(separator = ", ")
         }
 
         companion object {

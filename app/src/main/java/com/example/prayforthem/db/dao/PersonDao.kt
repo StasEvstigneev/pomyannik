@@ -1,6 +1,7 @@
 package com.example.prayforthem.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -21,5 +22,8 @@ interface PersonDao {
     @Transaction
     @Query("SELECT * FROM person WHERE person_id IN (:ids)")
     suspend fun getPersonListByIds(ids: List<Int>): List<PersonDignityNameDB>
+
+    @Delete
+    suspend fun deletePerson(person: PersonEntity)
 
 }
