@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.example.prayforthem.createlisting.domain.CreateListScreenState
 import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
 import com.example.prayforthem.databinding.FragmentCreateListingBinding
 import com.example.prayforthem.utils.Constants
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
@@ -31,6 +33,9 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
     )
     private var isForHealth: Boolean = true
     private lateinit var listType: String
+
+    private var showExitDialog = false
+    private lateinit var exitDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +56,7 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
         binding.toolbar.apply {
             title = getString(R.string.new_list, listType)
             setNavigationOnClickListener {
-                findNavController().popBackStack()
+                leaveFragment()
             }
         }
 
@@ -71,6 +76,7 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
 
         viewModel.getSaveButtonState().observe(viewLifecycleOwner) { canSave ->
             binding.buttonSave.isEnabled = canSave
+            showExitDialog = canSave
         }
 
         binding.editText.doAfterTextChanged { text: Editable? ->
@@ -90,6 +96,34 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
             findNavController().popBackStack()
         }
 
+        exitDialog = MaterialAlertDialogBuilder(requireContext(), R.style.CustomExitDialogTheme)
+            .setTitle(R.string.close)
+            .setMessage(R.string.are_you_sure_you_want_to_leave)
+            .setPositiveButton(R.string.exit) { dialog, _ ->
+                findNavController().popBackStack()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                binding.overlay.isVisible = false
+            }
+            .setCancelable(false)
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    leaveFragment()
+                }
+            })
+
+    }
+
+    private fun leaveFragment() {
+        if (showExitDialog) {
+            binding.overlay.isVisible = true
+            exitDialog.show()
+        } else {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {
