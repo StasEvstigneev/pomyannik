@@ -114,6 +114,7 @@ class CreateListingViewModel(
                     listOfPeople.forEach { person ->
                         personInteractor.savePerson(
                             Person(
+                                id = null,
                                 idDignity = person.dignity?.dignityId,
                                 idName = person.name.nameId,
                                 parentListingId = listingId

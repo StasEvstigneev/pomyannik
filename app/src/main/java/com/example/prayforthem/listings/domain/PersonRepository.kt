@@ -8,4 +8,6 @@ interface PersonRepository {
     suspend fun savePerson(person: Person)
 
     suspend fun getPersonById(id: Int): PersonDignityName
+
+    suspend fun deletePerson(person: Person)
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prayforthem.listings.domain.ListingInteractor
+import com.example.prayforthem.listings.domain.PersonInteractor
 import com.example.prayforthem.listings.domain.models.ListingScreenState
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ForHealthViewModel(
-    private val listingInteractor: ListingInteractor
+    private val listingInteractor: ListingInteractor,
+    private val personInteractor: PersonInteractor
 ) : ViewModel() {
 
     private val screenState = MutableLiveData<ListingScreenState>(ListingScreenState.Loading)
@@ -39,6 +41,9 @@ class ForHealthViewModel(
     fun deleteListing(listing: ListingWithPerson) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
+                listing.personListing.forEach { item ->
+                    personInteractor.deletePerson(item.person)
+                }
                 listingInteractor.deleteListing(listing)
                 listingInteractor
                     .getListingsForHealth()
