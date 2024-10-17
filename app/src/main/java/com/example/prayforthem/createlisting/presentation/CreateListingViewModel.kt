@@ -36,6 +36,9 @@ class CreateListingViewModel(
     private val saveButtonState = MutableLiveData<Boolean>(checkSavingPossibility())
     fun getSaveButtonState(): LiveData<Boolean> = saveButtonState
 
+    private val exitDialogStatus = MutableLiveData<Boolean>(false)
+    fun getExitDialogStatus(): LiveData<Boolean> = exitDialogStatus
+
     init {
         screenState
             .postValue(CreateListScreenState.Content(listOfPeople, listOfPeople.size, isListFull))
@@ -50,6 +53,7 @@ class CreateListingViewModel(
         listTitle = title
         saveButtonState.postValue(checkSavingPossibility())
         Log.d("TITLE", "Title after method = $listTitle")
+        exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
     }
 
     private fun addPersonToList(person: PersonBasicData) {
@@ -66,6 +70,7 @@ class CreateListingViewModel(
                     )
                 )
             saveButtonState.postValue(checkSavingPossibility())
+            exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
             Log.d("ADDED PERSON", "$person")
             Log.d("ADDED PERSON", "$listOfPeople")
         }
@@ -94,6 +99,7 @@ class CreateListingViewModel(
             )
         )
         saveButtonState.postValue(checkSavingPossibility())
+        exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
     }
 
     fun saveList() {

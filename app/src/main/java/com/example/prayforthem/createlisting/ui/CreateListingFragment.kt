@@ -18,6 +18,7 @@ import com.example.prayforthem.createlisting.domain.CreateListScreenState
 import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
 import com.example.prayforthem.databinding.FragmentCreateListingBinding
 import com.example.prayforthem.utils.Constants
+import com.example.prayforthem.utils.DialogConstructor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
@@ -76,7 +77,10 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
 
         viewModel.getSaveButtonState().observe(viewLifecycleOwner) { canSave ->
             binding.buttonSave.isEnabled = canSave
-            showExitDialog = canSave
+        }
+
+        viewModel.getExitDialogStatus().observe(viewLifecycleOwner) { status ->
+            showExitDialog = status
         }
 
         binding.editText.doAfterTextChanged { text: Editable? ->
@@ -96,16 +100,8 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
             findNavController().popBackStack()
         }
 
-        exitDialog = MaterialAlertDialogBuilder(requireContext(), R.style.CustomExitDialogTheme)
-            .setTitle(R.string.close)
-            .setMessage(R.string.are_you_sure_you_want_to_leave)
-            .setPositiveButton(R.string.exit) { dialog, _ ->
-                findNavController().popBackStack()
-            }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
-                binding.overlay.isVisible = false
-            }
-            .setCancelable(false)
+        exitDialog = DialogConstructor
+            .createExitDialog(requireContext(), findNavController(), binding.overlay)
 
         requireActivity()
             .onBackPressedDispatcher
@@ -164,9 +160,10 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
                 buttonAddName.isEnabled = !state.isListFull
                 personAdapter.list = state.list
                 personAdapter.notifyDataSetChanged()
+
+                showExitDialog = (state.listSize > NULL || binding.editText.text.isNullOrEmpty())
             }
         }
-
     }
 
     override fun onTrashBinClick(position: Int) {
