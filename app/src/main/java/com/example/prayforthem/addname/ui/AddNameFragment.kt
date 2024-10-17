@@ -10,9 +10,9 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.prayforthem.R
 import com.example.prayforthem.addname.presentation.AddNameViewModel
 import com.example.prayforthem.databinding.FragmentAddNameBinding
+import com.example.prayforthem.utils.DialogConstructor
 import com.example.prayforthem.utils.NameForms
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -78,16 +78,8 @@ class AddNameFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        exitDialog = MaterialAlertDialogBuilder(requireContext(), R.style.CustomExitDialogTheme)
-            .setTitle(R.string.close)
-            .setMessage(R.string.are_you_sure_you_want_to_leave)
-            .setPositiveButton(R.string.exit) { dialog, _ ->
-                findNavController().popBackStack()
-            }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
-                binding.overlay.isVisible = false
-            }
-            .setCancelable(false)
+        exitDialog = DialogConstructor
+            .createExitDialog(requireContext(), findNavController(), binding.overlay)
 
         requireActivity()
             .onBackPressedDispatcher

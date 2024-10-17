@@ -24,6 +24,7 @@ import com.example.prayforthem.names.domain.models.NameBasicData
 import com.example.prayforthem.names.domain.models.NamesScreenState
 import com.example.prayforthem.names.presentation.NamesViewModel
 import com.example.prayforthem.utils.Constants
+import com.example.prayforthem.utils.DialogConstructor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -147,16 +148,8 @@ class NamesFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        exitDialog = MaterialAlertDialogBuilder(requireContext(), R.style.CustomExitDialogTheme)
-            .setTitle(R.string.close)
-            .setMessage(R.string.are_you_sure_you_want_to_leave)
-            .setPositiveButton(R.string.exit) { dialog, _ ->
-                findNavController().popBackStack()
-            }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
-                binding.overlay.isVisible = false
-            }
-            .setCancelable(false)
+        exitDialog = DialogConstructor
+            .createExitDialog(requireContext(), findNavController(), binding.overlay)
 
         requireActivity()
             .onBackPressedDispatcher
