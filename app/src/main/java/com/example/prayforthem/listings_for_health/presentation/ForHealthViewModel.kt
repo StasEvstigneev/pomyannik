@@ -36,6 +36,19 @@ class ForHealthViewModel(
 
     }
 
+    fun deleteListing(listing: ListingWithPerson) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                listingInteractor.deleteListing(listing)
+                listingInteractor
+                    .getListingsForHealth()
+                    .collect { listing ->
+                        processListing(listing)
+                    }
+            }
+        }
+    }
+
     private fun processListing(listing: List<ListingWithPerson>) {
         if (listing.isNotEmpty()) {
             screenState.postValue(ListingScreenState.Content(listing))

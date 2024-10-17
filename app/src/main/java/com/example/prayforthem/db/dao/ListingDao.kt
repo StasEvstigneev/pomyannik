@@ -1,6 +1,7 @@
 package com.example.prayforthem.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -25,5 +26,9 @@ interface ListingDao {
     @Transaction
     @Query("SELECT * FROM listing WHERE for_health = 0")
     suspend fun getListingsForRepose(): List<ListingWithPersonDB>
+
+    @Transaction
+    @Delete
+    suspend fun deleteListing(listing: ListingEntity)
 
 }

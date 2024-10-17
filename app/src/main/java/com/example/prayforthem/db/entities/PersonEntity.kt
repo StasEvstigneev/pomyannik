@@ -29,7 +29,6 @@ data class PersonEntity(
     val idDignity: Int?,
     @ColumnInfo("id_name")
     val idName: Int,
-
     @ColumnInfo("parent_listing_id")
     val parentListingId: Int
 )

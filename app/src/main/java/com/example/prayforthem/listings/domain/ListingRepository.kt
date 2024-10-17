@@ -13,4 +13,6 @@ interface ListingRepository {
     fun getListingsForHealth(): Flow<List<ListingWithPerson>>
 
     fun getListingsForRepose(): Flow<List<ListingWithPerson>>
+
+    suspend fun deleteListing(listing: ListingWithPerson)
 }
