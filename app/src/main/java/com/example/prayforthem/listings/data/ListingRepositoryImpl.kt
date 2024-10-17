@@ -31,6 +31,10 @@ class ListingRepositoryImpl(
         emit(convertListing(listingForRepose))
     }
 
+    override suspend fun deleteListing(listing: ListingWithPerson) {
+        database.listingDao().deleteListing(listingDbConverter.map(listing.listing))
+    }
+
     private fun convertListing(listing: List<ListingWithPersonDB>): List<ListingWithPerson> {
         return listing.map { item -> listingDbConverter.map(item) }
     }

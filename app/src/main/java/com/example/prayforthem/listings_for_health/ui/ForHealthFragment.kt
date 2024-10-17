@@ -9,18 +9,20 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.databinding.FragmentForHealthBinding
+import com.example.prayforthem.listings.RecyclerViewClickInterface
 import com.example.prayforthem.listings.domain.models.ListingScreenState
+import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.ui.ListingsAdapter
 import com.example.prayforthem.listings.ui.ListingsFragmentDirections
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ForHealthFragment : Fragment() {
+class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWithPerson> {
 
     private var _binding: FragmentForHealthBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<ForHealthViewModel>()
-    private val listingsAdapter = ListingsAdapter()
+    private val listingsAdapter = ListingsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,9 +100,18 @@ class ForHealthFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    override fun onItemClick(item: ListingWithPerson) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDeleteElementClick(item: ListingWithPerson) {
+        viewModel.deleteListing(item)
+    }
+
     companion object {
         fun newInstance() = ForHealthFragment()
         private const val IS_FOR_HEALTH = true
     }
+
 
 }

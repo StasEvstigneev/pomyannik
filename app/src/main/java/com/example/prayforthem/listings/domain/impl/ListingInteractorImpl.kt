@@ -22,4 +22,8 @@ class ListingInteractorImpl(private val repository: ListingRepository) : Listing
     override fun getListingsForRepose(): Flow<List<ListingWithPerson>> {
         return repository.getListingsForRepose()
     }
+
+    override suspend fun deleteListing(listing: ListingWithPerson) {
+        repository.deleteListing(listing)
+    }
 }

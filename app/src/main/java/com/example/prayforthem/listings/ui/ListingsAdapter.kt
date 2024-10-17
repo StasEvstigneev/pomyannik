@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.ListItemBinding
+import com.example.prayforthem.listings.RecyclerViewClickInterface
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 
-class ListingsAdapter :
+class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWithPerson>) :
     ListAdapter<ListingWithPerson, ListingsAdapter.ListingsViewHolder>(ListingsDiffItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingsViewHolder {
@@ -21,9 +22,12 @@ class ListingsAdapter :
     override fun onBindViewHolder(holder: ListingsViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.binding.basket.setOnClickListener {
+            clickInterface.onDeleteElementClick(item)
+        }
     }
 
-    class ListingsViewHolder(private val binding: ListItemBinding) :
+    class ListingsViewHolder(val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ListingWithPerson) {
@@ -41,13 +45,18 @@ class ListingsAdapter :
             val result = ArrayList<String>()
             personListing.forEach { item ->
                 result.add(
-                    if (item.dignity != null) item.dignity.dignityShort + " " + item.name.nameDisplay
+                    if (item.dignity != null) item.dignity.dignityShort + SPACE + item.name.nameDisplay
                     else item.name.nameDisplay
                 )
 
             }
             return result.joinToString(separator = ",")
         }
+
+        companion object {
+            private const val SPACE = " "
+        }
+
     }
 
 

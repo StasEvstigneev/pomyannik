@@ -10,7 +10,8 @@ data class ListingWithPersonDB(
     @Relation(
         entity = PersonEntity::class,
         parentColumn = "listing_id",
-        entityColumn = "parent_listing_id"
+        entityColumn = "parent_listing_id",
+
     )
     val personListing: List<PersonDignityNameDB>
 )
