@@ -42,6 +42,7 @@ class CreateListingViewModel(
     init {
         screenState
             .postValue(CreateListScreenState.Content(listOfPeople, listOfPeople.size, isListFull))
+        exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
     }
 
     fun setListType(isForHealth: Boolean) {
