@@ -17,7 +17,7 @@ import com.example.prayforthem.listings.ui.ListingsFragmentDirections
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWithPerson> {
+open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWithPerson> {
 
     private var _binding: FragmentForHealthBinding? = null
     private val binding get() = _binding!!
