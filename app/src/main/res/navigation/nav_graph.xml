@@ -31,12 +31,6 @@
         tools:layout="@layout/fragment_for_health" >
     </fragment>
     <fragment
-        android:id="@+id/forReposeFragment"
-        android:name="com.example.prayforthem.listings_for_repose.ui.ForReposeFragment"
-        android:label="fragment_for_repose"
-        tools:layout="@layout/fragment_for_repose" >
-    </fragment>
-    <fragment
         android:id="@+id/createListFragment"
         android:name="com.example.prayforthem.createlisting.ui.CreateListingFragment"
         android:label="fragment_create_list"
