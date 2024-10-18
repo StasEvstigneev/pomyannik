@@ -17,11 +17,11 @@ val viewModelModule = module {
     }
 
     viewModel<ForHealthViewModel> {
-        ForHealthViewModel(get(), get())
+        ForHealthViewModel(get(), get(), FOR_HEALTH)
     }
 
     viewModel<ForReposeViewModel> {
-        ForReposeViewModel()
+        ForReposeViewModel(get(), get(), FOR_REPOSE)
     }
 
     viewModel<PrayersViewModel> {
@@ -43,4 +43,8 @@ val viewModelModule = module {
     viewModel<AddNameViewModel> {
         AddNameViewModel(get())
     }
+
 }
+
+private const val FOR_HEALTH = true
+private const val FOR_REPOSE = false

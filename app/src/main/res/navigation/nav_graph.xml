@@ -43,8 +43,7 @@
         tools:layout="@layout/fragment_create_listing" >
         <argument
             android:name="isForHealthArg"
-            app:argType="boolean"
-            android:defaultValue="true"/>
+            app:argType="boolean" />
         <action
             android:id="@+id/action_createListFragment_to_namesFragment"
             app:destination="@id/namesFragment" />

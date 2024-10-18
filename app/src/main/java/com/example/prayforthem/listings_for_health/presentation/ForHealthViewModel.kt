@@ -12,24 +12,41 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ForHealthViewModel(
+open class ForHealthViewModel(
     private val listingInteractor: ListingInteractor,
-    private val personInteractor: PersonInteractor
+    private val personInteractor: PersonInteractor,
+    private val isForHealth: Boolean
 ) : ViewModel() {
 
     private val screenState = MutableLiveData<ListingScreenState>(ListingScreenState.Loading)
     fun getScreenState(): LiveData<ListingScreenState> = screenState
 
+//    private var isForHealth: Boolean = true
+
     init {
-        getListingsForHealth()
+        getListings()
     }
 
-    fun getListingsForHealth() {
+//    fun getListingsForHealth() {
+//        screenState.postValue(ListingScreenState.Loading)
+//        viewModelScope.launch {
+//            withContext(Dispatchers.IO) {
+//                listingInteractor
+//                    .getListingsForHealth()
+//                    .collect { listing ->
+//                        processListing(listing)
+//                    }
+//            }
+//        }
+//
+//    }
+
+    fun getListings() {
         screenState.postValue(ListingScreenState.Loading)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 listingInteractor
-                    .getListingsForHealth()
+                    .getListings(isForHealth)
                     .collect { listing ->
                         processListing(listing)
                     }
@@ -46,7 +63,7 @@ class ForHealthViewModel(
                 }
                 listingInteractor.deleteListing(listing)
                 listingInteractor
-                    .getListingsForHealth()
+                    .getListings(isForHealth)
                     .collect { listing ->
                         processListing(listing)
                     }
