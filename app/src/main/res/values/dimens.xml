@@ -17,6 +17,7 @@
     <dimen name="_60dp">60dp</dimen>
     <dimen name="_64dp">64dp</dimen>
     <dimen name="_80dp">80dp</dimen>
+    <dimen name="_92dp">92dp</dimen>
     <dimen name="progress_bar_size">44dp</dimen>
 
 </resources>
