@@ -1,6 +1,7 @@
 package com.example.prayforthem.listings.data
 
 import com.example.prayforthem.db.AppDatabase
+import com.example.prayforthem.db.converters.BooleanIntDbConverter
 import com.example.prayforthem.db.converters.ListingDbConverter
 import com.example.prayforthem.db.models.ListingWithPersonDB
 import com.example.prayforthem.listings.domain.ListingRepository
@@ -11,7 +12,8 @@ import kotlinx.coroutines.flow.flow
 
 class ListingRepositoryImpl(
     private val database: AppDatabase,
-    private val listingDbConverter: ListingDbConverter
+    private val listingDbConverter: ListingDbConverter,
+    private val booleanIntDbConverter: BooleanIntDbConverter
 ) : ListingRepository {
     override suspend fun saveListing(listing: Listing): Long {
         return database.listingDao().addListing(listingDbConverter.map(listing))
@@ -21,14 +23,9 @@ class ListingRepositoryImpl(
         return convertListing(database.listingDao().getListingById(id))
     }
 
-    override fun getListingsForHealth(): Flow<List<ListingWithPerson>> = flow {
-        val listingForHealth = database.listingDao().getListingsForHealth()
-        emit(convertListing(listingForHealth))
-    }
-
-    override fun getListingsForRepose(): Flow<List<ListingWithPerson>> = flow {
-        val listingForRepose = database.listingDao().getListingsForRepose()
-        emit(convertListing(listingForRepose))
+    override fun getListings(isForHealth: Boolean): Flow<List<ListingWithPerson>> = flow {
+        val listing = database.listingDao().getListings(booleanIntDbConverter.map(isForHealth))
+        emit(convertListing(listing))
     }
 
     override suspend fun deleteListing(listing: ListingWithPerson) {

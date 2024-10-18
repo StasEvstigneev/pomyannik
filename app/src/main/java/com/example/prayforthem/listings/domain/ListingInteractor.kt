@@ -10,9 +10,8 @@ interface ListingInteractor {
 
     suspend fun getListingById(id: Int): List<ListingWithPerson>
 
-    fun getListingsForHealth(): Flow<List<ListingWithPerson>>
-
-    fun getListingsForRepose(): Flow<List<ListingWithPerson>>
+    fun getListings(isForHealth: Boolean): Flow<List<ListingWithPerson>>
 
     suspend fun deleteListing(listing: ListingWithPerson)
+
 }

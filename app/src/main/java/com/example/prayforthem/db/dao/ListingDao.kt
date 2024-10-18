@@ -20,12 +20,8 @@ interface ListingDao {
     suspend fun getListingById(id: Int): List<ListingWithPersonDB>
 
     @Transaction
-    @Query("SELECT * FROM listing WHERE for_health = 1")
-    suspend fun getListingsForHealth(): List<ListingWithPersonDB>
-
-    @Transaction
-    @Query("SELECT * FROM listing WHERE for_health = 0")
-    suspend fun getListingsForRepose(): List<ListingWithPersonDB>
+    @Query("SELECT * FROM listing WHERE for_health = :isForHealth")
+    suspend fun getListings(isForHealth: Int): List<ListingWithPersonDB>
 
     @Transaction
     @Delete

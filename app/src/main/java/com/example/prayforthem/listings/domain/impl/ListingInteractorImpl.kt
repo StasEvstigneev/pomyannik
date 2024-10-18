@@ -15,15 +15,12 @@ class ListingInteractorImpl(private val repository: ListingRepository) : Listing
         return repository.getListingById(id)
     }
 
-    override fun getListingsForHealth(): Flow<List<ListingWithPerson>> {
-        return repository.getListingsForHealth()
-    }
-
-    override fun getListingsForRepose(): Flow<List<ListingWithPerson>> {
-        return repository.getListingsForRepose()
+    override fun getListings(isForHealth: Boolean): Flow<List<ListingWithPerson>> {
+        return repository.getListings(isForHealth)
     }
 
     override suspend fun deleteListing(listing: ListingWithPerson) {
         repository.deleteListing(listing)
     }
+
 }

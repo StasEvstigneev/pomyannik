@@ -25,7 +25,7 @@ val repositoryModule = module {
     }
 
     single<ListingRepository> {
-        ListingRepositoryImpl(get(), get())
+        ListingRepositoryImpl(get(), get(), get())
     }
 
 }

@@ -21,7 +21,6 @@ import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.DialogConstructor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Locale
 
 class CreateListingFragment : Fragment(), TempPersonClickInterface {
 
@@ -45,9 +44,8 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
         _binding = FragmentCreateListingBinding.inflate(inflater, container, false)
         isForHealth = CreateListingFragmentArgs.fromBundle(requireArguments()).isForHealthArg
         listType =
-            if (isForHealth) getString(R.string.for_the_health)
-                .lowercase(Locale.getDefault())
-            else getString(R.string.for_the_repose)
+            if (isForHealth) getString(R.string.for_the_health).lowercase()
+            else getString(R.string.for_the_repose).lowercase()
         return binding.root
     }
 

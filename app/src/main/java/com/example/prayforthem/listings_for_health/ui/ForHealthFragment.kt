@@ -19,9 +19,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWithPerson> {
 
-    private var _binding: FragmentForHealthBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel by viewModel<ForHealthViewModel>()
+    open var _binding: FragmentForHealthBinding? = null
+    open val binding get() = _binding!!
+    open val viewModel by viewModel<ForHealthViewModel>()
     private val listingsAdapter = ListingsAdapter(this)
 
     override fun onCreateView(
@@ -60,7 +60,7 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
 
     override fun onResume() {
         super.onResume()
-        viewModel.getListingsForHealth()
+        viewModel.getListings()
     }
 
     private fun renderState(state: ListingScreenState) {

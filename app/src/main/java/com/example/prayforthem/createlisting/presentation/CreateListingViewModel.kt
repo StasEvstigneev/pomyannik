@@ -45,8 +45,8 @@ class CreateListingViewModel(
         exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
     }
 
-    fun setListType(isForHealth: Boolean) {
-        this.isForHealth = isForHealth
+    fun setListType(type: Boolean) {
+        isForHealth = type
     }
 
     fun updateListTitle(title: String) {
