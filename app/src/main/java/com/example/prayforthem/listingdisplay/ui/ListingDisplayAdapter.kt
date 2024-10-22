@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.databinding.ListDispNameItemBinding
 import com.example.prayforthem.listings.domain.models.PersonDignityName
+import com.example.prayforthem.utils.NameFormsConstructor
 
 class ListingDisplayAdapter(var list: List<PersonDignityName>) :
     RecyclerView.Adapter<ListingDisplayAdapter.ListingDisplayViewHolder>() {
@@ -27,14 +28,7 @@ class ListingDisplayAdapter(var list: List<PersonDignityName>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(person: PersonDignityName) {
-            var result = person.name.nameGenitive
-            if (person.dignity != null) result = person.dignity.dignityShort + SPACE + result
-            binding.root.text = result
-
-        }
-
-        companion object {
-            private const val SPACE = " "
+            binding.root.text = NameFormsConstructor.createPersonShortGenitive(person)
         }
 
     }

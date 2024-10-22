@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.databinding.NamesBinListItemBinding
 import com.example.prayforthem.listings.domain.models.PersonBasicData
+import com.example.prayforthem.utils.NameFormsConstructor
 
 class TempPersonListingAdapter(
     var list: ArrayList<PersonBasicData>,
@@ -30,16 +31,8 @@ class TempPersonListingAdapter(
     class PersonBDViewHolder(val binding: NamesBinListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(person: PersonBasicData) {
-            val dignity: String? =
-                if (person.dignity != null) person.dignity.dignityDisplay else null
-            val name = person.name.nameDisplay
-            binding.name.text = if (dignity != null) dignity + SPACE + name else name
+            binding.name.text = NameFormsConstructor.createPersonDisplay(person)
         }
-
-    }
-
-    companion object {
-        private const val SPACE = " "
     }
 
 }

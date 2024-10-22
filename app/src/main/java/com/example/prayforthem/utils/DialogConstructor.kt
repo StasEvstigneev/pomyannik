@@ -28,4 +28,25 @@ object DialogConstructor {
 
         return exitDialog
     }
+
+    fun createDeleteDialog(
+        context: Context,
+        action: () -> Unit,
+        view: View,
+        message: String
+    ): MaterialAlertDialogBuilder {
+        val deleteDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
+            .setTitle(R.string.delete)
+            .setMessage(message)
+            .setPositiveButton(R.string.delete) { dialog, _ ->
+                action()
+                view.isVisible = false
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                view.isVisible = false
+            }
+            .setCancelable(false)
+
+        return deleteDialog
+    }
 }
