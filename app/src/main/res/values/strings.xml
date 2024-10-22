@@ -39,5 +39,7 @@
     <string name="name_in_prepositional">Имя в предложном падеже</string>
     <string name="name_prepositional_helper">Пример: О ком? - Иоанне</string>
     <string name="list">Список %1s</string>
+    <string name="delete">Удалить</string>
+    <string name="are_you_sure_you_want_to_delete_x">Вы уверены, что хотите удалить список \"%1s\"?</string>
 
 </resources>

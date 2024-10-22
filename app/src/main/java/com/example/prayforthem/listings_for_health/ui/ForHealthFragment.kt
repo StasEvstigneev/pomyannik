@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentForHealthBinding
 import com.example.prayforthem.listings.RecyclerViewClickInterface
 import com.example.prayforthem.listings.domain.models.ListingScreenState
@@ -15,6 +16,8 @@ import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.ui.ListingsAdapter
 import com.example.prayforthem.listings.ui.ListingsFragmentDirections
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
+import com.example.prayforthem.utils.DialogConstructor
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWithPerson> {
@@ -23,6 +26,7 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
     open val binding get() = _binding!!
     open val viewModel by viewModel<ForHealthViewModel>()
     private val listingsAdapter = ListingsAdapter(this)
+    private lateinit var deleteDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +55,7 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
         viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
             renderState(state)
         }
+
     }
 
     override fun onDestroyView() {
@@ -110,13 +115,18 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
     }
 
     override fun onDeleteElementClick(item: ListingWithPerson) {
-        viewModel.deleteListing(item)
+        deleteDialog = DialogConstructor.createDeleteDialog(
+            context = requireContext(),
+            action = { viewModel.deleteListing(item) },
+            message = getString(R.string.are_you_sure_you_want_to_delete_x, item.listing.title),
+            view = binding.overlay
+        )
+        deleteDialog.show()
     }
 
     companion object {
         fun newInstance() = ForHealthFragment()
         private const val IS_FOR_HEALTH = true
     }
-
 
 }

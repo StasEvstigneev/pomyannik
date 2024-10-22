@@ -22,11 +22,11 @@ open class ForHealthViewModel(
     fun getScreenState(): LiveData<ListingScreenState> = screenState
 
     init {
+        screenState.postValue(ListingScreenState.Loading)
         getListings()
     }
 
     fun getListings() {
-        screenState.postValue(ListingScreenState.Loading)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 listingInteractor

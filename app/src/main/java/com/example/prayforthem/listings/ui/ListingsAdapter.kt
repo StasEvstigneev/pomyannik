@@ -9,6 +9,7 @@ import com.example.prayforthem.databinding.ListItemBinding
 import com.example.prayforthem.listings.RecyclerViewClickInterface
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.domain.models.PersonDignityName
+import com.example.prayforthem.utils.NameFormsConstructor
 
 class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWithPerson>) :
     ListAdapter<ListingWithPerson, ListingsAdapter.ListingsViewHolder>(ListingsDiffItemCallback()) {
@@ -48,19 +49,13 @@ class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWith
             val result = ArrayList<String>()
             personListing.forEach { item ->
                 result.add(
-                    if (item.dignity != null) item.dignity.dignityShort + SPACE + item.name.nameDisplay
-                    else item.name.nameDisplay
+                    NameFormsConstructor.createPersonDisplay(item)
                 )
 
             }
             return result.joinToString(separator = ", ")
         }
 
-        companion object {
-            private const val SPACE = " "
-        }
-
     }
-
 
 }
