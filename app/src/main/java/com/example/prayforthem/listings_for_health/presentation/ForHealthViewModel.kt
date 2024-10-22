@@ -21,25 +21,9 @@ open class ForHealthViewModel(
     private val screenState = MutableLiveData<ListingScreenState>(ListingScreenState.Loading)
     fun getScreenState(): LiveData<ListingScreenState> = screenState
 
-//    private var isForHealth: Boolean = true
-
     init {
         getListings()
     }
-
-//    fun getListingsForHealth() {
-//        screenState.postValue(ListingScreenState.Loading)
-//        viewModelScope.launch {
-//            withContext(Dispatchers.IO) {
-//                listingInteractor
-//                    .getListingsForHealth()
-//                    .collect { listing ->
-//                        processListing(listing)
-//                    }
-//            }
-//        }
-//
-//    }
 
     fun getListings() {
         screenState.postValue(ListingScreenState.Loading)

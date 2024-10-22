@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_listsFragment_to_createListFragment"
             app:destination="@id/createListFragment" />
+        <action
+            android:id="@+id/action_listsFragment_to_listingDisplayFragment"
+            app:destination="@id/listingDisplayFragment" />
     </fragment>
     <fragment
         android:id="@+id/prayersFragment"
@@ -59,4 +62,20 @@
         android:name="com.example.prayforthem.addname.ui.AddNameFragment"
         android:label="fragment_add_name"
         tools:layout="@layout/fragment_add_name" />
+    <fragment
+        android:id="@+id/listingDisplayFragment"
+        android:name="com.example.prayforthem.listingdisplay.ui.ListingDisplayFragment"
+        android:label="fragment_listing_display"
+        tools:layout="@layout/fragment_listing_display" >
+        <argument
+            android:name="isForHealthArg"
+            app:argType="boolean" />
+        <argument
+            android:name="listingIdArg"
+            app:argType="integer" />
+        <argument
+            android:name="listingTitleArg"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 </navigation>
