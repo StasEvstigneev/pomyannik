@@ -38,5 +38,6 @@
     <string name="name_instrumental_helper">Пример: Кем? - Иоанном</string>
     <string name="name_in_prepositional">Имя в предложном падеже</string>
     <string name="name_prepositional_helper">Пример: О ком? - Иоанне</string>
+    <string name="list">Список %1s</string>
 
 </resources>

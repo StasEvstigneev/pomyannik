@@ -17,7 +17,7 @@ interface ListingDao {
 
     @Transaction
     @Query("SELECT * FROM listing WHERE listing_id = :id")
-    suspend fun getListingById(id: Int): List<ListingWithPersonDB>
+    suspend fun getListingById(id: Int): ListingWithPersonDB
 
     @Transaction
     @Query("SELECT * FROM listing WHERE for_health = :isForHealth")

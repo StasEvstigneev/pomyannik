@@ -11,7 +11,7 @@ class ListingInteractorImpl(private val repository: ListingRepository) : Listing
         return repository.saveListing(listing)
     }
 
-    override suspend fun getListingById(id: Int): List<ListingWithPerson> {
+    override suspend fun getListingById(id: Int): ListingWithPerson {
         return repository.getListingById(id)
     }
 

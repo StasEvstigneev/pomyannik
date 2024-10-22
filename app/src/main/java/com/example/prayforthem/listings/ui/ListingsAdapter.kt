@@ -25,6 +25,9 @@ class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWith
         holder.binding.basket.setOnClickListener {
             clickInterface.onDeleteElementClick(item)
         }
+        holder.itemView.setOnClickListener {
+            clickInterface.onItemClick(item)
+        }
     }
 
     class ListingsViewHolder(val binding: ListItemBinding) :

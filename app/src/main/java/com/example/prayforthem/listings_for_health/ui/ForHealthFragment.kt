@@ -101,7 +101,12 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
     }
 
     override fun onItemClick(item: ListingWithPerson) {
-        TODO("Not yet implemented")
+        val action = ListingsFragmentDirections.actionListsFragmentToListingDisplayFragment(
+            isForHealthArg = item.listing.forHealth,
+            listingIdArg = item.listing.listingId!!,
+            listingTitleArg = item.listing.title
+        )
+        findNavController().navigate(action)
     }
 
     override fun onDeleteElementClick(item: ListingWithPerson) {

@@ -19,8 +19,8 @@ class ListingRepositoryImpl(
         return database.listingDao().addListing(listingDbConverter.map(listing))
     }
 
-    override suspend fun getListingById(id: Int): List<ListingWithPerson> {
-        return convertListing(database.listingDao().getListingById(id))
+    override suspend fun getListingById(id: Int): ListingWithPerson {
+        return listingDbConverter.map(database.listingDao().getListingById(id))
     }
 
     override fun getListings(isForHealth: Boolean): Flow<List<ListingWithPerson>> = flow {
