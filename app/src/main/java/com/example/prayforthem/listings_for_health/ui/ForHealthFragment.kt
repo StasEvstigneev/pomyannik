@@ -118,7 +118,7 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
         deleteDialog = DialogConstructor.createDeleteDialog(
             context = requireContext(),
             action = { viewModel.deleteListing(item) },
-            message = getString(R.string.are_you_sure_you_want_to_delete_x, item.listing.title),
+            message = getString(R.string.are_you_sure_you_want_to_delete_list_x, item.listing.title),
             view = binding.overlay
         )
         deleteDialog.show()

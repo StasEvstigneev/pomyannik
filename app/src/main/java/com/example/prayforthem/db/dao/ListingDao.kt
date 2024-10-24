@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.example.prayforthem.db.entities.ListingEntity
 import com.example.prayforthem.db.models.ListingWithPersonDB
 
@@ -26,5 +27,8 @@ interface ListingDao {
     @Transaction
     @Delete
     suspend fun deleteListing(listing: ListingEntity)
+
+    @Update
+    suspend fun updateListing(listing: ListingEntity)
 
 }

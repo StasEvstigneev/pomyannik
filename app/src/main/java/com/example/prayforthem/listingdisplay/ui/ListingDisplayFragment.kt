@@ -73,17 +73,27 @@ class ListingDisplayFragment : Fragment() {
             renderState(state)
 
         }
+
+        binding.editIcon.setOnClickListener {
+            val action = ListingDisplayFragmentDirections
+                .actionListingDisplayFragmentToEditListingFragment(args.listingIdArg)
+            findNavController().navigate(action)
+        }
+
+        binding.shareIcon.setOnClickListener {
+            TODO()
+        }
     }
 
     private fun renderState(state: ListingDisplayScreenState) {
         when (state) {
             is ListingDisplayScreenState.Loading -> true
             is ListingDisplayScreenState.Content -> {
+                binding.toolbar.title = getString(R.string.list, state.listingTitle)
                 listingAdapter.list = state.list
                 listingAdapter.notifyDataSetChanged()
 
             }
-
         }
     }
 

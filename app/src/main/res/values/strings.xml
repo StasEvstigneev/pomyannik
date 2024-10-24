@@ -40,6 +40,9 @@
     <string name="name_prepositional_helper">Пример: О ком? - Иоанне</string>
     <string name="list">Список %1s</string>
     <string name="delete">Удалить</string>
-    <string name="are_you_sure_you_want_to_delete_x">Вы уверены, что хотите удалить список \"%1s\"?</string>
+    <string name="are_you_sure_you_want_to_delete_list_x">Вы уверены, что хотите удалить список \"%1s\"?</string>
+    <string name="are_you_sure_you_want_to_delete_person_x">Вы уверены, что хотите удалить \"%1s\"?</string>
+    <string name="edit">Редактировать</string>
+    <string name="edit_list">Редактировать список</string>
 
 </resources>

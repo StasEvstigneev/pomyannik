@@ -26,12 +26,16 @@ class ListingDisplayViewModel(
         getListing()
     }
 
-
     fun getListing() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val listing = listingInteractor.getListingById(listingId)
-                screenState.postValue(ListingDisplayScreenState.Content(listing.personListing))
+                screenState.postValue(ListingDisplayScreenState
+                    .Content(
+                        listingTitle = listing.listing.title,
+                        list = listing.personListing
+                    )
+                )
             }
         }
     }

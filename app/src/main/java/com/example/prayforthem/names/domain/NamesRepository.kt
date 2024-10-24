@@ -12,4 +12,6 @@ interface NamesRepository {
 
     suspend fun addCustomName(name: Name)
 
+    suspend fun getNameById(id: Int): Name
+
 }

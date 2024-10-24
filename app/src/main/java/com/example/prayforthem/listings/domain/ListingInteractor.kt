@@ -14,4 +14,6 @@ interface ListingInteractor {
 
     suspend fun deleteListing(listing: ListingWithPerson)
 
+    suspend fun updateListing(listing: Listing)
+
 }
