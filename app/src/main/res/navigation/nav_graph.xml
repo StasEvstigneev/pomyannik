@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_namesFragment_to_addNameFragment"
             app:destination="@id/addNameFragment" />
+        <action
+            android:id="@+id/action_namesFragment_to_editListingFragment"
+            app:destination="@id/editListingFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
@@ -77,5 +80,20 @@
             android:name="listingTitleArg"
             app:argType="string"
             android:defaultValue='""' />
+        <action
+            android:id="@+id/action_listingDisplayFragment_to_editListingFragment"
+            app:destination="@id/editListingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editListingFragment"
+        android:name="com.example.prayforthem.editlisting.ui.EditListingFragment"
+        android:label="fragment_edit_listing"
+        tools:layout="@layout/fragment_edit_listing" >
+        <argument
+            android:name="listingIdArg"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editListingFragment_to_namesFragment"
+            app:destination="@id/namesFragment" />
     </fragment>
 </navigation>

@@ -12,4 +12,6 @@ interface NamesInteractor {
 
     suspend fun addCustomName(name: Name)
 
+    suspend fun getNameById(id: Int): Name
+
 }
