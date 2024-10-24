@@ -4,6 +4,7 @@ import com.example.prayforthem.db.AppDatabase
 import com.example.prayforthem.db.converters.DignityDbConverter
 import com.example.prayforthem.db.models.DignityBasicDataDB
 import com.example.prayforthem.names.domain.DignityRepository
+import com.example.prayforthem.names.domain.models.Dignity
 import com.example.prayforthem.names.domain.models.DignityBasicData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,6 +24,10 @@ class DignityRepositoryImpl(
 
     override suspend fun getDignityBasicDataById(id: Int): DignityBasicData {
         return dignityDbConverter.map(appDatabase.dignityDao().getDignityBasicDataById(id))
+    }
+
+    override suspend fun getDignityById(id: Int): Dignity {
+        return dignityDbConverter.map(appDatabase.dignityDao().getDignityById(id))
     }
 
     private fun convertDignityBasicData(list: List<DignityBasicDataDB>): List<DignityBasicData> {

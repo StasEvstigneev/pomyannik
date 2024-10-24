@@ -20,6 +20,9 @@ interface DignityDao {
     @Query("SELECT * FROM dignity WHERE dignity_id in (:ids)")
     suspend fun getDignityByIds(ids: List<Int>): List<DignityEntity>
 
+    @Query("SELECT * FROM dignity WHERE dignity_id = :id")
+    suspend fun getDignityById(id: Int): DignityEntity
+
     @Query("SELECT dignity_id, dignity_display, dignity_short FROM dignity WHERE is_title == 1")
     suspend fun getAllChurchBasicData(): List<DignityBasicDataDB>
 

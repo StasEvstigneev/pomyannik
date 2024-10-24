@@ -23,4 +23,8 @@ class ListingInteractorImpl(private val repository: ListingRepository) : Listing
         repository.deleteListing(listing)
     }
 
+    override suspend fun updateListing(listing: Listing) {
+        repository.updateListing(listing)
+    }
+
 }

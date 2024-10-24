@@ -17,7 +17,6 @@ object NameFormsConstructor {
         return result
     }
 
-
     fun createPersonShortGenitive(person: PersonDignityName): String {
         var result = person.name.nameGenitive
         if (person.dignity != null) result = person.dignity.dignityShort + SPACE + result

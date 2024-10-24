@@ -19,4 +19,8 @@ class NamesInteractorImpl(private val namesRepository: NamesRepository) : NamesI
     override suspend fun addCustomName(name: Name) {
         namesRepository.addCustomName(name)
     }
+
+    override suspend fun getNameById(id: Int): Name {
+        return namesRepository.getNameById(id)
+    }
 }

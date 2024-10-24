@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.example.prayforthem.db.entities.PersonEntity
 import com.example.prayforthem.db.models.PersonDignityNameDB
 
@@ -25,5 +26,8 @@ interface PersonDao {
 
     @Delete
     suspend fun deletePerson(person: PersonEntity)
+
+    @Update
+    suspend fun updatePerson(person: PersonEntity)
 
 }

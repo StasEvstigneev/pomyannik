@@ -22,6 +22,9 @@ interface NameDao {
     @Query("SELECT * FROM names WHERE name_id IN (:ids)")
     suspend fun getNamesByIds(ids: List<Int>): List<NameEntity>
 
+    @Query("SELECT * FROM names WHERE name_id = :id")
+    suspend fun getNameById(id: Int): NameEntity
+
     @Insert(entity = NameEntity::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun addName(name: NameEntity)
 
