@@ -5,10 +5,13 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.prayforthem.db.AppDatabase
 import com.example.prayforthem.db.converters.BooleanIntDbConverter
+import com.example.prayforthem.db.converters.CategoryPrayersDbConverter
 import com.example.prayforthem.db.converters.DignityDbConverter
 import com.example.prayforthem.db.converters.ListingDbConverter
 import com.example.prayforthem.db.converters.NameDbConverter
 import com.example.prayforthem.db.converters.PersonDbConverter
+import com.example.prayforthem.db.converters.PrayerCategoryDbConverter
+import com.example.prayforthem.db.converters.PrayerDbConverter
 import com.example.prayforthem.storage.data.LocalStorageImpl
 import com.example.prayforthem.storage.domain.LocalStorage
 import org.koin.android.ext.koin.androidContext
@@ -49,6 +52,18 @@ val dataModule = module {
 
     single<LocalStorage> {
         LocalStorageImpl(get())
+    }
+
+    factory<PrayerDbConverter> {
+        PrayerDbConverter(get())
+    }
+
+    factory<PrayerCategoryDbConverter> {
+        PrayerCategoryDbConverter()
+    }
+
+    factory<CategoryPrayersDbConverter> {
+        CategoryPrayersDbConverter(get(), get())
     }
 
 }
