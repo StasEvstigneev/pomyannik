@@ -1,7 +1,7 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.entities.PrayerEntity
-import com.example.prayforthem.prayers.domain.Prayer
+import com.example.prayforthem.prayerdisplay.domain.Prayer
 
 class PrayerDbConverter(
     private val booleanIntDbConverter: BooleanIntDbConverter

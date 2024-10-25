@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/prayersFragment"
-        android:name="com.example.prayforthem.prayers.ui.PrayersFragment"
+        android:name="com.example.prayforthem.prayerscategories.ui.PrayersCategoriesFragment"
         android:label="fragment_prayers"
-        tools:layout="@layout/fragment_prayers" />
+        tools:layout="@layout/fragment_prayers_categories" />
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.prayforthem.information.ui.InfoFragment"

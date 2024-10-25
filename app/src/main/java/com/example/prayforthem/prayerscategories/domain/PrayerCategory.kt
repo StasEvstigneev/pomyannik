@@ -1,4 +1,4 @@
-package com.example.prayforthem.prayers.domain
+package com.example.prayforthem.prayerscategories.domain
 
 data class PrayerCategory(
     val categoryId: Int,

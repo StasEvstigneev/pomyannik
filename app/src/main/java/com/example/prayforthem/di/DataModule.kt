@@ -13,7 +13,10 @@ import com.example.prayforthem.db.converters.PersonDbConverter
 import com.example.prayforthem.db.converters.PrayerCategoryDbConverter
 import com.example.prayforthem.db.converters.PrayerDbConverter
 import com.example.prayforthem.storage.data.LocalStorageImpl
+import com.example.prayforthem.storage.domain.GsonJsonConverter
 import com.example.prayforthem.storage.domain.LocalStorage
+import com.example.prayforthem.utils.GsonJsonConverterImpl
+import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -64,6 +67,10 @@ val dataModule = module {
 
     factory<CategoryPrayersDbConverter> {
         CategoryPrayersDbConverter(get(), get())
+    }
+
+    single<GsonJsonConverter> {
+        GsonJsonConverterImpl(Gson())
     }
 
 }
