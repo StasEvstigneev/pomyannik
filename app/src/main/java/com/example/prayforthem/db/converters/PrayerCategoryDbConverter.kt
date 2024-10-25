@@ -1,7 +1,7 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.entities.PrayerCategoryEntity
-import com.example.prayforthem.prayers.domain.PrayerCategory
+import com.example.prayforthem.prayerscategories.domain.PrayerCategory
 
 class PrayerCategoryDbConverter {
 

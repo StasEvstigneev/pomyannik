@@ -6,6 +6,7 @@ import com.example.prayforthem.db.dao.DignityDao
 import com.example.prayforthem.db.dao.ListingDao
 import com.example.prayforthem.db.dao.NameDao
 import com.example.prayforthem.db.dao.PersonDao
+import com.example.prayforthem.db.dao.PrayerCategoryDao
 import com.example.prayforthem.db.dao.PrayerDao
 import com.example.prayforthem.db.entities.DignityEntity
 import com.example.prayforthem.db.entities.ListingEntity
@@ -34,4 +35,5 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun personDao(): PersonDao
     abstract fun listingDao(): ListingDao
     abstract fun prayerDao(): PrayerDao
+    abstract fun prayerCategoryDao(): PrayerCategoryDao
 }

@@ -1,12 +1,9 @@
 package com.example.prayforthem.storage.domain
 
-import com.example.prayforthem.names.domain.models.NameBasicData
+import com.example.prayforthem.prayerdisplay.domain.PrayerContent
 
 interface GsonJsonConverter {
 
-    fun getNameBasicDataFromJson(json: String): NameBasicData
-
-    fun getJsonFromNameBasicData(person: NameBasicData): String
-
+    fun getPrayerFromJson(prayerJson: String): PrayerContent
 
 }

@@ -9,7 +9,7 @@ import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import com.example.prayforthem.listings_for_repose.repository.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
-import com.example.prayforthem.prayers.presentation.PrayersViewModel
+import com.example.prayforthem.prayerscategories.presentation.PrayersCategoriesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -26,8 +26,8 @@ val viewModelModule = module {
         ForReposeViewModel(get(), get(), FOR_REPOSE)
     }
 
-    viewModel<PrayersViewModel> {
-        PrayersViewModel()
+    viewModel<PrayersCategoriesViewModel> {
+        PrayersCategoriesViewModel()
     }
 
     viewModel<InfoViewModel> {
