@@ -23,5 +23,6 @@
     <dimen name="_80dp">80dp</dimen>
     <dimen name="_92dp">92dp</dimen>
     <dimen name="progress_bar_size">44dp</dimen>
+    <dimen name="prayer_item_list_height">60dp</dimen>
 
 </resources>
