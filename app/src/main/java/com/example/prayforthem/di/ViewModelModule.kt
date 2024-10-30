@@ -27,7 +27,7 @@ val viewModelModule = module {
     }
 
     viewModel<PrayersCategoriesViewModel> {
-        PrayersCategoriesViewModel()
+        PrayersCategoriesViewModel(get())
     }
 
     viewModel<InfoViewModel> {

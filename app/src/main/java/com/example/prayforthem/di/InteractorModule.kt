@@ -8,6 +8,8 @@ import com.example.prayforthem.names.domain.DignityInteractor
 import com.example.prayforthem.names.domain.NamesInteractor
 import com.example.prayforthem.names.domain.impl.DignityInteractorImpl
 import com.example.prayforthem.names.domain.impl.NamesInteractorImpl
+import com.example.prayforthem.prayerscategories.domain.PrayersCategoriesInteractor
+import com.example.prayforthem.prayerscategories.domain.impl.PrayersCategoriesInteractorImpl
 import org.koin.dsl.module
 
 val interactorModule = module {
@@ -26,5 +28,9 @@ val interactorModule = module {
 
     factory<ListingInteractor> {
         ListingInteractorImpl(get())
+    }
+
+    factory<PrayersCategoriesInteractor> {
+        PrayersCategoriesInteractorImpl(get())
     }
 }
