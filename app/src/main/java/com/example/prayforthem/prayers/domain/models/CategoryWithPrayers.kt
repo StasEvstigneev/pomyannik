@@ -1,4 +1,4 @@
-package com.example.prayforthem.prayers.domain
+package com.example.prayforthem.prayers.domain.models
 
 import com.example.prayforthem.prayerscategories.domain.models.PrayerCategory
 

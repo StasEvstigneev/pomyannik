@@ -10,5 +10,5 @@ interface PrayerDao {
 
     @Transaction
     @Query("SELECT * FROM prayer_category WHERE category_id = :id")
-    fun getPrayers(id: Int): List<CategoryWithPrayersDB>
+    fun getPrayers(id: Int): CategoryWithPrayersDB
 }

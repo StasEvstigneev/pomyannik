@@ -25,7 +25,7 @@ class RootActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.listsFragment,
-                R.id.prayersFragment,
+                R.id.prayersCategoriesFragment,
                 R.id.infoFragment -> {
                     rootBinding.apply {
                         bottomNavigation.isVisible = true

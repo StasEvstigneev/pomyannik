@@ -18,10 +18,14 @@
             app:destination="@id/listingDisplayFragment" />
     </fragment>
     <fragment
-        android:id="@+id/prayersFragment"
+        android:id="@+id/prayersCategoriesFragment"
         android:name="com.example.prayforthem.prayerscategories.ui.PrayersCategoriesFragment"
         android:label="fragment_prayers"
-        tools:layout="@layout/fragment_prayers_categories" />
+        tools:layout="@layout/fragment_prayers_categories" >
+        <action
+            android:id="@+id/action_prayersCategoriesFragment_to_prayersFragment"
+            app:destination="@id/prayersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.prayforthem.information.ui.InfoFragment"
@@ -95,5 +99,14 @@
         <action
             android:id="@+id/action_editListingFragment_to_namesFragment"
             app:destination="@id/namesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prayersFragment"
+        android:name="com.example.prayforthem.prayers.ui.PrayersFragment"
+        android:label="fragment_prayers"
+        tools:layout="@layout/fragment_prayers" >
+        <argument
+            android:name="categoryIdArg"
+            app:argType="integer" />
     </fragment>
 </navigation>

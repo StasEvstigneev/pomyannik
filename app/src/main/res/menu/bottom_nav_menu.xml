@@ -7,7 +7,7 @@
         android:title="@string/lists" />
 
     <item
-        android:id="@+id/prayersFragment"
+        android:id="@+id/prayersCategoriesFragment"
         android:icon="@drawable/ic_open_book_"
         android:title="@string/prayers" />
 
