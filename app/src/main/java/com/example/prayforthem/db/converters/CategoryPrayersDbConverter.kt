@@ -1,7 +1,7 @@
 package com.example.prayforthem.db.converters
 
 import com.example.prayforthem.db.models.CategoryWithPrayersDB
-import com.example.prayforthem.prayers.domain.CategoryWithPrayers
+import com.example.prayforthem.prayers.domain.models.CategoryWithPrayers
 
 class CategoryPrayersDbConverter(
     private val prayerDbConverter: PrayerDbConverter,

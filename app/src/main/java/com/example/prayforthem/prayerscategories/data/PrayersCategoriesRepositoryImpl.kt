@@ -8,9 +8,7 @@ import com.example.prayforthem.prayerscategories.domain.models.PrayerCategory
 class PrayersCategoriesRepositoryImpl(
     private val database: AppDatabase,
     private val converter: PrayerCategoryDbConverter
-) :
-    PrayersCategoriesRepository {
-
+) : PrayersCategoriesRepository {
     override suspend fun getPrayersCategories(): List<PrayerCategory> {
         return database.prayerCategoryDao().getAllCategories().map { item -> converter.map(item) }
     }
