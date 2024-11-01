@@ -1,6 +1,6 @@
 package com.example.prayforthem.utils
 
-import com.example.prayforthem.prayerdisplay.domain.PrayerContent
+import com.example.prayforthem.prayerdisplay.domain.models.PrayerContent
 import com.example.prayforthem.storage.domain.GsonJsonConverter
 import com.google.gson.Gson
 

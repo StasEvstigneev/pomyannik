@@ -9,6 +9,7 @@ import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import com.example.prayforthem.listings_for_repose.repository.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
+import com.example.prayforthem.prayerdisplay.presentation.PrayerDisplayViewModel
 import com.example.prayforthem.prayers.presentation.PrayersViewModel
 import com.example.prayforthem.prayerscategories.presentation.PrayersCategoriesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -57,6 +58,10 @@ val viewModelModule = module {
 
     viewModel<PrayersViewModel> { (categoryId: Int) ->
         PrayersViewModel(categoryId, get())
+    }
+
+    viewModel<PrayerDisplayViewModel> { (prayerFileName: String) ->
+        PrayerDisplayViewModel(prayerFileName, get())
     }
 
 }

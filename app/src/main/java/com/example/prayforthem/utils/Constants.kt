@@ -9,4 +9,6 @@ internal object Constants {
     const val LIST_MAX_SIZE = 10
     const val NULL = 0
 
+    const val PATRIARH = "PATRIARH_GEN"
+
 }
