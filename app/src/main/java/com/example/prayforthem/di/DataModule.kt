@@ -54,7 +54,7 @@ val dataModule = module {
     }
 
     single<LocalStorage> {
-        LocalStorageImpl(get())
+        LocalStorageImpl(androidContext(), get(), get())
     }
 
     factory<PrayerDbConverter> {

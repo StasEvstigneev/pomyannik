@@ -104,7 +104,9 @@ class PrayersFragment : Fragment(), RecyclerViewClickInterface<Prayer> {
 
 
     override fun onItemClick(item: Prayer) {
-        TODO("Not yet implemented")
+        val action =
+            PrayersFragmentDirections.actionPrayersFragmentToPrayerDisplayFragment(item.fileName)
+        findNavController().navigate(action)
     }
 
     override fun onDeleteElementClick(item: Prayer) = Unit

@@ -108,5 +108,17 @@
         <argument
             android:name="categoryIdArg"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_prayersFragment_to_prayerDisplayFragment"
+            app:destination="@id/prayerDisplayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prayerDisplayFragment"
+        android:name="com.example.prayforthem.prayerdisplay.ui.PrayerDisplayFragment"
+        android:label="fragment_prayer_display"
+        tools:layout="@layout/fragment_prayer_display" >
+        <argument
+            android:name="prayerFileNameArg"
+            app:argType="string" />
     </fragment>
 </navigation>

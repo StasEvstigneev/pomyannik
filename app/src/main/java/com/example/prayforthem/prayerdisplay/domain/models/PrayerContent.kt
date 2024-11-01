@@ -1,4 +1,4 @@
-package com.example.prayforthem.prayerdisplay.domain
+package com.example.prayforthem.prayerdisplay.domain.models
 
 data class PrayerContent(
     val title: String,

@@ -8,6 +8,8 @@ import com.example.prayforthem.names.data.DignityRepositoryImpl
 import com.example.prayforthem.names.data.NamesRepositoryImpl
 import com.example.prayforthem.names.domain.DignityRepository
 import com.example.prayforthem.names.domain.NamesRepository
+import com.example.prayforthem.prayerdisplay.data.PrayerContentRepositoryImpl
+import com.example.prayforthem.prayerdisplay.domain.PrayerContentRepository
 import com.example.prayforthem.prayers.data.PrayersRepositoryImpl
 import com.example.prayforthem.prayers.domain.PrayersRepository
 import com.example.prayforthem.prayerscategories.data.PrayersCategoriesRepositoryImpl
@@ -38,6 +40,10 @@ val repositoryModule = module {
 
     single<PrayersRepository> {
         PrayersRepositoryImpl(get(), get())
+    }
+
+    single<PrayerContentRepository> {
+        PrayerContentRepositoryImpl(get())
     }
 
 }
