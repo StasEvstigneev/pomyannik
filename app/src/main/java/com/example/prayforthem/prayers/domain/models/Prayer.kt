@@ -4,5 +4,5 @@ data class Prayer(
     val prayerId: Int,
     val title: String,
     val fileName: String,
-    val withNames: Boolean
+    val forHealth: Boolean
 )

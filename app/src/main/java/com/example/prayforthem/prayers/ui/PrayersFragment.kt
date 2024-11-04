@@ -11,14 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.databinding.FragmentPrayersBinding
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewItemClick
 import com.example.prayforthem.prayers.domain.models.Prayer
 import com.example.prayforthem.prayers.domain.models.PrayersScreenState
 import com.example.prayforthem.prayers.presentation.PrayersViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PrayersFragment : Fragment(), RecyclerViewClickInterface<Prayer> {
+class PrayersFragment : Fragment(), RecyclerViewItemClick<Prayer> {
 
     private var _binding: FragmentPrayersBinding? = null
     private val binding get() = _binding!!
@@ -108,8 +108,5 @@ class PrayersFragment : Fragment(), RecyclerViewClickInterface<Prayer> {
             PrayersFragmentDirections.actionPrayersFragmentToPrayerDisplayFragment(item.fileName)
         findNavController().navigate(action)
     }
-
-    override fun onDeleteElementClick(item: Prayer) = Unit
-
 
 }

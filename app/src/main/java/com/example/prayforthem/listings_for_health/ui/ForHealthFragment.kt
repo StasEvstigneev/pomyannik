@@ -10,7 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentForHealthBinding
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewDeleteItem
+import com.example.prayforthem.listings.domain.RecyclerViewItemClick
 import com.example.prayforthem.listings.domain.models.ListingScreenState
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.ui.ListingsAdapter
@@ -20,12 +21,13 @@ import com.example.prayforthem.utils.DialogConstructor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWithPerson> {
+open class ForHealthFragment : Fragment(), RecyclerViewItemClick<ListingWithPerson>,
+    RecyclerViewDeleteItem<ListingWithPerson> {
 
     open var _binding: FragmentForHealthBinding? = null
     open val binding get() = _binding!!
     open val viewModel by viewModel<ForHealthViewModel>()
-    private val listingsAdapter = ListingsAdapter(this)
+    private val listingsAdapter = ListingsAdapter(this, this)
     private lateinit var deleteDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
@@ -118,7 +120,10 @@ open class ForHealthFragment : Fragment(), RecyclerViewClickInterface<ListingWit
         deleteDialog = DialogConstructor.createDeleteDialog(
             context = requireContext(),
             action = { viewModel.deleteListing(item) },
-            message = getString(R.string.are_you_sure_you_want_to_delete_list_x, item.listing.title),
+            message = getString(
+                R.string.are_you_sure_you_want_to_delete_list_x,
+                item.listing.title
+            ),
             view = binding.overlay
         )
         deleteDialog.show()

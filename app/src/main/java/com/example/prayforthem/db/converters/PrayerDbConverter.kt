@@ -12,7 +12,7 @@ class PrayerDbConverter(
             prayerId = prayer.prayerId,
             title = prayer.title,
             fileName = prayer.fileName,
-            withNames = booleanIntDbConverter.map(prayer.withNames)
+            forHealth = booleanIntDbConverter.map(prayer.forHealth)
         )
     }
 
@@ -21,7 +21,7 @@ class PrayerDbConverter(
             prayerId = prayer.prayerId,
             title = prayer.title,
             fileName = prayer.fileName,
-            withNames = booleanIntDbConverter.map(prayer.withNames)
+            forHealth = booleanIntDbConverter.map(prayer.forHealth)
         )
     }
 

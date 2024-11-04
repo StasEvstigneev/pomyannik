@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.databinding.PrayerItemBinding
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewItemClick
 import com.example.prayforthem.prayerscategories.domain.models.PrayerCategory
 
 class PrayerCategoriesAdapter(
     var list: ArrayList<PrayerCategory>,
-    private val clickInterface: RecyclerViewClickInterface<PrayerCategory>
+    private val clickInterface: RecyclerViewItemClick<PrayerCategory>
 ) : RecyclerView.Adapter<PrayerCategoriesAdapter.PrayerCategoriesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrayerCategoriesViewHolder {

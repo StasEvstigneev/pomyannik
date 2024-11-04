@@ -80,10 +80,9 @@ class CreateListingViewModel(
     fun createNewPersonBasicData(dignityId: Int?, nameId: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                var dignity: DignityBasicData? = null
+                val dignity: DignityBasicData? =
+                    if (dignityId != null) dignityInteractor.getDignityBasicDataById(dignityId) else null
                 val name = namesInteractor.getNameBasicDataById(nameId)
-                if (dignityId != null) dignity =
-                    dignityInteractor.getDignityBasicDataById(dignityId)
                 addPersonToList(PersonBasicData(dignity, name))
             }
         }

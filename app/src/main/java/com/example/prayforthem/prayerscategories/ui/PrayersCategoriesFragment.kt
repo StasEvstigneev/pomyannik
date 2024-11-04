@@ -9,13 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.databinding.FragmentPrayersCategoriesBinding
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewItemClick
 import com.example.prayforthem.prayerscategories.domain.models.PrayerCategory
 import com.example.prayforthem.prayerscategories.domain.models.PrayersCategoriesScreenState
 import com.example.prayforthem.prayerscategories.presentation.PrayersCategoriesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PrayersCategoriesFragment : Fragment(), RecyclerViewClickInterface<PrayerCategory> {
+class PrayersCategoriesFragment : Fragment(), RecyclerViewItemClick<PrayerCategory> {
 
     private var _binding: FragmentPrayersCategoriesBinding? = null
     private val binding get() = _binding!!
@@ -88,7 +88,5 @@ class PrayersCategoriesFragment : Fragment(), RecyclerViewClickInterface<PrayerC
             )
         findNavController().navigate(action)
     }
-
-    override fun onDeleteElementClick(item: PrayerCategory) = Unit
 
 }

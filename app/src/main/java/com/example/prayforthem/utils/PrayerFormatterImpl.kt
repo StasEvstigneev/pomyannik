@@ -4,11 +4,11 @@ import com.example.prayforthem.prayerdisplay.domain.PrayerFormatter
 import com.example.prayforthem.prayerdisplay.domain.models.PrayerContent
 
 class PrayerFormatterImpl : PrayerFormatter {
-    override fun formatHeading(heading: String): String {
+    private fun formatHeading(heading: String): String {
         return "<b>$heading</b><br><br>"
     }
 
-    override fun formatParagraph(paragraph: String): String {
+    private fun formatParagraph(paragraph: String): String {
         return "$paragraph<br><br>"
     }
 

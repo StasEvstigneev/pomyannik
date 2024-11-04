@@ -5,11 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.databinding.NamesBinListItemBinding
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewDeleteItem
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 import com.example.prayforthem.utils.NameFormsConstructor
 
-class EditListingAdapter(val clickInterface: RecyclerViewClickInterface<PersonDignityName>) :
+class EditListingAdapter(
+    private val deleteItemInterface: RecyclerViewDeleteItem<PersonDignityName>
+) :
     ListAdapter<PersonDignityName, EditListingAdapter.EditListingViewHolder>(
         EditListingDiffItemCallback()
     ) {
@@ -24,7 +26,7 @@ class EditListingAdapter(val clickInterface: RecyclerViewClickInterface<PersonDi
         val item = getItem(position)
         holder.bind(item)
         holder.binding.basket.setOnClickListener {
-            clickInterface.onDeleteElementClick(item)
+            deleteItemInterface.onDeleteElementClick(item)
         }
     }
 
