@@ -10,5 +10,6 @@ internal object Constants {
     const val NULL = 0
 
     const val PATRIARH = "PATRIARH_GEN"
+    const val NAMES_NOM = "NAMES_NOM"
 
 }

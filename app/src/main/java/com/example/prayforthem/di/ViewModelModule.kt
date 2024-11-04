@@ -61,7 +61,7 @@ val viewModelModule = module {
     }
 
     viewModel<PrayerDisplayViewModel> { (prayerFileName: String) ->
-        PrayerDisplayViewModel(prayerFileName, get())
+        PrayerDisplayViewModel(prayerFileName, get(), get())
     }
 
 }

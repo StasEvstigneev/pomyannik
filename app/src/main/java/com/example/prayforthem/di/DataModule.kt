@@ -12,6 +12,8 @@ import com.example.prayforthem.db.converters.NameDbConverter
 import com.example.prayforthem.db.converters.PersonDbConverter
 import com.example.prayforthem.db.converters.PrayerCategoryDbConverter
 import com.example.prayforthem.db.converters.PrayerDbConverter
+import com.example.prayforthem.prayerdisplay.domain.PrayerFormatter
+import com.example.prayforthem.utils.PrayerFormatterImpl
 import com.example.prayforthem.storage.data.LocalStorageImpl
 import com.example.prayforthem.storage.domain.GsonJsonConverter
 import com.example.prayforthem.storage.domain.LocalStorage
@@ -71,6 +73,10 @@ val dataModule = module {
 
     single<GsonJsonConverter> {
         GsonJsonConverterImpl(Gson())
+    }
+
+    single<PrayerFormatter> {
+        PrayerFormatterImpl()
     }
 
 }
