@@ -36,7 +36,7 @@ class ListingDisplayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.title = getString(R.string.list, args.listingTitleArg)
+        binding.toolbar.title = args.listingTitleArg
         if (!args.isForHealthArg) {
             val typedValue = TypedValue()
             val theme = requireContext().theme
@@ -89,7 +89,7 @@ class ListingDisplayFragment : Fragment() {
         when (state) {
             is ListingDisplayScreenState.Loading -> true
             is ListingDisplayScreenState.Content -> {
-                binding.toolbar.title = getString(R.string.list, state.listingTitle)
+                binding.toolbar.title = state.listingTitle
                 listingAdapter.list = state.list
                 listingAdapter.notifyDataSetChanged()
 

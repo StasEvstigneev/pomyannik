@@ -12,6 +12,6 @@ data class PrayerEntity(
     val title: String,
     @ColumnInfo(name = "file_name")
     val fileName: String,
-    @ColumnInfo(name = "with_names")
-    val withNames: Int //0-false, 1-true
+    @ColumnInfo(name = "for_health")
+    val forHealth: Int //0-false, 1-true
 )

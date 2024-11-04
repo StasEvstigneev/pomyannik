@@ -6,12 +6,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.ListItemBinding
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewDeleteItem
+import com.example.prayforthem.listings.domain.RecyclerViewItemClick
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 import com.example.prayforthem.utils.NameFormsConstructor
 
-class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWithPerson>) :
+class ListingsAdapter(
+    private val itemClickInterface: RecyclerViewItemClick<ListingWithPerson>,
+    private val deleteItemInterface: RecyclerViewDeleteItem<ListingWithPerson>
+) :
     ListAdapter<ListingWithPerson, ListingsAdapter.ListingsViewHolder>(ListingsDiffItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListingsViewHolder {
@@ -24,10 +28,10 @@ class ListingsAdapter(val clickInterface: RecyclerViewClickInterface<ListingWith
         val item = getItem(position)
         holder.bind(item)
         holder.binding.basket.setOnClickListener {
-            clickInterface.onDeleteElementClick(item)
+            deleteItemInterface.onDeleteElementClick(item)
         }
         holder.itemView.setOnClickListener {
-            clickInterface.onItemClick(item)
+            itemClickInterface.onItemClick(item)
         }
     }
 

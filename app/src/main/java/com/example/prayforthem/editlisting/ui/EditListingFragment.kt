@@ -17,7 +17,7 @@ import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentEditListingBinding
 import com.example.prayforthem.editlisting.domain.EditListingScreenState
 import com.example.prayforthem.editlisting.presentation.EditListingViewModel
-import com.example.prayforthem.listings.RecyclerViewClickInterface
+import com.example.prayforthem.listings.domain.RecyclerViewDeleteItem
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.DialogConstructor
@@ -26,7 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class EditListingFragment : Fragment(), RecyclerViewClickInterface<PersonDignityName> {
+class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName> {
 
     private var _binding: FragmentEditListingBinding? = null
     private val binding get() = _binding!!
@@ -164,8 +164,6 @@ class EditListingFragment : Fragment(), RecyclerViewClickInterface<PersonDignity
         }
     }
 
-    override fun onItemClick(item: PersonDignityName) = Unit
-
     override fun onDeleteElementClick(item: PersonDignityName) {
         deleteDialog = DialogConstructor.createDeleteDialog(
             context = requireContext(),
@@ -179,7 +177,4 @@ class EditListingFragment : Fragment(), RecyclerViewClickInterface<PersonDignity
         deleteDialog.show()
     }
 
-    companion object {
-
-    }
 }
