@@ -7,8 +7,9 @@ import com.example.prayforthem.information.presentation.InfoViewModel
 import com.example.prayforthem.listingdisplay.presentation.ListingDisplayViewModel
 import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
-import com.example.prayforthem.listings_for_repose.repository.ForReposeViewModel
+import com.example.prayforthem.listings_for_repose.presentation.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
+import com.example.prayforthem.prayeraddnames.presentation.PrayerAddNamesViewModel
 import com.example.prayforthem.prayerdisplay.presentation.PrayerDisplayViewModel
 import com.example.prayforthem.prayers.presentation.PrayersViewModel
 import com.example.prayforthem.prayerscategories.presentation.PrayersCategoriesViewModel
@@ -62,6 +63,10 @@ val viewModelModule = module {
 
     viewModel<PrayerDisplayViewModel> { (prayerFileName: String) ->
         PrayerDisplayViewModel(prayerFileName, get(), get())
+    }
+
+    viewModel<PrayerAddNamesViewModel> { (prayerFileName: String, forHealth: Boolean) ->
+        PrayerAddNamesViewModel(prayerFileName, forHealth)
     }
 
 }

@@ -49,6 +49,11 @@
     <string name="no_data_available">Данные отсутствуют</string>
     <string name="categories">Категории</string>
     <string name="prayer">Молитва</string>
+    <string name="names_insertion">Добавление имен</string>
+    <string name="you_can_add_names_into_prayer">Вы можете добавить в текст молитвы имена или готовые списки. Для этого воспользуйтесь кнопками ниже. Либо сразу переходите к молитве.</string>
+    <string name="add_list">Добавить список</string>
+    <string name="to_the_prayer">К молитве</string>
+    <string name="no_names_added">Вы не добавили имена</string>
 
 
 </resources>

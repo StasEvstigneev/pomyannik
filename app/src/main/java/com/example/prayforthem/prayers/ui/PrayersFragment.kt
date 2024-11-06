@@ -81,6 +81,7 @@ class PrayersFragment : Fragment(), RecyclerViewItemClick<Prayer> {
 
             is PrayersScreenState.Content -> {
                 binding.apply {
+                    toolbar.title = state.categoryName
                     prayersAdapter.list = state.list as ArrayList<Prayer>
                     progressBar.isVisible = false
                     recyclerView.isVisible = true
@@ -105,7 +106,11 @@ class PrayersFragment : Fragment(), RecyclerViewItemClick<Prayer> {
 
     override fun onItemClick(item: Prayer) {
         val action =
-            PrayersFragmentDirections.actionPrayersFragmentToPrayerDisplayFragment(item.fileName)
+            PrayersFragmentDirections
+                .actionPrayersFragmentToPrayerAddNamesFragment(
+                    item.fileName,
+                    item.forHealth
+                )
         findNavController().navigate(action)
     }
 
