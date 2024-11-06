@@ -21,7 +21,7 @@ interface ListingDao {
     suspend fun getListingById(id: Int): ListingWithPersonDB
 
     @Transaction
-    @Query("SELECT * FROM listing WHERE for_health = :isForHealth")
+    @Query("SELECT * FROM listing WHERE for_health = :isForHealth AND listing_id > 5") // добавил id>5, чтобы исключить резервные списки
     suspend fun getListings(isForHealth: Int): List<ListingWithPersonDB>
 
     @Transaction
@@ -30,6 +30,5 @@ interface ListingDao {
 
     @Update
     suspend fun updateListing(listing: ListingEntity)
-
 
 }
