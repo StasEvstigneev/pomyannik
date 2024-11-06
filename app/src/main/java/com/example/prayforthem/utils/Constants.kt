@@ -25,4 +25,11 @@ internal object Constants {
     const val DRUGI_GEN = "DRUGI_GEN"
     const val USOP_ROD_SROD_GEN = "USOP_ROD_SROD_GEN"
 
+    //ID обязательных списков
+    const val HEALTH = 1
+    const val REPOSE = 2
+    const val DUH_OTETS = 3
+    const val PARENTS = 4
+    const val RELATIVES = 5
+
 }
