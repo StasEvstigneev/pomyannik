@@ -5,7 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.listings.ui.ListingsFragmentDirections
 import com.example.prayforthem.listings_for_health.ui.ForHealthFragment
-import com.example.prayforthem.listings_for_repose.repository.ForReposeViewModel
+import com.example.prayforthem.listings_for_repose.presentation.ForReposeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForReposeFragment : ForHealthFragment() {

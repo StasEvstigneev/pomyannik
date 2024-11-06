@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prayforthem.prayers.domain.PrayersInteractor
-import com.example.prayforthem.prayers.domain.models.Prayer
+import com.example.prayforthem.prayers.domain.models.CategoryWithPrayers
 import com.example.prayforthem.prayers.domain.models.PrayersScreenState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,14 +27,19 @@ class PrayersViewModel(
     private fun getPrayers() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                processPrayers(prayersInteractor.getPrayersList(categoryId).prayers)
+                processPrayers(prayersInteractor.getPrayersList(categoryId))
             }
         }
     }
 
-    private fun processPrayers(prayers: List<Prayer>) {
-        if (prayers.isNotEmpty()) {
-            screenState.postValue(PrayersScreenState.Content(prayers))
+    private fun processPrayers(category: CategoryWithPrayers) {
+        if (category.prayers.isNotEmpty()) {
+            screenState.postValue(
+                PrayersScreenState.Content(
+                    category.prayerCategory.categoryTitle,
+                    category.prayers
+                )
+            )
         } else {
             screenState.postValue(PrayersScreenState.Error)
         }

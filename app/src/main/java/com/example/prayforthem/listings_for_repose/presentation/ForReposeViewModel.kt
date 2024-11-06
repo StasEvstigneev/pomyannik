@@ -1,4 +1,4 @@
-package com.example.prayforthem.listings_for_repose.repository
+package com.example.prayforthem.listings_for_repose.presentation
 
 import com.example.prayforthem.listings.domain.ListingInteractor
 import com.example.prayforthem.listings.domain.PersonInteractor

@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_namesFragment_to_editListingFragment"
             app:destination="@id/editListingFragment" />
+        <action
+            android:id="@+id/action_namesFragment_to_prayerAddNamesFragment"
+            app:destination="@id/prayerAddNamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNameFragment"
@@ -109,8 +112,9 @@
             android:name="categoryIdArg"
             app:argType="integer" />
         <action
-            android:id="@+id/action_prayersFragment_to_prayerDisplayFragment"
-            app:destination="@id/prayerDisplayFragment" />
+            android:id="@+id/action_prayersFragment_to_prayerAddNamesFragment"
+            app:destination="@id/prayerAddNamesFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/prayerDisplayFragment"
@@ -120,5 +124,26 @@
         <argument
             android:name="prayerFileNameArg"
             app:argType="string" />
+        <argument
+            android:name="personIdsArg"
+            app:argType="integer[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/prayerAddNamesFragment"
+        android:name="com.example.prayforthem.prayeraddnames.ui.PrayerAddNamesFragment"
+        android:label="fragment_prayer_add_names"
+        tools:layout="@layout/fragment_prayer_add_names" >
+        <argument
+            android:name="prayerFileNameArg"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_prayerAddNamesFragment_to_prayerDisplayFragment"
+            app:destination="@id/prayerDisplayFragment" />
+        <action
+            android:id="@+id/action_prayerAddNamesFragment_to_namesFragment"
+            app:destination="@id/namesFragment" />
+        <argument
+            android:name="forHealthArg"
+            app:argType="boolean" />
     </fragment>
 </navigation>

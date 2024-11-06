@@ -31,4 +31,5 @@ interface ListingDao {
     @Update
     suspend fun updateListing(listing: ListingEntity)
 
+
 }
