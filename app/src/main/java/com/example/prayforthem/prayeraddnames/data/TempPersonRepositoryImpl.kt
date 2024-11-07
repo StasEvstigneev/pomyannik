@@ -22,4 +22,10 @@ class TempPersonRepositoryImpl(
             .tempPersonDao()
             .deletePerson(personTempDbConverter.map(person))
     }
+
+    override suspend fun deleteTempPersonByListingId(listingId: Int) {
+        database
+            .tempPersonDao()
+            .deletePersonByListingId(listingId)
+    }
 }
