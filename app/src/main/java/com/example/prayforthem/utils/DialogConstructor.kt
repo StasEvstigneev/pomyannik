@@ -14,7 +14,6 @@ object DialogConstructor {
         navController: NavController,
         view: View
     ): MaterialAlertDialogBuilder {
-
         val exitDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
             .setTitle(R.string.close)
             .setMessage(R.string.are_you_sure_you_want_to_leave)
@@ -49,4 +48,26 @@ object DialogConstructor {
 
         return deleteDialog
     }
+
+    fun createToPrayerNavigationDialog(
+        context: Context,
+        action: () -> Unit,
+        message: String,
+        view: View
+    ): MaterialAlertDialogBuilder {
+        val navDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
+//            .setTitle(R.string.close)
+            .setMessage(message)
+            .setPositiveButton(R.string.to_prayer) { dialog, _ ->
+                action()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                view.isVisible = false
+            }
+            .setCancelable(false)
+
+        return navDialog
+    }
+
+
 }

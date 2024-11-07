@@ -2,18 +2,15 @@ package com.example.prayforthem.prayeraddnames.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prayforthem.databinding.NamesBinListItemBinding
-import com.example.prayforthem.listings.domain.RecyclerViewDeleteItem
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 import com.example.prayforthem.utils.NameFormsConstructor
 
 class PrayerAddNamesAdapter(
-    private val onDeleteClickInterface: RecyclerViewDeleteItem<PersonDignityName>
-) : ListAdapter<PersonDignityName, PrayerAddNamesAdapter.PrayerAddNamesViewHolder>(
-    PrayerAddNamesDiffItemCallback()
-) {
+    var list: ArrayList<PersonDignityName>,
+    private val onDeleteClickInterface: TempPersonRemoveClickInterface<PersonDignityName>
+) : RecyclerView.Adapter<PrayerAddNamesAdapter.PrayerAddNamesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrayerAddNamesViewHolder {
         val layoutInspector = LayoutInflater.from(parent.context)
@@ -21,11 +18,13 @@ class PrayerAddNamesAdapter(
         return PrayerAddNamesViewHolder(binding)
     }
 
+    override fun getItemCount(): Int = list.size
+
     override fun onBindViewHolder(holder: PrayerAddNamesViewHolder, position: Int) {
-        val item = getItem(position)
+        val item = list[position]
         holder.bind(item)
         holder.binding.basket.setOnClickListener {
-            onDeleteClickInterface.onDeleteElementClick(item)
+            onDeleteClickInterface.removeTempPerson(item, position)
         }
     }
 
@@ -37,7 +36,6 @@ class PrayerAddNamesAdapter(
             binding.apply {
                 name.text = NameFormsConstructor.createPersonDisplay(item)
             }
-
         }
     }
 

@@ -5,24 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prayforthem.listings.domain.ListingInteractor
-import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.domain.models.Person
 import com.example.prayforthem.listings.domain.models.PersonDignityName
+import com.example.prayforthem.names.domain.DignityInteractor
+import com.example.prayforthem.names.domain.NamesInteractor
 import com.example.prayforthem.prayeraddnames.domain.TempPersonInteractor
 import com.example.prayforthem.prayeraddnames.domain.models.PrayerAddNamesScreenState
-import com.example.prayforthem.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PrayerAddNamesViewModel(
-    private val prayerFileName: String,
     private val forHealth: Boolean,
     private val listingInteractor: ListingInteractor,
-    private val tempPersonInteractor: TempPersonInteractor
+    private val tempPersonInteractor: TempPersonInteractor,
+    private val namesInteractor: NamesInteractor,
+    private val dignityInteractor: DignityInteractor
 ) : ViewModel() {
 
-//    private val tempPersonList: ArrayList<PersonDignityName> = arrayListOf()
+    private val tempPersonList: ArrayList<PersonDignityName> = arrayListOf()
 
     private val screenState =
         MutableLiveData<PrayerAddNamesScreenState>(PrayerAddNamesScreenState.Loading)
@@ -30,62 +31,60 @@ class PrayerAddNamesViewModel(
     fun getScreenState(): LiveData<PrayerAddNamesScreenState> = screenState
 
     init {
-        getListing()
+        screenState.postValue(PrayerAddNamesScreenState.Content(arrayListOf()))
     }
 
     fun createNewPerson(dignityId: Int?, nameId: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val newPerson = Person(
+                val person = Person(
                     id = null,
                     idDignity = dignityId,
                     idName = nameId,
                     parentListingId = getListingId()
                 )
-                tempPersonInteractor.addTempPerson(newPerson)
-                getListing()
-            }
-        }
-
-    }
-
-    fun getListing() {
-        screenState.postValue(PrayerAddNamesScreenState.Loading)
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val list = listingInteractor
-                    .getReservedListingById(getListingId())
-                processListing(list)
-            }
-        }
-    }
-
-    private fun processListing(list: ListingWithPerson) {
-//        tempPersonList = list.personListing as ArrayList
-        screenState.postValue(PrayerAddNamesScreenState.Content(list.personListing))
-    }
-
-    fun deleteTempPerson(tempPerson: PersonDignityName) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                tempPersonInteractor.deleteTempPerson(tempPerson.person)
-                processListing(
-                    listingInteractor
-                        .getReservedListingById(getListingId())
+                val dignity =
+                    if (dignityId != null) dignityInteractor.getDignityById(dignityId) else null
+                val name = namesInteractor.getNameById(nameId)
+                val newPersonDignityName = PersonDignityName(
+                    person = person,
+                    dignity = dignity,
+                    name = name
                 )
+                addNewPerson(newPersonDignityName)
             }
         }
-
     }
 
-    fun deleteAllTempNames() {
+    private fun addNewPerson(newPerson: PersonDignityName) {
+        tempPersonList.add(newPerson)
+        screenState.postValue(PrayerAddNamesScreenState.Content(tempPersonList))
+    }
+
+    fun deleteTempPerson(position: Int) {
+        tempPersonList.removeAt(position)
+        screenState.postValue(PrayerAddNamesScreenState.Content(tempPersonList))
+    }
+
+    fun saveTempList() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                tempPersonInteractor
-                    .deleteTempPersonByListingId(getListingId())
+                tempPersonList.forEach { item ->
+                    tempPersonInteractor.addTempPerson(item.person)
+                }
             }
         }
     }
+
+    // Перенести эту очистку в PrayerDisplay
+//    fun deleteAllTempNames() {
+//        viewModelScope.launch {
+//            withContext(Dispatchers.IO) {
+//                tempPersonInteractor
+//                    .deleteTempPersonByListingId(getListingId())
+//            }
+//        }
+//    }
 
     private fun getListingId(): Int {
         return if (forHealth) LIST_HEALTH else LIST_REPOSE

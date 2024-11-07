@@ -12,7 +12,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentPrayerAddNamesBinding
-import com.example.prayforthem.listings.domain.RecyclerViewDeleteItem
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 import com.example.prayforthem.prayeraddnames.domain.models.PrayerAddNamesScreenState
 import com.example.prayforthem.prayeraddnames.presentation.PrayerAddNamesViewModel
@@ -23,19 +22,21 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PrayerAddNamesFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName> {
+class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<PersonDignityName> {
 
     private var _binding: FragmentPrayerAddNamesBinding? = null
     private val binding get() = _binding!!
     private val args: PrayerAddNamesFragmentArgs by navArgs()
     private val viewModel: PrayerAddNamesViewModel by viewModel {
-        parametersOf(args.prayerFileNameArg, args.forHealthArg)
+        parametersOf(args.forHealthArg)
     }
     private var showExitDialog: Boolean = false
+    private var areNamesAdded: Boolean = false
 
-    private val tempNamesAdapter = PrayerAddNamesAdapter(this)
+    private val tempNamesAdapter = PrayerAddNamesAdapter(arrayListOf(), this)
     private lateinit var exitDialog: MaterialAlertDialogBuilder
     private lateinit var deleteDialog: MaterialAlertDialogBuilder
+    private lateinit var navigateForwardDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,6 +76,27 @@ class PrayerAddNamesFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityN
             findNavController().navigate(R.id.action_prayerAddNamesFragment_to_namesFragment)
         }
 
+        binding.btnToPrayer.setOnClickListener {
+            val action = PrayerAddNamesFragmentDirections
+                .actionPrayerAddNamesFragmentToPrayerDisplayFragment(
+                    args.prayerFileNameArg,
+                    null
+                )
+            val exitMessage =
+                if (areNamesAdded) getString(R.string.navigate_to_prayer) else getString(R.string.you_have_not_added_names)
+
+            navigateForwardDialog = DialogConstructor
+                .createToPrayerNavigationDialog(
+                    context = requireContext(),
+                    action = {
+                        findNavController().navigate(action)
+                        viewModel.saveTempList()
+                    },
+                    message = exitMessage,
+                    view = binding.overlay
+                )
+            navigateForwardDialog.show()
+        }
     }
 
     override fun onResume() {
@@ -94,7 +116,6 @@ class PrayerAddNamesFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityN
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        viewModel.deleteAllTempNames()
         _binding = null
     }
 
@@ -112,13 +133,29 @@ class PrayerAddNamesFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityN
                 binding.apply {
                     progressBar.isVisible = false
                     recyclerView.isVisible = true
-                    tempNamesAdapter.submitList(state.list)
+                    tempNamesAdapter.apply {
+                        list = state.list as ArrayList
+                        notifyDataSetChanged()
+                    }
                     placeholder.isVisible = state.list.isEmpty()
                 }
                 showExitDialog = state.list.isNotEmpty()
+                areNamesAdded = state.list.isNotEmpty()
             }
-
         }
+    }
+
+    override fun removeTempPerson(item: PersonDignityName, position: Int) {
+        deleteDialog = DialogConstructor.createDeleteDialog(
+            context = requireContext(),
+            action = { viewModel.deleteTempPerson(position) },
+            message = getString(
+                R.string.are_you_sure_you_want_to_delete_person_x,
+                NameFormsConstructor.createPersonDisplay(item)
+            ),
+            view = binding.overlay
+        )
+        deleteDialog.show()
     }
 
     private fun leaveFragment() {
@@ -128,19 +165,6 @@ class PrayerAddNamesFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityN
         } else {
             findNavController().popBackStack()
         }
-    }
-
-    override fun onDeleteElementClick(item: PersonDignityName) {
-        deleteDialog = DialogConstructor.createDeleteDialog(
-            context = requireContext(),
-            action = { viewModel.deleteTempPerson(item) },
-            message = getString(
-                R.string.are_you_sure_you_want_to_delete_person_x,
-                NameFormsConstructor.createPersonDisplay(item)
-            ),
-            view = binding.overlay
-        )
-        deleteDialog.show()
     }
 
     companion object {
