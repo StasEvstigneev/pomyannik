@@ -10,14 +10,15 @@ import com.example.prayforthem.db.converters.DignityDbConverter
 import com.example.prayforthem.db.converters.ListingDbConverter
 import com.example.prayforthem.db.converters.NameDbConverter
 import com.example.prayforthem.db.converters.PersonDbConverter
+import com.example.prayforthem.db.converters.PersonTempDbConverter
 import com.example.prayforthem.db.converters.PrayerCategoryDbConverter
 import com.example.prayforthem.db.converters.PrayerDbConverter
 import com.example.prayforthem.prayerdisplay.domain.PrayerFormatter
-import com.example.prayforthem.utils.PrayerFormatterImpl
 import com.example.prayforthem.storage.data.LocalStorageImpl
 import com.example.prayforthem.storage.domain.GsonJsonConverter
 import com.example.prayforthem.storage.domain.LocalStorage
 import com.example.prayforthem.utils.GsonJsonConverterImpl
+import com.example.prayforthem.utils.PrayerFormatterImpl
 import com.google.gson.Gson
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -48,7 +49,7 @@ val dataModule = module {
     }
 
     factory<ListingDbConverter> {
-        ListingDbConverter(get(), get())
+        ListingDbConverter(get(), get(), get())
     }
 
     single<SharedPreferences> {
@@ -77,6 +78,10 @@ val dataModule = module {
 
     single<PrayerFormatter> {
         PrayerFormatterImpl()
+    }
+
+    factory<PersonTempDbConverter> {
+        PersonTempDbConverter(get(), get())
     }
 
 }

@@ -16,4 +16,6 @@ interface ListingInteractor {
 
     suspend fun updateListing(listing: Listing)
 
+    suspend fun getReservedListingById(id: Int): ListingWithPerson
+
 }

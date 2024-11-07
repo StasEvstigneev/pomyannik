@@ -26,10 +26,10 @@ internal object Constants {
     const val USOP_ROD_SROD_GEN = "USOP_ROD_SROD_GEN"
 
     //ID обязательных списков
-    const val HEALTH = 1
-    const val REPOSE = 2
-    const val DUH_OTETS = 3
-    const val PARENTS = 4
-    const val RELATIVES = 5
+    const val LIST_HEALTH = 1
+    const val LIST_REPOSE = 2
+    const val LIST_DUH_OTETS = 3
+    const val LIST_PARENTS = 4
+    const val LIST_RELATIVES = 5
 
 }
