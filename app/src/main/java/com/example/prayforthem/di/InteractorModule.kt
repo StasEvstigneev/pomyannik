@@ -8,6 +8,8 @@ import com.example.prayforthem.names.domain.DignityInteractor
 import com.example.prayforthem.names.domain.NamesInteractor
 import com.example.prayforthem.names.domain.impl.DignityInteractorImpl
 import com.example.prayforthem.names.domain.impl.NamesInteractorImpl
+import com.example.prayforthem.prayeraddnames.domain.TempPersonInteractor
+import com.example.prayforthem.prayeraddnames.domain.impl.TempPersonInteractorImpl
 import com.example.prayforthem.prayerdisplay.domain.PrayerContentInteractor
 import com.example.prayforthem.prayerdisplay.impl.PrayerContentInteractorImpl
 import com.example.prayforthem.prayers.domain.PrayersInteractor
@@ -44,6 +46,10 @@ val interactorModule = module {
 
     factory<PrayerContentInteractor> {
         PrayerContentInteractorImpl(get())
+    }
+
+    factory<TempPersonInteractor> {
+        TempPersonInteractorImpl(get())
     }
 
 }

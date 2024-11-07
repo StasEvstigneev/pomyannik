@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 class ListingRepositoryImpl(
     private val database: AppDatabase,
     private val listingDbConverter: ListingDbConverter,
-    private val booleanIntDbConverter: BooleanIntDbConverter
+    private val booleanIntDbConverter: BooleanIntDbConverter,
 ) : ListingRepository {
     override suspend fun saveListing(listing: Listing): Long {
         return database.listingDao().addListing(listingDbConverter.map(listing))
@@ -34,6 +34,10 @@ class ListingRepositoryImpl(
 
     override suspend fun updateListing(listing: Listing) {
         database.listingDao().updateListing(listingDbConverter.map(listing))
+    }
+
+    override suspend fun getReservedListingById(id: Int): ListingWithPerson {
+        return listingDbConverter.map(database.listingDao().getReservedListingById(id))
     }
 
     private fun convertListing(listing: List<ListingWithPersonDB>): List<ListingWithPerson> {

@@ -9,6 +9,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.example.prayforthem.db.entities.ListingEntity
 import com.example.prayforthem.db.models.ListingWithPersonDB
+import com.example.prayforthem.db.models.ListingWithTempPersonDB
 
 @Dao
 interface ListingDao {
@@ -30,5 +31,9 @@ interface ListingDao {
 
     @Update
     suspend fun updateListing(listing: ListingEntity)
+
+    @Transaction
+    @Query("SELECT * FROM listing WHERE listing_id = :id")
+    suspend fun getReservedListingById(id: Int): ListingWithTempPersonDB
 
 }

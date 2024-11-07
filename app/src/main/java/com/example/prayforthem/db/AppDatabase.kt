@@ -8,10 +8,12 @@ import com.example.prayforthem.db.dao.NameDao
 import com.example.prayforthem.db.dao.PersonDao
 import com.example.prayforthem.db.dao.PrayerCategoryDao
 import com.example.prayforthem.db.dao.PrayerDao
+import com.example.prayforthem.db.dao.TempPersonDao
 import com.example.prayforthem.db.entities.DignityEntity
 import com.example.prayforthem.db.entities.ListingEntity
 import com.example.prayforthem.db.entities.NameEntity
 import com.example.prayforthem.db.entities.PersonEntity
+import com.example.prayforthem.db.entities.PersonTempEntity
 import com.example.prayforthem.db.entities.PrayerCategoryEntity
 import com.example.prayforthem.db.entities.PrayerCategoryPrayerCrossRef
 import com.example.prayforthem.db.entities.PrayerEntity
@@ -25,7 +27,8 @@ import com.example.prayforthem.db.entities.PrayerEntity
         ListingEntity::class,
         PrayerEntity::class,
         PrayerCategoryEntity::class,
-        PrayerCategoryPrayerCrossRef::class
+        PrayerCategoryPrayerCrossRef::class,
+        PersonTempEntity::class
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -36,4 +39,5 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun listingDao(): ListingDao
     abstract fun prayerDao(): PrayerDao
     abstract fun prayerCategoryDao(): PrayerCategoryDao
+    abstract fun tempPersonDao(): TempPersonDao
 }

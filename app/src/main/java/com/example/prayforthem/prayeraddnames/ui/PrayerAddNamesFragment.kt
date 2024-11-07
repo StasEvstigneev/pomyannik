@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentPrayerAddNamesBinding
-import com.example.prayforthem.prayeraddnames.domain.PrayerAddNamesScreenState
+import com.example.prayforthem.prayeraddnames.domain.models.PrayerAddNamesScreenState
 import com.example.prayforthem.prayeraddnames.presentation.PrayerAddNamesViewModel
+import com.example.prayforthem.utils.Constants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -36,6 +40,28 @@ class PrayerAddNamesFragment : Fragment() {
             renderState(state)
 
         }
+
+        binding.btnAddName.setOnClickListener {
+            findNavController().navigate(R.id.action_prayerAddNamesFragment_to_namesFragment)
+        }
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setFragmentResultListener(Constants.REQUEST_PERSON_KEY) { _, bundle ->
+            val dignityId = bundle.getInt(Constants.DIGNITY_KEY)
+            val nameId = bundle.getInt(Constants.NAME_KEY)
+            if (dignityId != NULL) {
+                viewModel.createNewPerson(dignityId, nameId)
+            } else {
+                viewModel.createNewPerson(null, nameId)
+
+            }
+            parentFragmentManager.clearFragmentResult(Constants.REQUEST_PERSON_KEY)
+        }
+
     }
 
     override fun onDestroyView() {
@@ -62,6 +88,10 @@ class PrayerAddNamesFragment : Fragment() {
             }
 
         }
+    }
+
+    companion object {
+        private const val NULL = 0
     }
 
 }
