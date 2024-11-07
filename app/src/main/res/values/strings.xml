@@ -54,6 +54,9 @@
     <string name="add_list">Добавить список</string>
     <string name="to_the_prayer">К молитве</string>
     <string name="no_names_added">Вы не добавили имена</string>
+    <string name="you_have_not_added_names">Вы не добавили имена. Перейти к молитве?</string>
+    <string name="navigate_to_prayer">Перейти к молитве?</string>
+    <string name="to_prayer">К молитве</string>
 
 
 </resources>
