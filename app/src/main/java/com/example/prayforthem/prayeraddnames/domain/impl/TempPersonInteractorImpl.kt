@@ -15,4 +15,8 @@ class TempPersonInteractorImpl(
     override suspend fun deleteTempPerson(person: Person) {
         repository.deleteTempPerson(person)
     }
+
+    override suspend fun deleteTempPersonByListingId(listingId: Int) {
+        repository.deleteTempPersonByListingId(listingId)
+    }
 }

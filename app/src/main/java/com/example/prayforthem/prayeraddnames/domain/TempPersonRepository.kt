@@ -8,4 +8,6 @@ interface TempPersonRepository {
 
     suspend fun deleteTempPerson(person: Person)
 
+    suspend fun deleteTempPersonByListingId(listingId: Int)
+
 }
