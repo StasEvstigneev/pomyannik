@@ -147,5 +147,17 @@
         <argument
             android:name="forHealthArg"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_prayerAddNamesFragment_to_chooseListingFragment"
+            app:destination="@id/chooseListingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseListingFragment"
+        android:name="com.example.prayforthem.chooselisting.ui.ChooseListingFragment"
+        android:label="fragment_choose_listing"
+        tools:layout="@layout/fragment_choose_listing" >
+        <argument
+            android:name="forHealthArg"
+            app:argType="boolean" />
     </fragment>
 </navigation>

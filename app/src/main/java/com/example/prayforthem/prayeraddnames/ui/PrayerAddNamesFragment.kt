@@ -76,6 +76,12 @@ class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<Person
             findNavController().navigate(R.id.action_prayerAddNamesFragment_to_namesFragment)
         }
 
+        binding.btnAddList.setOnClickListener {
+            val action = PrayerAddNamesFragmentDirections
+                .actionPrayerAddNamesFragmentToChooseListingFragment(args.forHealthArg)
+            findNavController().navigate(action)
+        }
+
         binding.btnToPrayer.setOnClickListener {
             val action = PrayerAddNamesFragmentDirections
                 .actionPrayerAddNamesFragmentToPrayerDisplayFragment(

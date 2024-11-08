@@ -36,7 +36,6 @@ open class ForHealthViewModel(
                     }
             }
         }
-
     }
 
     fun deleteListing(listing: ListingWithPerson) {
