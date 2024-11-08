@@ -117,6 +117,11 @@ class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<Person
             }
             parentFragmentManager.clearFragmentResult(Constants.REQUEST_PERSON_KEY)
         }
+        setFragmentResultListener(Constants.SELECTED_LISTINGS_KEY) { _, bundle ->
+            val listingIds = bundle.getIntegerArrayList(Constants.LISTINGS_IDS)
+            if (!listingIds.isNullOrEmpty()) viewModel.updateAddedListings(listingIds)
+            parentFragmentManager.clearFragmentResult(Constants.SELECTED_LISTINGS_KEY)
+        }
 
     }
 

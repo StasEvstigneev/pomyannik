@@ -8,6 +8,8 @@ internal object Constants {
     const val ZERO = 0
     const val LIST_MAX_SIZE = 10
     const val NULL = 0
+    const val SELECTED_LISTINGS_KEY = "listings_key"
+    const val LISTINGS_IDS = "listings_ids"
 
     //Ключи молитв
     const val NAMES_NOM = "NAMES_NOM"

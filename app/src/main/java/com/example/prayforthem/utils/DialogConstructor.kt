@@ -56,7 +56,6 @@ object DialogConstructor {
         view: View
     ): MaterialAlertDialogBuilder {
         val navDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
-//            .setTitle(R.string.close)
             .setMessage(message)
             .setPositiveButton(R.string.to_prayer) { dialog, _ ->
                 action()
@@ -68,6 +67,5 @@ object DialogConstructor {
 
         return navDialog
     }
-
 
 }

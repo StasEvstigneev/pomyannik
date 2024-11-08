@@ -36,6 +36,8 @@ class PrayerDisplayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbar.setNavigationOnClickListener {
+            //добавить диалог перед закрытием
+            //очистить таблицу temp_person
             findNavController().popBackStack()
         }
 
