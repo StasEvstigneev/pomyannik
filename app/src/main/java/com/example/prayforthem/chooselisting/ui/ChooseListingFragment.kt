@@ -57,6 +57,7 @@ class ChooseListingFragment : Fragment(), RecyclerViewCheckboxInterface<ListingW
         viewModel.getChosenListings().observe(viewLifecycleOwner) { ids ->
             binding.buttonChoose.isEnabled = ids.isNotEmpty()
             processChosenIds(ids)
+            listingsAdapter.updateSelectedLists(ids)
         }
 
     }

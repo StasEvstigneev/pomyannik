@@ -14,6 +14,13 @@ class ListingsCheckboxAdapter(
     private val checkboxClickInterface: RecyclerViewCheckboxInterface<ListingWithPerson>
 ) : RecyclerView.Adapter<ListingsCheckboxAdapter.ListingsCheckboxViewHolder>() {
 
+    private var selectedLists: ArrayList<Int> = arrayListOf()
+
+    fun updateSelectedLists(ids: ArrayList<Int>) {
+        selectedLists = ids
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,6 +36,7 @@ class ListingsCheckboxAdapter(
     ) {
         val item = list[position]
         holder.bind(item)
+        holder.binding.checkbox.isChecked = selectedLists.contains(item.listing.listingId)
         holder.binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
             checkboxClickInterface.onCheckBoxClick(item, isChecked)
         }
