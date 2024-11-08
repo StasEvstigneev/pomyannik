@@ -72,5 +72,4 @@ class ChooseListingViewModel(
         chosenListings.postValue(chosenListingIds)
     }
 
-
 }

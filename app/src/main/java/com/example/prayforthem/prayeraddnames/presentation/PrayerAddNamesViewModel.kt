@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prayforthem.listings.domain.ListingInteractor
+import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.domain.models.Person
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 import com.example.prayforthem.names.domain.DignityInteractor
@@ -24,6 +25,7 @@ class PrayerAddNamesViewModel(
 ) : ViewModel() {
 
     private val tempPersonList: ArrayList<PersonDignityName> = arrayListOf()
+    private val addedListingsIds: ArrayList<Int> = arrayListOf()
 
     private val screenState =
         MutableLiveData<PrayerAddNamesScreenState>(PrayerAddNamesScreenState.Loading)
@@ -67,13 +69,49 @@ class PrayerAddNamesViewModel(
     }
 
     fun saveTempList() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                tempPersonList.forEach { item ->
-                    tempPersonInteractor.addTempPerson(item.person)
+        if (tempPersonList.isNotEmpty()) {
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    tempPersonList.forEach { item ->
+                        val person = preparePersonToSave(item.person)
+                        tempPersonInteractor.addTempPerson(person)
+                    }
                 }
             }
         }
+    }
+
+    fun updateAddedListings(ids: ArrayList<Int>) {
+        ids.forEach { id ->
+            if (!addedListingsIds.contains(id)) {
+                addedListingsIds.add(id)
+                getListingById(id)
+            }
+        }
+    }
+
+    private fun getListingById(id: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                processListing(listingInteractor.getListingById(id))
+            }
+        }
+    }
+
+    private fun processListing(listing: ListingWithPerson) {
+        listing.personListing.forEach { item ->
+            tempPersonList.add(item)
+        }
+        screenState.postValue(PrayerAddNamesScreenState.Content(tempPersonList))
+    }
+
+    private fun preparePersonToSave(person: Person): Person {
+        return Person(
+            id = null,
+            idDignity = person.idDignity,
+            idName = person.idName,
+            parentListingId = getListingId()
+        )
     }
 
     // Перенести эту очистку в PrayerDisplay
