@@ -1,6 +1,7 @@
 package com.example.prayforthem.di
 
 import com.example.prayforthem.addname.presentation.AddNameViewModel
+import com.example.prayforthem.chooselisting.presentation.ChooseListingViewModel
 import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
 import com.example.prayforthem.editlisting.presentation.EditListingViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
@@ -67,6 +68,10 @@ val viewModelModule = module {
 
     viewModel<PrayerAddNamesViewModel> { (forHealth: Boolean) ->
         PrayerAddNamesViewModel(forHealth, get(), get(), get(), get())
+    }
+
+    viewModel<ChooseListingViewModel> { (forHealth: Boolean) ->
+        ChooseListingViewModel(forHealth, get())
     }
 
 }

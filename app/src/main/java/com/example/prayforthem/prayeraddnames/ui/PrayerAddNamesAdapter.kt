@@ -27,8 +27,7 @@ class PrayerAddNamesAdapter(
             onDeleteClickInterface.removeTempPerson(item, position)
         }
     }
-
-
+    
     class PrayerAddNamesViewHolder(val binding: NamesBinListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

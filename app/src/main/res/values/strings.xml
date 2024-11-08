@@ -57,6 +57,9 @@
     <string name="you_have_not_added_names">Вы не добавили имена. Перейти к молитве?</string>
     <string name="navigate_to_prayer">Перейти к молитве?</string>
     <string name="to_prayer">К молитве</string>
-
+    <string name="listing_selection_for_prayer">Выбор списков для молитвы</string>
+    <string name="choose_lists_to_add_into_prayer">Выберите списки для вставки в текст молитвы:</string>
+    <string name="choose">Выбрать</string>
+    <string name="no_available_lists">Нет доступных списков</string>
 
 </resources>
