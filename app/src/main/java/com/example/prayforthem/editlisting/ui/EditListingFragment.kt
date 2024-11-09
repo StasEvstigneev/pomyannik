@@ -91,7 +91,12 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
         }
 
         exitDialog = DialogConstructor
-            .createExitDialog(requireContext(), findNavController(), binding.overlay)
+            .createExitDialog(
+                context = requireContext(),
+                navController = findNavController(),
+                message = getString(R.string.are_you_sure_you_want_to_leave),
+                view = binding.overlay
+            )
 
         requireActivity()
             .onBackPressedDispatcher

@@ -19,4 +19,8 @@ class TempPersonInteractorImpl(
     override suspend fun deleteTempPersonByListingId(listingId: Int) {
         repository.deleteTempPersonByListingId(listingId)
     }
+
+    override suspend fun clearAll() {
+        repository.clearAll()
+    }
 }

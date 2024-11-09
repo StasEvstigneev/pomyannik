@@ -69,11 +69,15 @@ class PrayerAddNamesViewModel(
     }
 
     fun saveTempList() {
-        if (tempPersonList.isNotEmpty()) {
-            viewModelScope.launch {
-                withContext(Dispatchers.IO) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                // очистка предыдущих temp_person
+                tempPersonInteractor.deleteTempPersonByListingId(getListingId())
+                if (tempPersonList.isNotEmpty()) {
+                    var id: Int = 1
                     tempPersonList.forEach { item ->
-                        val person = preparePersonToSave(item.person)
+                        val person = preparePersonToSave(item.person, id)
+                        id += 1
                         tempPersonInteractor.addTempPerson(person)
                     }
                 }
@@ -105,17 +109,17 @@ class PrayerAddNamesViewModel(
         screenState.postValue(PrayerAddNamesScreenState.Content(tempPersonList))
     }
 
-    private fun preparePersonToSave(person: Person): Person {
+    private fun preparePersonToSave(person: Person, id: Int): Person {
         return Person(
-            id = null,
+            id = id,
             idDignity = person.idDignity,
             idName = person.idName,
             parentListingId = getListingId()
         )
     }
 
-    // Перенести эту очистку в PrayerDisplay
-//    fun deleteAllTempNames() {
+    // Добавить аналогичную очистку в PrayerDisplay при выходе
+//    private fun deleteAllTempNames() {
 //        viewModelScope.launch {
 //            withContext(Dispatchers.IO) {
 //                tempPersonInteractor

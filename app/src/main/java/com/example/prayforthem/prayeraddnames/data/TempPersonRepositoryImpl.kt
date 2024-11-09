@@ -28,4 +28,8 @@ class TempPersonRepositoryImpl(
             .tempPersonDao()
             .deletePersonByListingId(listingId)
     }
+
+    override suspend fun clearAll() {
+        database.tempPersonDao().clearAll()
+    }
 }

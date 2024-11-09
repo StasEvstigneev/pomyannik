@@ -63,7 +63,7 @@ val viewModelModule = module {
     }
 
     viewModel<PrayerDisplayViewModel> { (prayerFileName: String) ->
-        PrayerDisplayViewModel(prayerFileName, get(), get())
+        PrayerDisplayViewModel(prayerFileName, get(), get(), get())
     }
 
     viewModel<PrayerAddNamesViewModel> { (forHealth: Boolean) ->
