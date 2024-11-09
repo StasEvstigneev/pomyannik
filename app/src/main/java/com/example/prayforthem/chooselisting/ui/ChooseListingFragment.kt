@@ -41,7 +41,6 @@ class ChooseListingFragment : Fragment(), RecyclerViewCheckboxInterface<ListingW
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationOnClickListener {
-            //добавить диалог перед закрытием, если listingIds.isNotEmpty
             findNavController().popBackStack()
         }
 
