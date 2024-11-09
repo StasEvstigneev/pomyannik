@@ -25,7 +25,7 @@ class PrayerAddNamesViewModel(
 ) : ViewModel() {
 
     private val tempPersonList: ArrayList<PersonDignityName> = arrayListOf()
-    private val addedListingsIds: ArrayList<Int> = arrayListOf()
+    private val personFromListings: ArrayList<PersonDignityName> = arrayListOf()
 
     private val screenState =
         MutableLiveData<PrayerAddNamesScreenState>(PrayerAddNamesScreenState.Loading)
@@ -64,6 +64,8 @@ class PrayerAddNamesViewModel(
     }
 
     fun deleteTempPerson(position: Int) {
+        val personToDelete = tempPersonList[position]
+        personFromListings.remove(personToDelete)
         tempPersonList.removeAt(position)
         screenState.postValue(PrayerAddNamesScreenState.Content(tempPersonList))
     }
@@ -87,10 +89,7 @@ class PrayerAddNamesViewModel(
 
     fun updateAddedListings(ids: ArrayList<Int>) {
         ids.forEach { id ->
-            if (!addedListingsIds.contains(id)) {
-                addedListingsIds.add(id)
-                getListingById(id)
-            }
+            getListingById(id)
         }
     }
 
@@ -104,7 +103,10 @@ class PrayerAddNamesViewModel(
 
     private fun processListing(listing: ListingWithPerson) {
         listing.personListing.forEach { item ->
-            tempPersonList.add(item)
+            if (!personFromListings.contains(item)) {
+                personFromListings.add(item)
+                tempPersonList.add(item)
+            }
         }
         screenState.postValue(PrayerAddNamesScreenState.Content(tempPersonList))
     }
@@ -117,16 +119,6 @@ class PrayerAddNamesViewModel(
             parentListingId = getListingId()
         )
     }
-
-    // Добавить аналогичную очистку в PrayerDisplay при выходе
-//    private fun deleteAllTempNames() {
-//        viewModelScope.launch {
-//            withContext(Dispatchers.IO) {
-//                tempPersonInteractor
-//                    .deleteTempPersonByListingId(getListingId())
-//            }
-//        }
-//    }
 
     private fun getListingId(): Int {
         return if (forHealth) LIST_HEALTH else LIST_REPOSE
