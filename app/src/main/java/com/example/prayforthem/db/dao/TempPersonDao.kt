@@ -26,4 +26,8 @@ interface TempPersonDao {
     @Query("DELETE FROM person_temp WHERE parent_listing_id = :listingId")
     suspend fun deletePersonByListingId(listingId: Int)
 
+    @Transaction
+    @Query("DELETE FROM person_temp")
+    suspend fun clearAll()
+
 }

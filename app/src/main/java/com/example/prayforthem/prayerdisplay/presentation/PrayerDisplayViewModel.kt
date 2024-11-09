@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.prayforthem.prayeraddnames.domain.TempPersonInteractor
 import com.example.prayforthem.prayerdisplay.domain.PrayerContentInteractor
 import com.example.prayforthem.prayerdisplay.domain.PrayerFormatter
 import com.example.prayforthem.prayerdisplay.domain.models.PrayerContent
@@ -17,7 +18,8 @@ import kotlinx.coroutines.withContext
 class PrayerDisplayViewModel(
     private val prayerFileName: String,
     private val prayerContentInteractor: PrayerContentInteractor,
-    private val prayerFormatter: PrayerFormatter
+    private val prayerFormatter: PrayerFormatter,
+    private val tempPersonInteractor: TempPersonInteractor
 ) : ViewModel() {
 
     private val screenState =
@@ -49,6 +51,14 @@ class PrayerDisplayViewModel(
             PrayersDisplayScreenState
                 .Content(title = prayer.title, text = processedPrayer)
         )
+    }
+
+    fun clearTempNames() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                tempPersonInteractor.clearAll()
+            }
+        }
     }
 
 }

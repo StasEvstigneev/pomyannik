@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.prayforthem.R
 import com.example.prayforthem.addname.presentation.AddNameViewModel
 import com.example.prayforthem.databinding.FragmentAddNameBinding
 import com.example.prayforthem.utils.DialogConstructor
@@ -79,7 +80,12 @@ class AddNameFragment : Fragment() {
         }
 
         exitDialog = DialogConstructor
-            .createExitDialog(requireContext(), findNavController(), binding.overlay)
+            .createExitDialog(
+                context = requireContext(),
+                navController = findNavController(),
+                message = getString(R.string.are_you_sure_you_want_to_leave),
+                view = binding.overlay
+            )
 
         requireActivity()
             .onBackPressedDispatcher

@@ -12,11 +12,12 @@ object DialogConstructor {
     fun createExitDialog(
         context: Context,
         navController: NavController,
+        message: String,
         view: View
     ): MaterialAlertDialogBuilder {
         val exitDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
             .setTitle(R.string.close)
-            .setMessage(R.string.are_you_sure_you_want_to_leave)
+            .setMessage(message)
             .setPositiveButton(R.string.exit) { dialog, _ ->
                 navController.popBackStack()
             }
