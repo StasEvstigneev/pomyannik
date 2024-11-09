@@ -82,7 +82,7 @@ class AddNameFragment : Fragment() {
         exitDialog = DialogConstructor
             .createExitDialog(
                 context = requireContext(),
-                navController = findNavController(),
+                action = { findNavController().popBackStack() },
                 message = getString(R.string.are_you_sure_you_want_to_leave),
                 view = binding.overlay
             )

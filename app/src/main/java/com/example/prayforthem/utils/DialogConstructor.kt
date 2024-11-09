@@ -11,7 +11,7 @@ object DialogConstructor {
 
     fun createExitDialog(
         context: Context,
-        navController: NavController,
+        action: () -> Unit,
         message: String,
         view: View
     ): MaterialAlertDialogBuilder {
@@ -19,7 +19,7 @@ object DialogConstructor {
             .setTitle(R.string.close)
             .setMessage(message)
             .setPositiveButton(R.string.exit) { dialog, _ ->
-                navController.popBackStack()
+                action()
             }
             .setNegativeButton(R.string.cancel) { dialog, _ ->
                 view.isVisible = false

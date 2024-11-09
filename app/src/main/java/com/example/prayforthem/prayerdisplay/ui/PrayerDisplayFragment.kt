@@ -42,7 +42,10 @@ class PrayerDisplayFragment : Fragment() {
 
         exitDialog = DialogConstructor.createExitDialog(
             context = requireContext(),
-            navController = findNavController(),
+            action = {
+                viewModel.clearTempNames()
+                findNavController().popBackStack()
+            },
             message = getString(R.string.are_you_sure_you_want_to_close_prayer),
             view = binding.overlay
         )
@@ -66,7 +69,6 @@ class PrayerDisplayFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        viewModel.clearTempNames()
         _binding = null
     }
 
