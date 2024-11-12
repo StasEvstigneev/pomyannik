@@ -125,9 +125,8 @@
             android:name="prayerFileNameArg"
             app:argType="string" />
         <argument
-            android:name="personIdsArg"
-            app:argType="integer[]"
-            app:nullable="true" />
+            android:name="isForHealthArg"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/prayerAddNamesFragment"
@@ -140,7 +139,7 @@
         <action
             android:id="@+id/action_prayerAddNamesFragment_to_prayerDisplayFragment"
             app:destination="@id/prayerDisplayFragment"
-            app:popUpTo="@id/prayersCategoriesFragment" />
+            app:popUpTo="@id/prayersFragment" />
         <action
             android:id="@+id/action_prayerAddNamesFragment_to_namesFragment"
             app:destination="@id/namesFragment" />

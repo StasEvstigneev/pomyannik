@@ -87,7 +87,7 @@ class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<Person
             val action = PrayerAddNamesFragmentDirections
                 .actionPrayerAddNamesFragmentToPrayerDisplayFragment(
                     args.prayerFileNameArg,
-                    null
+                    args.forHealthArg
                 )
             val exitMessage =
                 if (areNamesAdded) getString(R.string.navigate_to_prayer) else getString(R.string.you_have_not_added_names)

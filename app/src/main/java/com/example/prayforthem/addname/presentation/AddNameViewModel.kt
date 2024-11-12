@@ -35,12 +35,12 @@ class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel
     fun updateName(text: Editable?, forms: NameForms) {
         val nameForm = prepareNameForm(text)
         when (forms) {
-            NameForms.NAME_NOM -> nameNom = nameForm
-            NameForms.NAME_GEN -> nameGen = nameForm
-            NameForms.NAME_DAT -> nameDat = nameForm
-            NameForms.NAME_ACC -> nameAcc = nameForm
-            NameForms.NAME_INST -> nameInst = nameForm
-            NameForms.NAME_PREP -> namePrep = nameForm
+            NameForms.NAME_NOMINATIVE -> nameNom = nameForm
+            NameForms.NAME_GENITIVE -> nameGen = nameForm
+            NameForms.NAME_DATIVE -> nameDat = nameForm
+            NameForms.NAME_ACCUSATIVE -> nameAcc = nameForm
+            NameForms.NAME_INSTRUMENTAL -> nameInst = nameForm
+            NameForms.NAME_PREPOSITIONAL -> namePrep = nameForm
         }
         saveButtonState.postValue(objectContainsNoNull())
         exitDialogStatus.postValue(!objectHasAllNulls())

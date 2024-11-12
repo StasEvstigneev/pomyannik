@@ -51,27 +51,27 @@ class AddNameFragment : Fragment() {
         }
 
         binding.editTextNom.doAfterTextChanged { text: Editable? ->
-            viewModel.updateName(text, NameForms.NAME_NOM)
+            viewModel.updateName(text, NameForms.NAME_NOMINATIVE)
         }
 
         binding.editTextGen.doAfterTextChanged { text: Editable? ->
-            viewModel.updateName(text, NameForms.NAME_GEN)
+            viewModel.updateName(text, NameForms.NAME_GENITIVE)
         }
 
         binding.editTextDat.doAfterTextChanged { text: Editable? ->
-            viewModel.updateName(text, NameForms.NAME_DAT)
+            viewModel.updateName(text, NameForms.NAME_DATIVE)
         }
 
         binding.editTextAcc.doAfterTextChanged { text: Editable? ->
-            viewModel.updateName(text, NameForms.NAME_ACC)
+            viewModel.updateName(text, NameForms.NAME_ACCUSATIVE)
         }
 
         binding.editTextInst.doAfterTextChanged { text: Editable? ->
-            viewModel.updateName(text, NameForms.NAME_INST)
+            viewModel.updateName(text, NameForms.NAME_INSTRUMENTAL)
         }
 
         binding.editTextPrep.doAfterTextChanged { text: Editable? ->
-            viewModel.updateName(text, NameForms.NAME_PREP)
+            viewModel.updateName(text, NameForms.NAME_PREPOSITIONAL)
         }
 
         binding.buttonSave.setOnClickListener {
