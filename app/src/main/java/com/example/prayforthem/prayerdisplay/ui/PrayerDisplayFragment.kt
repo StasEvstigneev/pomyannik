@@ -24,7 +24,10 @@ class PrayerDisplayFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: PrayerDisplayFragmentArgs by navArgs()
     private val viewModel: PrayerDisplayViewModel by viewModel {
-        parametersOf(args.prayerFileNameArg)
+        parametersOf(
+            args.isForHealthArg,
+            args.prayerFileNameArg
+        )
     }
     private lateinit var exitDialog: MaterialAlertDialogBuilder
 

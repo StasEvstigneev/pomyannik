@@ -1,10 +1,10 @@
 package com.example.prayforthem.utils
 
 enum class NameForms(val form: String) {
-    NAME_NOM("name_nom"),
-    NAME_GEN("name_gen"),
-    NAME_DAT("name_dat"),
-    NAME_ACC("name_acc"),
-    NAME_INST("name_inst"),
-    NAME_PREP("name_prep")
+    NAME_NOMINATIVE("name_nom"),
+    NAME_GENITIVE("name_gen"),
+    NAME_DATIVE("name_dat"),
+    NAME_ACCUSATIVE("name_acc"),
+    NAME_INSTRUMENTAL("name_inst"),
+    NAME_PREPOSITIONAL("name_prep")
 }
