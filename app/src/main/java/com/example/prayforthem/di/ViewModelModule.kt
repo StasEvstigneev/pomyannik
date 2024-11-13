@@ -10,6 +10,12 @@ import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import com.example.prayforthem.listings_for_repose.presentation.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
+import com.example.prayforthem.pomyannikdisplay.PomyannikDisplayViewModel
+import com.example.prayforthem.pomyannikdrugi.presentation.PomyannikDrugiViewModel
+import com.example.prayforthem.pomyannikduhotets.presentation.PomyannikDuhOtetsViewModel
+import com.example.prayforthem.pomyannikroditeli.presentation.PomyannikRoditeliViewModel
+import com.example.prayforthem.pomyanniksrodniki.presentation.PomyannikSrodnikiViewModel
+import com.example.prayforthem.pomyannikusopsrod.presentation.PomyannikUsopSrodViewModel
 import com.example.prayforthem.prayeraddnames.presentation.PrayerAddNamesViewModel
 import com.example.prayforthem.prayerdisplay.presentation.PrayerDisplayViewModel
 import com.example.prayforthem.prayers.presentation.PrayersViewModel
@@ -72,6 +78,30 @@ val viewModelModule = module {
 
     viewModel<ChooseListingViewModel> { (forHealth: Boolean) ->
         ChooseListingViewModel(forHealth, get())
+    }
+
+    viewModel<PomyannikDuhOtetsViewModel> {
+        PomyannikDuhOtetsViewModel(get(), get(), get(), get())
+    }
+
+    viewModel<PomyannikRoditeliViewModel> {
+        PomyannikRoditeliViewModel(get(), get(), get(), get())
+    }
+
+    viewModel<PomyannikSrodnikiViewModel> {
+        PomyannikSrodnikiViewModel(get(), get(), get(), get())
+    }
+
+    viewModel<PomyannikDrugiViewModel> {
+        PomyannikDrugiViewModel(get(), get(), get(), get())
+    }
+
+    viewModel<PomyannikUsopSrodViewModel> {
+        PomyannikUsopSrodViewModel(get(), get(), get(), get())
+    }
+
+    viewModel<PomyannikDisplayViewModel> { (prayerFileName: String) ->
+        PomyannikDisplayViewModel(prayerFileName, get(), get(), get(), get())
     }
 
 }
