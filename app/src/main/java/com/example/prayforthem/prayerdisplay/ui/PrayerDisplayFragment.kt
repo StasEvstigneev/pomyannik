@@ -18,12 +18,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PrayerDisplayFragment : Fragment() {
+open class PrayerDisplayFragment : Fragment() {
 
     private var _binding: FragmentPrayerDisplayBinding? = null
     private val binding get() = _binding!!
     private val args: PrayerDisplayFragmentArgs by navArgs()
-    private val viewModel: PrayerDisplayViewModel by viewModel {
+    open val viewModel: PrayerDisplayViewModel by viewModel {
         parametersOf(
             args.isForHealthArg,
             args.prayerFileNameArg

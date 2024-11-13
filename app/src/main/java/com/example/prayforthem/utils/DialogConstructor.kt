@@ -3,7 +3,6 @@ package com.example.prayforthem.utils
 import android.content.Context
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.navigation.NavController
 import com.example.prayforthem.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -58,7 +57,7 @@ object DialogConstructor {
     ): MaterialAlertDialogBuilder {
         val navDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
             .setMessage(message)
-            .setPositiveButton(R.string.to_prayer) { dialog, _ ->
+            .setPositiveButton(R.string.next) { dialog, _ ->
                 action()
             }
             .setNegativeButton(R.string.cancel) { dialog, _ ->

@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PrayerAddNamesViewModel(
+open class PrayerAddNamesViewModel(
     private val forHealth: Boolean,
     private val listingInteractor: ListingInteractor,
     private val tempPersonInteractor: TempPersonInteractor,
@@ -76,7 +76,7 @@ class PrayerAddNamesViewModel(
                 // очистка предыдущих temp_person
                 tempPersonInteractor.deleteTempPersonByListingId(getListingId())
                 if (tempPersonList.isNotEmpty()) {
-                    var id: Int = 1
+                    var id = 1
                     tempPersonList.forEach { item ->
                         val person = preparePersonToSave(item.person, id)
                         id += 1
@@ -120,7 +120,7 @@ class PrayerAddNamesViewModel(
         )
     }
 
-    private fun getListingId(): Int {
+    open fun getListingId(): Int {
         return if (forHealth) LIST_HEALTH else LIST_REPOSE
     }
 

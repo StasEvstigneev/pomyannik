@@ -24,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 open class ForHealthFragment : Fragment(), RecyclerViewItemClick<ListingWithPerson>,
     RecyclerViewDeleteItem<ListingWithPerson> {
 
-    open var _binding: FragmentForHealthBinding? = null
+    private var _binding: FragmentForHealthBinding? = null
     open val binding get() = _binding!!
     open val viewModel by viewModel<ForHealthViewModel>()
     private val listingsAdapter = ListingsAdapter(this, this)

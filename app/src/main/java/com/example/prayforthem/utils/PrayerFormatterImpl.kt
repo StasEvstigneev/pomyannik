@@ -5,7 +5,7 @@ import com.example.prayforthem.prayerdisplay.domain.models.PrayerContent
 
 class PrayerFormatterImpl : PrayerFormatter {
     private fun formatHeading(heading: String): String {
-        return "<b>$heading</b><br><br>"
+        return "<b>$heading</b><br>"
     }
 
     private fun formatParagraph(paragraph: String): String {
