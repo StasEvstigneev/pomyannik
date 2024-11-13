@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,16 +23,16 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<PersonDignityName> {
+open class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<PersonDignityName> {
 
     private var _binding: FragmentPrayerAddNamesBinding? = null
-    private val binding get() = _binding!!
+    open val binding get() = _binding!!
     private val args: PrayerAddNamesFragmentArgs by navArgs()
-    private val viewModel: PrayerAddNamesViewModel by viewModel {
+    open val viewModel: PrayerAddNamesViewModel by viewModel {
         parametersOf(args.forHealthArg)
     }
     private var showExitDialog: Boolean = false
-    private var areNamesAdded: Boolean = false
+    internal var areNamesAdded: Boolean = false
 
     private val tempNamesAdapter = PrayerAddNamesAdapter(arrayListOf(), this)
     private lateinit var exitDialog: MaterialAlertDialogBuilder
@@ -91,18 +92,7 @@ class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<Person
                 )
             val exitMessage =
                 if (areNamesAdded) getString(R.string.navigate_to_prayer) else getString(R.string.you_have_not_added_names)
-
-            navigateForwardDialog = DialogConstructor
-                .createToPrayerNavigationDialog(
-                    context = requireContext(),
-                    action = {
-                        findNavController().navigate(action)
-                        viewModel.saveTempList()
-                    },
-                    message = exitMessage,
-                    view = binding.overlay
-                )
-            navigateForwardDialog.show()
+            showGoForwardDialog(action, exitMessage)
         }
     }
 
@@ -177,6 +167,20 @@ class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<Person
         } else {
             findNavController().popBackStack()
         }
+    }
+
+    internal fun showGoForwardDialog(action: NavDirections, exitMessage: String) {
+        navigateForwardDialog = DialogConstructor
+            .createToPrayerNavigationDialog(
+                context = requireContext(),
+                action = {
+                    findNavController().navigate(action)
+                    viewModel.saveTempList()
+                },
+                message = exitMessage,
+                view = binding.overlay
+            )
+        navigateForwardDialog.show()
     }
 
     companion object {

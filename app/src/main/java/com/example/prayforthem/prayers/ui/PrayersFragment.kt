@@ -111,7 +111,21 @@ class PrayersFragment : Fragment(), RecyclerViewItemClick<Prayer> {
                     item.fileName,
                     item.forHealth
                 )
-        findNavController().navigate(action)
+        val actionPomyannik = PrayersFragmentDirections
+            .actionPrayersFragmentToPomyannikAddDuhOtetsFragment(item.fileName)
+
+
+        findNavController()
+            .navigate(
+                if (item.prayerId == POMYANNIK_ID
+                    || item.fileName == POMYANNIK_FILE_NAME
+                ) actionPomyannik else action
+            )
+    }
+
+    companion object {
+        private const val POMYANNIK_ID = 1
+        private const val POMYANNIK_FILE_NAME = "pomyannik"
     }
 
 }
