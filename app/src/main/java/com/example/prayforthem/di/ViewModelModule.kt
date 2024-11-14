@@ -10,7 +10,7 @@ import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import com.example.prayforthem.listings_for_repose.presentation.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
-import com.example.prayforthem.pomyannikdisplay.PomyannikDisplayViewModel
+import com.example.prayforthem.pomyannikdisplay.presentation.PomyannikDisplayViewModel
 import com.example.prayforthem.pomyannikdrugi.presentation.PomyannikDrugiViewModel
 import com.example.prayforthem.pomyannikduhotets.presentation.PomyannikDuhOtetsViewModel
 import com.example.prayforthem.pomyannikroditeli.presentation.PomyannikRoditeliViewModel

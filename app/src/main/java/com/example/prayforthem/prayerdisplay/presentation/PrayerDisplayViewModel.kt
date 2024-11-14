@@ -99,7 +99,7 @@ open class PrayerDisplayViewModel(
             .replace(NAMES_ACC, namesAcc)
             .replace(NAMES_INST, namesInstr)
             .replace(NAMES_PREP, namesPrep)
-            .replace(PATRIARH_GEN, PATRIARH_NAME_GEN)
+            .replace(PATRIARH_ACC, PATRIARH_NAME_ACC)
 
         val processedPrayer = Html.fromHtml(prayerWithNames, FROM_HTML_MODE_LEGACY)
         screenState.postValue(
@@ -138,8 +138,8 @@ open class PrayerDisplayViewModel(
         private const val NAMES_ACC = "NAMES_ACC"
         private const val NAMES_INST = "NAMES_INST"
         private const val NAMES_PREP = "NAMES_PREP"
-        private const val PATRIARH_GEN = "PATRIARH_GEN"
-        private const val PATRIARH_NAME_GEN = "Кирилла"
+        private const val PATRIARH_ACC = "PATRIARH_GEN"
+        private const val PATRIARH_NAME_ACC = "Кирилла"
     }
 
 }

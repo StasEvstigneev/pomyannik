@@ -238,7 +238,7 @@
     </fragment>
     <fragment
         android:id="@+id/pomyannikDisplayFragment"
-        android:name="com.example.prayforthem.pomyannikdisplay.PomyannikDisplayFragment"
+        android:name="com.example.prayforthem.pomyannikdisplay.ui.PomyannikDisplayFragment"
         android:label="PomyannikDisplayFragment" >
         <argument
             android:name="prayerFileNameArg"

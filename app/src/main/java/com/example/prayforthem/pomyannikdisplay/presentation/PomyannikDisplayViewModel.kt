@@ -1,4 +1,4 @@
-package com.example.prayforthem.pomyannikdisplay
+package com.example.prayforthem.pomyannikdisplay.presentation
 
 import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
@@ -73,37 +73,37 @@ class PomyannikDisplayViewModel(
 
         val duhOtets = if (listDuhOtets.isEmpty()) IMYAREK else prepareNameFormsToInsert(
             listDuhOtets,
-            NameForms.NAME_GENITIVE
+            NameForms.NAME_ACCUSATIVE
         )
 
         val parents = if (listParents.isEmpty()) IMYAREK else prepareNameFormsToInsert(
             listParents,
-            NameForms.NAME_GENITIVE
+            NameForms.NAME_ACCUSATIVE
         )
 
         val relatives = if (listRelatives.isEmpty()) IMYAREK else prepareNameFormsToInsert(
             listRelatives,
-            NameForms.NAME_GENITIVE
+            NameForms.NAME_ACCUSATIVE
         )
 
         val friends = if (listFriends.isEmpty()) IMYAREK else prepareNameFormsToInsert(
             listFriends,
-            NameForms.NAME_GENITIVE
+            NameForms.NAME_ACCUSATIVE
         )
 
         val reposeRelatives =
             if (listReposeRelatives.isEmpty()) IMYAREK else prepareNameFormsToInsert(
                 listReposeRelatives,
-                NameForms.NAME_GENITIVE
+                NameForms.NAME_ACCUSATIVE
             )
 
         val prayerWithNames = prayerText
-            .replace(PATRIARH_GEN, PATRIARH_NAME_GEN)
-            .replace(DUHOVN_OTEC_GEN, duhOtets)
-            .replace(RODITELI_GEN, parents)
-            .replace(SRODNIKI_GEN, relatives)
-            .replace(DRUGI_GEN, friends)
-            .replace(USOP_ROD_SROD_GEN, reposeRelatives)
+            .replace(PATRIARH_ACC, PATRIARH_NAME_ACC)
+            .replace(DUHOVN_OTEC_ACC, duhOtets)
+            .replace(RODITELI_ACC, parents)
+            .replace(SRODNIKI_ACC, relatives)
+            .replace(DRUGI_ACC, friends)
+            .replace(USOP_ROD_SROD_ACC, reposeRelatives)
 
         val processedPrayer = Html.fromHtml(prayerWithNames, FROM_HTML_MODE_LEGACY)
         screenState.postValue(
@@ -130,13 +130,13 @@ class PomyannikDisplayViewModel(
         private const val LIST_PARENTS = 4
         private const val LIST_RELATIVES = 5
         private const val IMYAREK = "<b><i>(имярек)</i></b>"
-        private const val PATRIARH_GEN = "PATRIARH_GEN"
-        private const val PATRIARH_NAME_GEN = "Кирилла"
-        private const val DUHOVN_OTEC_GEN = "DUHOVN_OTEC_GEN"
-        private const val RODITELI_GEN = "RODITELI_GEN"
-        private const val SRODNIKI_GEN = "SRODNIKI_GEN"
-        private const val DRUGI_GEN = "DRUGI_GEN"
-        private const val USOP_ROD_SROD_GEN = "USOP_ROD_SROD_GEN"
+        private const val PATRIARH_ACC = "PATRIARH_ACC"
+        private const val PATRIARH_NAME_ACC = "Кирилла"
+        private const val DUHOVN_OTEC_ACC = "DUHOVN_OTEC_ACC"
+        private const val RODITELI_ACC = "RODITELI_ACC"
+        private const val SRODNIKI_ACC = "SRODNIKI_ACC"
+        private const val DRUGI_ACC = "DRUGI_ACC"
+        private const val USOP_ROD_SROD_ACC = "USOP_ROD_SROD_ACC"
     }
 
 }

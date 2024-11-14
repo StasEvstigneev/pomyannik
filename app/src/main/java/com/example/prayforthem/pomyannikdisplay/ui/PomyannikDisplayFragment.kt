@@ -1,6 +1,7 @@
-package com.example.prayforthem.pomyannikdisplay
+package com.example.prayforthem.pomyannikdisplay.ui
 
 import androidx.navigation.fragment.navArgs
+import com.example.prayforthem.pomyannikdisplay.presentation.PomyannikDisplayViewModel
 import com.example.prayforthem.prayerdisplay.ui.PrayerDisplayFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf

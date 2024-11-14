@@ -20,12 +20,12 @@ internal object Constants {
     const val NAMES_PREP = "NAMES_PREP"
 
     //Ключи помянника
-    const val PATRIARH_GEN = "PATRIARH_GEN"
-    const val DUHOVN_OTEC_GEN = "DUHOVN_OTEC_GEN"
-    const val RODITELI_GEN = "RODITELI_GEN"
-    const val SRODNIKI_GEN = "SRODNIKI_GEN"
-    const val DRUGI_GEN = "DRUGI_GEN"
-    const val USOP_ROD_SROD_GEN = "USOP_ROD_SROD_GEN"
+    const val PATRIARH_ACC = "PATRIARH_ACC"
+    const val DUHOVN_OTEC_ACC = "DUHOVN_OTEC_ACC"
+    const val RODITELI_ACC = "RODITELI_ACC"
+    const val SRODNIKI_ACC = "SRODNIKI_ACC"
+    const val DRUGI_ACC = "DRUGI_ACC"
+    const val USOP_ROD_SROD_ACC = "USOP_ROD_SROD_ACC"
 
     //ID обязательных списков
     const val LIST_HEALTH = 1

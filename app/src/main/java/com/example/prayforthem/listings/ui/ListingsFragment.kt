@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -13,6 +14,8 @@ import com.example.prayforthem.databinding.FragmentListingsBinding
 import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.ui.ForHealthFragment
 import com.example.prayforthem.listings_for_repose.ui.ForReposeFragment
+import com.example.prayforthem.utils.DialogConstructor
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +25,7 @@ class ListingsFragment : Fragment() {
     private val binding get() = _binding!!
     private var tabsMediator: TabLayoutMediator? = null
     private val viewModel by viewModel<ListingsViewModel>()
+    private lateinit var exitDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +47,27 @@ class ListingsFragment : Fragment() {
         }
 
         tabsMediator!!.attach()
+
+        exitDialog = DialogConstructor
+            .createExitDialog(
+                context = requireContext(),
+                action = { requireActivity().finishAffinity() },
+                message = getString(R.string.are_you_sure_you_want_to_close_app),
+                view = binding.overlay
+            )
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    leaveApp()
+                }
+            })
+
+    }
+
+    private fun leaveApp() {
+        exitDialog.show()
 
     }
 

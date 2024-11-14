@@ -75,11 +75,12 @@ open class PrayerAddNamesViewModel(
             withContext(Dispatchers.IO) {
                 // очистка предыдущих temp_person
                 tempPersonInteractor.deleteTempPersonByListingId(getListingId())
+                val savedTempPersonList = tempPersonInteractor.getAllTempPerson()
                 if (tempPersonList.isNotEmpty()) {
-                    var id = 1
+                    var id = savedTempPersonList.size + ONE
                     tempPersonList.forEach { item ->
                         val person = preparePersonToSave(item.person, id)
-                        id += 1
+                        id += ONE
                         tempPersonInteractor.addTempPerson(person)
                     }
                 }
@@ -127,6 +128,7 @@ open class PrayerAddNamesViewModel(
     companion object {
         private const val LIST_HEALTH = 1
         private const val LIST_REPOSE = 2
+        private const val ONE = 1
     }
 
 }
