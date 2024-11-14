@@ -77,5 +77,9 @@
     <string name="pomyannik_add_usop_relatives">Помянник. Усопшие сродники</string>
     <string name="you_can_add_usop_relatives_into_prayer">Вы можете добавить в текст Помянника имена усопших родителей и сродников. Для этого воспользуйтесь кнопками ниже. Либо переходите далее.</string>
     <string name="are_you_sure_you_want_to_close_app">Вы уверены, что хотите закрыть приложение и выйти"?</string>
+    <string name="pamyatka_o_podache_zapisok">Пямятка о подаче записок</string>
+    <string name="postanovlenie_ob_imenah">Постановление об именах</string>
+    <string name="pozhertvovaniya">Пожертвования</string>
+    <string name="app_info">Приложение %1s\nВерсия %2s\nРазработал ФИО</string>
 
 </resources>
