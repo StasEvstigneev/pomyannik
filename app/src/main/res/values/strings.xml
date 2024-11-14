@@ -76,6 +76,6 @@
     <string name="you_can_add_friends_into_prayer">Вы можете добавить в текст Помянника имена друзей и близких людей. Для этого воспользуйтесь кнопками ниже. Либо переходите далее.</string>
     <string name="pomyannik_add_usop_relatives">Помянник. Усопшие сродники</string>
     <string name="you_can_add_usop_relatives_into_prayer">Вы можете добавить в текст Помянника имена усопших родителей и сродников. Для этого воспользуйтесь кнопками ниже. Либо переходите далее.</string>
-
+    <string name="are_you_sure_you_want_to_close_app">Вы уверены, что хотите закрыть приложение и выйти"?</string>
 
 </resources>
