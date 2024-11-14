@@ -16,14 +16,51 @@
         app:title="@string/information" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/pamyatka_o_zapiskah"
+        style="@style/PrayerCategoryTextAppearance"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/alumni_sans_medium"
-        android:text="@string/information"
-        android:textSize="@dimen/_24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="@dimen/_24dp"
+        android:layout_marginVertical="@dimen/_32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:text="@string/pamyatka_o_podache_zapisok" />
+
+    <TextView
+        android:id="@+id/postanovlenie_ob_imenah"
+        style="@style/PrayerCategoryTextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_24dp"
+        android:layout_marginVertical="@dimen/_32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pamyatka_o_zapiskah"
+        android:text="@string/postanovlenie_ob_imenah" />
+
+    <TextView
+        android:id="@+id/pozhertvovaniya"
+        style="@style/PrayerCategoryTextAppearance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_24dp"
+        android:layout_marginVertical="@dimen/_32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postanovlenie_ob_imenah"
+        android:text="@string/pozhertvovaniya" />
+
+    <TextView
+        style="@style/NotificationText"
+        android:id="@+id/app_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:paddingBottom="@dimen/_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Приложение\nВерсия\nРазработал ФИО" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
