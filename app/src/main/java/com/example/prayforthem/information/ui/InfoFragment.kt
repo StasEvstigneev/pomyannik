@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentInfoBinding
 import com.example.prayforthem.information.presentation.InfoViewModel
@@ -38,22 +38,34 @@ class InfoFragment : Fragment() {
         binding.appInfo.text = getString(R.string.app_info, appName, appVersion)
 
         binding.pamyatkaOZapiskah.setOnClickListener {
-            Toast.makeText(requireContext(), "Click!", Toast.LENGTH_SHORT).show()
+            navigateToArticleDisplay(PAMYATKA_FILE)
         }
 
         binding.postanovlenieObImenah.setOnClickListener {
-            Toast.makeText(requireContext(), "Click!", Toast.LENGTH_SHORT).show()
+            navigateToArticleDisplay(POSTANOVLENIE_OB_IMENAH_FILE)
         }
 
         binding.pozhertvovaniya.setOnClickListener {
-            Toast.makeText(requireContext(), "Click!", Toast.LENGTH_SHORT).show()
+            navigateToArticleDisplay(POZHERTVOVANIYA_FILE)
         }
 
+    }
+
+    private fun navigateToArticleDisplay(articleFileName: String) {
+        val action =
+            InfoFragmentDirections.actionInfoFragmentToArticleDisplayFragment(articleFileName)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val PAMYATKA_FILE = "pamyatka_o_zapiskah"
+        private const val POSTANOVLENIE_OB_IMENAH_FILE = "postanovlenie_ob_imenah"
+        private const val POZHERTVOVANIYA_FILE = "pozhertvovaniya"
     }
 
 }

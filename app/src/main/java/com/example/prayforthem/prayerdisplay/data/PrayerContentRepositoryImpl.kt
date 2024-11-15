@@ -8,7 +8,7 @@ class PrayerContentRepositoryImpl(
     private val localStorage: LocalStorage
 ) : PrayerContentRepository {
 
-    override suspend fun getPrayer(name: String): PrayerContent {
+    override suspend fun getPrayer(name: String): PrayerContent? {
         return localStorage.getPrayer(name)
     }
 }

@@ -1,5 +1,7 @@
 package com.example.prayforthem.di
 
+import com.example.prayforthem.articledisplay.data.ArticleContentRepositoryImpl
+import com.example.prayforthem.articledisplay.domain.ArticleContentRepository
 import com.example.prayforthem.listings.data.ListingRepositoryImpl
 import com.example.prayforthem.listings.data.PersonRepositoryImpl
 import com.example.prayforthem.listings.domain.ListingRepository
@@ -50,6 +52,10 @@ val repositoryModule = module {
 
     single<TempPersonRepository> {
         TempPersonRepositoryImpl(get(), get())
+    }
+
+    single<ArticleContentRepository> {
+        ArticleContentRepositoryImpl(get())
     }
 
 }

@@ -8,7 +8,7 @@ class PrayerContentInteractorImpl(
     private val repository: PrayerContentRepository
 ) : PrayerContentInteractor {
 
-    override suspend fun getPrayer(name: String): PrayerContent {
+    override suspend fun getPrayer(name: String): PrayerContent? {
         return repository.getPrayer(name)
     }
 }

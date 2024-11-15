@@ -1,5 +1,7 @@
 package com.example.prayforthem.di
 
+import com.example.prayforthem.articledisplay.domain.ArticleContentInteractor
+import com.example.prayforthem.articledisplay.domain.impl.ArticleContentInteractorImpl
 import com.example.prayforthem.listings.domain.ListingInteractor
 import com.example.prayforthem.listings.domain.PersonInteractor
 import com.example.prayforthem.listings.domain.impl.ListingInteractorImpl
@@ -50,6 +52,10 @@ val interactorModule = module {
 
     factory<TempPersonInteractor> {
         TempPersonInteractorImpl(get())
+    }
+
+    factory<ArticleContentInteractor> {
+        ArticleContentInteractorImpl(get())
     }
 
 }
