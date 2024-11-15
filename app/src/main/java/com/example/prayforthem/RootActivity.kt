@@ -26,6 +26,7 @@ class RootActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.listsFragment,
                 R.id.prayersCategoriesFragment,
+                R.id.settingsFragment,
                 R.id.infoFragment -> {
                     rootBinding.apply {
                         bottomNavigation.isVisible = true
