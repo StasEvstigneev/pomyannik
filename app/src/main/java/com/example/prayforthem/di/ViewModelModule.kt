@@ -21,6 +21,7 @@ import com.example.prayforthem.prayeraddnames.presentation.PrayerAddNamesViewMod
 import com.example.prayforthem.prayerdisplay.presentation.PrayerDisplayViewModel
 import com.example.prayforthem.prayers.presentation.PrayersViewModel
 import com.example.prayforthem.prayerscategories.presentation.PrayersCategoriesViewModel
+import com.example.prayforthem.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -107,6 +108,10 @@ val viewModelModule = module {
 
     viewModel<ArticleDisplayViewModel> { (prayerFileName: String) ->
         ArticleDisplayViewModel(prayerFileName, get(), get())
+    }
+
+    viewModel<SettingsViewModel> {
+        SettingsViewModel()
     }
 
 }

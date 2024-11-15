@@ -12,6 +12,11 @@
         android:title="@string/prayers" />
 
     <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings" />
+
+    <item
         android:id="@+id/infoFragment"
         android:icon="@drawable/ic_info"
         android:title="@string/information" />
