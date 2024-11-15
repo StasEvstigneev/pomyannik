@@ -59,53 +59,57 @@ open class PrayerDisplayViewModel(
         listOfPerson.addAll(listing.personListing)
     }
 
-    open fun processPrayer(prayer: PrayerContent) {
-        val prayerTitle = prayer.title
-        val prayerText = prayerFormatter.composePrayer(prayer)
+    open fun processPrayer(prayer: PrayerContent?) {
+        if (prayer != null) {
+            val prayerTitle = prayer.title
+            val prayerText = prayerFormatter.composePrayer(prayer)
 
-        val namesNom = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listOfPerson,
-            NameForms.NAME_NOMINATIVE
-        )
+            val namesNom = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listOfPerson,
+                NameForms.NAME_NOMINATIVE
+            )
 
-        val namesGen = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listOfPerson,
-            NameForms.NAME_GENITIVE
-        )
-        val namesDat = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listOfPerson,
-            NameForms.NAME_DATIVE
-        )
+            val namesGen = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listOfPerson,
+                NameForms.NAME_GENITIVE
+            )
+            val namesDat = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listOfPerson,
+                NameForms.NAME_DATIVE
+            )
 
-        val namesAcc = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listOfPerson,
-            NameForms.NAME_ACCUSATIVE
-        )
+            val namesAcc = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listOfPerson,
+                NameForms.NAME_ACCUSATIVE
+            )
 
-        val namesInstr = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listOfPerson,
-            NameForms.NAME_INSTRUMENTAL
-        )
+            val namesInstr = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listOfPerson,
+                NameForms.NAME_INSTRUMENTAL
+            )
 
-        val namesPrep = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listOfPerson,
-            NameForms.NAME_PREPOSITIONAL
-        )
+            val namesPrep = if (listOfPerson.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listOfPerson,
+                NameForms.NAME_PREPOSITIONAL
+            )
 
-        val prayerWithNames = prayerText
-            .replace(NAMES_NOM, namesNom)
-            .replace(NAMES_GEN, namesGen)
-            .replace(NAMES_DAT, namesDat)
-            .replace(NAMES_ACC, namesAcc)
-            .replace(NAMES_INST, namesInstr)
-            .replace(NAMES_PREP, namesPrep)
-            .replace(PATRIARH_ACC, PATRIARH_NAME_ACC)
+            val prayerWithNames = prayerText
+                .replace(NAMES_NOM, namesNom)
+                .replace(NAMES_GEN, namesGen)
+                .replace(NAMES_DAT, namesDat)
+                .replace(NAMES_ACC, namesAcc)
+                .replace(NAMES_INST, namesInstr)
+                .replace(NAMES_PREP, namesPrep)
+                .replace(PATRIARH_ACC, PATRIARH_NAME_ACC)
 
-        val processedPrayer = Html.fromHtml(prayerWithNames, FROM_HTML_MODE_LEGACY)
-        screenState.postValue(
-            PrayersDisplayScreenState
-                .Content(title = prayerTitle, text = processedPrayer)
-        )
+            val processedPrayer = Html.fromHtml(prayerWithNames, FROM_HTML_MODE_LEGACY)
+            screenState.postValue(
+                PrayersDisplayScreenState
+                    .Content(title = prayerTitle, text = processedPrayer)
+            )
+        } else {
+            screenState.postValue(PrayersDisplayScreenState.Error)
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.prayforthem.di
 
 import com.example.prayforthem.addname.presentation.AddNameViewModel
+import com.example.prayforthem.articledisplay.presentation.ArticleDisplayViewModel
 import com.example.prayforthem.chooselisting.presentation.ChooseListingViewModel
 import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
 import com.example.prayforthem.editlisting.presentation.EditListingViewModel
@@ -102,6 +103,10 @@ val viewModelModule = module {
 
     viewModel<PomyannikDisplayViewModel> { (prayerFileName: String) ->
         PomyannikDisplayViewModel(prayerFileName, get(), get(), get(), get())
+    }
+
+    viewModel<ArticleDisplayViewModel> { (prayerFileName: String) ->
+        ArticleDisplayViewModel(prayerFileName, get(), get())
     }
 
 }

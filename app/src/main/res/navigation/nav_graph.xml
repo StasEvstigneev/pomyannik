@@ -30,7 +30,11 @@
         android:id="@+id/infoFragment"
         android:name="com.example.prayforthem.information.ui.InfoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_infoFragment_to_articleDisplayFragment"
+            app:destination="@id/articleDisplayFragment" />
+    </fragment>
     <fragment
         android:id="@+id/forHealthFragment"
         android:name="com.example.prayforthem.listings_for_health.ui.ForHealthFragment"
@@ -242,6 +246,15 @@
         android:label="PomyannikDisplayFragment" >
         <argument
             android:name="prayerFileNameArg"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDisplayFragment"
+        android:name="com.example.prayforthem.articledisplay.ui.ArticleDisplayFragment"
+        android:label="fragment_article_display"
+        tools:layout="@layout/fragment_article_display" >
+        <argument
+            android:name="articleFileNameArg"
             app:argType="string" />
     </fragment>
 </navigation>

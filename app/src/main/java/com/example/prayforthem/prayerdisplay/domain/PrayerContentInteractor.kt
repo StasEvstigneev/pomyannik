@@ -4,6 +4,6 @@ import com.example.prayforthem.prayerdisplay.domain.models.PrayerContent
 
 interface PrayerContentInteractor {
 
-    suspend fun getPrayer(name: String): PrayerContent
+    suspend fun getPrayer(name: String): PrayerContent?
 
 }

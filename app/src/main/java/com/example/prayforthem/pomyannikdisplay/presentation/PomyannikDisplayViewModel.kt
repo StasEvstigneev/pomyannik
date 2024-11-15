@@ -67,49 +67,53 @@ class PomyannikDisplayViewModel(
         }
     }
 
-    override fun processPrayer(prayer: PrayerContent) {
-        val prayerTitle = prayer.title
-        val prayerText = prayerFormatter.composePrayer(prayer)
+    override fun processPrayer(prayer: PrayerContent?) {
+        if (prayer != null) {
+            val prayerTitle = prayer.title
+            val prayerText = prayerFormatter.composePrayer(prayer)
 
-        val duhOtets = if (listDuhOtets.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listDuhOtets,
-            NameForms.NAME_ACCUSATIVE
-        )
-
-        val parents = if (listParents.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listParents,
-            NameForms.NAME_ACCUSATIVE
-        )
-
-        val relatives = if (listRelatives.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listRelatives,
-            NameForms.NAME_ACCUSATIVE
-        )
-
-        val friends = if (listFriends.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-            listFriends,
-            NameForms.NAME_ACCUSATIVE
-        )
-
-        val reposeRelatives =
-            if (listReposeRelatives.isEmpty()) IMYAREK else prepareNameFormsToInsert(
-                listReposeRelatives,
+            val duhOtets = if (listDuhOtets.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listDuhOtets,
                 NameForms.NAME_ACCUSATIVE
             )
 
-        val prayerWithNames = prayerText
-            .replace(PATRIARH_ACC, PATRIARH_NAME_ACC)
-            .replace(DUHOVN_OTEC_ACC, duhOtets)
-            .replace(RODITELI_ACC, parents)
-            .replace(SRODNIKI_ACC, relatives)
-            .replace(DRUGI_ACC, friends)
-            .replace(USOP_ROD_SROD_ACC, reposeRelatives)
+            val parents = if (listParents.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listParents,
+                NameForms.NAME_ACCUSATIVE
+            )
 
-        val processedPrayer = Html.fromHtml(prayerWithNames, FROM_HTML_MODE_LEGACY)
-        screenState.postValue(
-            PrayersDisplayScreenState
-                .Content(title = prayerTitle, text = processedPrayer)
-        )
+            val relatives = if (listRelatives.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listRelatives,
+                NameForms.NAME_ACCUSATIVE
+            )
+
+            val friends = if (listFriends.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                listFriends,
+                NameForms.NAME_ACCUSATIVE
+            )
+
+            val reposeRelatives =
+                if (listReposeRelatives.isEmpty()) IMYAREK else prepareNameFormsToInsert(
+                    listReposeRelatives,
+                    NameForms.NAME_ACCUSATIVE
+                )
+
+            val prayerWithNames = prayerText
+                .replace(PATRIARH_ACC, PATRIARH_NAME_ACC)
+                .replace(DUHOVN_OTEC_ACC, duhOtets)
+                .replace(RODITELI_ACC, parents)
+                .replace(SRODNIKI_ACC, relatives)
+                .replace(DRUGI_ACC, friends)
+                .replace(USOP_ROD_SROD_ACC, reposeRelatives)
+
+            val processedPrayer = Html.fromHtml(prayerWithNames, FROM_HTML_MODE_LEGACY)
+            screenState.postValue(
+                PrayersDisplayScreenState
+                    .Content(title = prayerTitle, text = processedPrayer)
+            )
+        } else {
+            screenState.postValue(PrayersDisplayScreenState.Error)
+        }
 
     }
 

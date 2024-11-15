@@ -5,7 +5,7 @@ import com.example.prayforthem.storage.domain.GsonJsonConverter
 import com.google.gson.Gson
 
 class GsonJsonConverterImpl(private val gson: Gson): GsonJsonConverter {
-    override fun getPrayerFromJson(prayerJson: String): PrayerContent {
+    override fun getPrayerFromJson(prayerJson: String): PrayerContent? {
         return gson.fromJson(prayerJson, PrayerContent::class.java)
     }
 }
