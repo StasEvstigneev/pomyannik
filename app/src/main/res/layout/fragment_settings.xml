@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20dp"
-        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_24dp"
         android:text="@string/choose_theme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +63,20 @@
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/userNames"
+        style="@style/SettingsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/names_added_by_user"
+        app:drawableStartCompat="@drawable/ic_arrow_forward"
+        android:drawablePadding="@dimen/_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/themeSettings" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/ProgressBar"
@@ -71,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:visibility="visible" />
+        tools:visibility="invisible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

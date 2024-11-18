@@ -23,4 +23,12 @@ class NamesInteractorImpl(private val namesRepository: NamesRepository) : NamesI
     override suspend fun getNameById(id: Int): Name {
         return namesRepository.getNameById(id)
     }
+
+    override suspend fun getCustomNames(): List<Name> {
+        return namesRepository.getCustomNames()
+    }
+
+    override suspend fun deleteCustomName(name: Name) {
+        namesRepository.deleteCustomName(name)
+    }
 }

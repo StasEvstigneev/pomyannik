@@ -4,6 +4,7 @@ import com.example.prayforthem.addname.presentation.AddNameViewModel
 import com.example.prayforthem.articledisplay.presentation.ArticleDisplayViewModel
 import com.example.prayforthem.chooselisting.presentation.ChooseListingViewModel
 import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
+import com.example.prayforthem.customnames.presentation.CustomNamesViewModel
 import com.example.prayforthem.editlisting.presentation.EditListingViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
 import com.example.prayforthem.listingdisplay.presentation.ListingDisplayViewModel
@@ -112,6 +113,10 @@ val viewModelModule = module {
 
     viewModel<SettingsViewModel> {
         SettingsViewModel(get())
+    }
+
+    viewModel<CustomNamesViewModel> {
+        CustomNamesViewModel(get())
     }
 
 }

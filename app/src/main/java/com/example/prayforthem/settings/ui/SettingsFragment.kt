@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.prayforthem.App
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentSettingsBinding
@@ -51,6 +52,11 @@ class SettingsFragment : Fragment() {
                     (activity?.applicationContext as App).switchTheme(ThemeSettings.DARK.themeCode)
                 }
             }
+        }
+
+        binding.userNames.setOnClickListener {
+            val action = SettingsFragmentDirections.actionSettingsFragmentToCustomNamesFragment()
+            findNavController().navigate(action)
         }
     }
 

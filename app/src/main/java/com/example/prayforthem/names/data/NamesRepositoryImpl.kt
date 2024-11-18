@@ -31,6 +31,15 @@ class NamesRepositoryImpl(
         return nameDbConverter.map(appDatabase.nameDao().getNameById(id))
     }
 
+    override suspend fun getCustomNames(): List<Name> {
+        return appDatabase.nameDao().getCustomNames().map { name -> nameDbConverter.map(name) }
+    }
+
+    override suspend fun deleteCustomName(name: Name) {
+        appDatabase.nameDao().deleteName(nameDbConverter.map(name))
+    }
+
+
     private fun convertNamesBasicData(names: List<NameBasicDataDB>): List<NameBasicData> {
         return names.map { name -> nameDbConverter.map(name) }
     }

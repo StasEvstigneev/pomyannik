@@ -261,5 +261,18 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.prayforthem.settings.ui.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_customNamesFragment"
+            app:destination="@id/customNamesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customNamesFragment"
+        android:name="com.example.prayforthem.customnames.ui.CustomNamesFragment"
+        android:label="fragment_custom_names"
+        tools:layout="@layout/fragment_custom_names" >
+        <action
+            android:id="@+id/action_customNamesFragment_to_addNameFragment"
+            app:destination="@id/addNameFragment" />
+    </fragment>
 </navigation>
