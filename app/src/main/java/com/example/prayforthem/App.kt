@@ -13,7 +13,7 @@ import org.koin.core.context.startKoin
 
 class App : Application() {
 
-    private var theme: Int = SYSTEM_THEME_CODE
+    private var theme: Int = SYSTEM_THEME_CODE//можно убрать переменную
 
     override fun onCreate() {
         super.onCreate()
@@ -26,7 +26,7 @@ class App : Application() {
     }
 
     fun switchTheme(themeCode: Int) {
-        theme = themeCode
+        theme = themeCode //можно убрать строку
         when (themeCode) {
             LIGHT_THEME_CODE -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             DARK_THEME_CODE -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

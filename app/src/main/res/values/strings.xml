@@ -88,5 +88,8 @@
     <string name="light_theme">Светлая тема</string>
     <string name="dark_theme">Тёмная тема</string>
     <string name="system_theme">Как в системе</string>
+    <string name="names_added_by_user">Имена, добавленные пользователем</string>
+    <string name="added_names">Добавленные имена</string>
+    <string name="you_can_add_custom_names">Здесь Вы можете добавить имена, которых нет в базе приложения.</string>
 
 </resources>

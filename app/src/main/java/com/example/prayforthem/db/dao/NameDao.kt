@@ -1,6 +1,7 @@
 package com.example.prayforthem.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -27,5 +28,11 @@ interface NameDao {
 
     @Insert(entity = NameEntity::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun addName(name: NameEntity)
+
+    @Query("SELECT * FROM names WHERE is_custom = 1")
+    suspend fun getCustomNames(): List<NameEntity>
+
+    @Delete
+    suspend fun deleteName(name: NameEntity)
 
 }

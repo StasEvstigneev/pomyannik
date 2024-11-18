@@ -14,4 +14,8 @@ interface NamesRepository {
 
     suspend fun getNameById(id: Int): Name
 
+    suspend fun getCustomNames(): List<Name>
+
+    suspend fun deleteCustomName(name: Name)
+
 }
