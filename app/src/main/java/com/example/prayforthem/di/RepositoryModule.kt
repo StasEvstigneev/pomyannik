@@ -18,6 +18,8 @@ import com.example.prayforthem.prayers.data.PrayersRepositoryImpl
 import com.example.prayforthem.prayers.domain.PrayersRepository
 import com.example.prayforthem.prayerscategories.data.PrayersCategoriesRepositoryImpl
 import com.example.prayforthem.prayerscategories.domain.PrayersCategoriesRepository
+import com.example.prayforthem.settings.data.SettingsRepositoryImpl
+import com.example.prayforthem.settings.domain.SettingsRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -56,6 +58,10 @@ val repositoryModule = module {
 
     single<ArticleContentRepository> {
         ArticleContentRepositoryImpl(get())
+    }
+
+    single<SettingsRepository> {
+        SettingsRepositoryImpl(get())
     }
 
 }

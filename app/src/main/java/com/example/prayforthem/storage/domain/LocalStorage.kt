@@ -8,4 +8,8 @@ interface LocalStorage {
 
     fun getArticle(name: String): PrayerContent?
 
+    fun getThemeSettings(key: String): Int
+
+    fun saveThemeSettings(key: String, themeCode: Int)
+
 }

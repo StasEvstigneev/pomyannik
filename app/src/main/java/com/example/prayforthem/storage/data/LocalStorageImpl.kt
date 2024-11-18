@@ -32,4 +32,16 @@ class LocalStorageImpl(
         }
     }
 
+    override fun getThemeSettings(key: String): Int {
+        return sharedPreferences.getInt(key, DEFAULT_THEME_CODE)
+    }
+
+    override fun saveThemeSettings(key: String, themeCode: Int) {
+        sharedPreferences.edit().putInt(key, themeCode).apply()
+    }
+
+    companion object {
+        private const val DEFAULT_THEME_CODE = 0
+    }
+
 }

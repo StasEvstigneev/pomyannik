@@ -18,6 +18,8 @@ import com.example.prayforthem.prayers.domain.PrayersInteractor
 import com.example.prayforthem.prayers.domain.impl.PrayersInteractorImpl
 import com.example.prayforthem.prayerscategories.domain.PrayersCategoriesInteractor
 import com.example.prayforthem.prayerscategories.domain.impl.PrayersCategoriesInteractorImpl
+import com.example.prayforthem.settings.domain.SettingsInteractor
+import com.example.prayforthem.settings.domain.impl.SettingsInteractorImpl
 import org.koin.dsl.module
 
 val interactorModule = module {
@@ -56,6 +58,10 @@ val interactorModule = module {
 
     factory<ArticleContentInteractor> {
         ArticleContentInteractorImpl(get())
+    }
+
+    factory<SettingsInteractor> {
+        SettingsInteractorImpl(get())
     }
 
 }
