@@ -84,5 +84,9 @@
     <string name="article_title">Заголовок статьи</string>
     <string name="article_text">Текст статьи</string>
     <string name="settings">Настройки</string>
+    <string name="choose_theme">Выберите тему:</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="system_theme">Как в системе</string>
 
 </resources>
