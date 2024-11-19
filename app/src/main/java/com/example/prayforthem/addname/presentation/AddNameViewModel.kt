@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel() {
+open class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel() {
 
     private var nameNom: String? = null
     private var nameGen: String? = null
@@ -21,10 +21,10 @@ class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel
     private var nameInst: String? = null
     private var namePrep: String? = null
 
-    private val saveButtonState = MutableLiveData<Boolean>(false)
+    protected val saveButtonState = MutableLiveData<Boolean>(false)
     fun getSaveButtonState(): LiveData<Boolean> = saveButtonState
 
-    private val exitDialogStatus = MutableLiveData<Boolean>(false)
+    protected val exitDialogStatus = MutableLiveData<Boolean>(false)
     fun getExitDialogStatus(): LiveData<Boolean> = exitDialogStatus
 
     init {
@@ -32,7 +32,7 @@ class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel
         exitDialogStatus.postValue(false)
     }
 
-    fun updateName(text: Editable?, forms: NameForms) {
+    open fun updateName(text: Editable?, forms: NameForms) {
         val nameForm = prepareNameForm(text)
         when (forms) {
             NameForms.NAME_NOMINATIVE -> nameNom = nameForm
@@ -46,7 +46,7 @@ class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel
         exitDialogStatus.postValue(!objectHasAllNulls())
     }
 
-    fun saveName() {
+    open fun saveName() {
         if (objectContainsNoNull()) {
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
@@ -68,11 +68,11 @@ class AddNameViewModel(private val namesInteractor: NamesInteractor) : ViewModel
         }
     }
 
-    private fun prepareNameForm(text: Editable?): String? {
+    protected fun prepareNameForm(text: Editable?): String? {
         return if (!text.isNullOrBlank()) text.toString() else null
     }
 
-    private fun objectContainsNoNull(): Boolean {
+    open fun objectContainsNoNull(): Boolean {
         return arrayOf(nameNom, nameGen, nameDat, nameAcc, nameInst, namePrep).all { it != null }
     }
 

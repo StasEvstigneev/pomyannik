@@ -6,6 +6,7 @@ import com.example.prayforthem.chooselisting.presentation.ChooseListingViewModel
 import com.example.prayforthem.createlisting.presentation.CreateListingViewModel
 import com.example.prayforthem.customnames.presentation.CustomNamesViewModel
 import com.example.prayforthem.editlisting.presentation.EditListingViewModel
+import com.example.prayforthem.editname.presentation.EditNameViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
 import com.example.prayforthem.listingdisplay.presentation.ListingDisplayViewModel
 import com.example.prayforthem.listings.presentation.ListingsViewModel
@@ -117,6 +118,10 @@ val viewModelModule = module {
 
     viewModel<CustomNamesViewModel> {
         CustomNamesViewModel(get())
+    }
+
+    viewModel<EditNameViewModel> { (nameId: Int) ->
+        EditNameViewModel(nameId, get())
     }
 
 }
