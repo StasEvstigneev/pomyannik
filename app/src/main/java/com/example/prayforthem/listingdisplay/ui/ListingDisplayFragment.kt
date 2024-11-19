@@ -5,6 +5,8 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,6 +15,7 @@ import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentListingDisplayBinding
 import com.example.prayforthem.listingdisplay.domain.ListingDisplayScreenState
 import com.example.prayforthem.listingdisplay.presentation.ListingDisplayViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -25,6 +28,7 @@ class ListingDisplayFragment : Fragment() {
         parametersOf(args.isForHealthArg, args.listingIdArg)
     }
     private val listingAdapter = ListingDisplayAdapter(listOf())
+    private lateinit var menuBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,8 +75,24 @@ class ListingDisplayFragment : Fragment() {
 
         viewModel.getScreenState().observe(viewLifecycleOwner) { state ->
             renderState(state)
-
         }
+
+        val menuBottomSheetContainer = binding.bottomSheet
+        menuBottomSheetBehavior = BottomSheetBehavior.from(menuBottomSheetContainer).apply {
+            state = BottomSheetBehavior.STATE_HIDDEN
+        }
+        menuBottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_COLLAPSED -> binding.overlay.isVisible = true
+                    else -> binding.overlay.isVisible = false
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) = Unit
+
+        })
 
         binding.editIcon.setOnClickListener {
             val action = ListingDisplayFragmentDirections
@@ -81,7 +101,7 @@ class ListingDisplayFragment : Fragment() {
         }
 
         binding.shareIcon.setOnClickListener {
-            TODO()
+            menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
 
@@ -92,7 +112,6 @@ class ListingDisplayFragment : Fragment() {
                 binding.toolbar.title = state.listingTitle
                 listingAdapter.list = state.list
                 listingAdapter.notifyDataSetChanged()
-
             }
         }
     }

@@ -309,5 +309,13 @@
 
     </style>
 
+    <style name="BottomSheetTextAppearance">
+        <item name="android:fontFamily">@font/alumni_sans_medium</item>
+        <item name="android:textSize">@dimen/_24sp</item>
+        <item name="android:textColor">?attr/textAppearanceBody1</item>
+        <item name="android:textAlignment">textStart</item>
+
+    </style>
+
 
 </resources>

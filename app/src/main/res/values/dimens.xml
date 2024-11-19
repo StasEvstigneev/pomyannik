@@ -23,6 +23,9 @@
     <dimen name="_64dp">64dp</dimen>
     <dimen name="_80dp">80dp</dimen>
     <dimen name="_92dp">92dp</dimen>
+    <dimen name="_240dp">240dp</dimen>
+    <dimen name="bottom_sheet_divider_width">50dp</dimen>
+    <dimen name="bottom_sheet_divider_height">4dp</dimen>
     <dimen name="progress_bar_size">44dp</dimen>
     <dimen name="prayer_item_list_height">60dp</dimen>
 
