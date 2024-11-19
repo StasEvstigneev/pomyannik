@@ -31,4 +31,8 @@ class NamesInteractorImpl(private val namesRepository: NamesRepository) : NamesI
     override suspend fun deleteCustomName(name: Name) {
         namesRepository.deleteCustomName(name)
     }
+
+    override suspend fun updateCustomName(name: Name) {
+        namesRepository.updateCustomName(name)
+    }
 }

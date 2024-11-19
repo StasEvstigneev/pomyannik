@@ -18,4 +18,6 @@ interface NamesInteractor {
 
     suspend fun deleteCustomName(name: Name)
 
+    suspend fun updateCustomName(name: Name)
+
 }

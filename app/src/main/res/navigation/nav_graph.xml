@@ -274,5 +274,16 @@
         <action
             android:id="@+id/action_customNamesFragment_to_addNameFragment"
             app:destination="@id/addNameFragment" />
+        <action
+            android:id="@+id/action_customNamesFragment_to_editNameFragment"
+            app:destination="@id/editNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editNameFragment"
+        android:name="com.example.prayforthem.editname.ui.EditNameFragment"
+        android:label="EditNameFragment" >
+        <argument
+            android:name="nameIdArg"
+            app:argType="integer" />
     </fragment>
 </navigation>

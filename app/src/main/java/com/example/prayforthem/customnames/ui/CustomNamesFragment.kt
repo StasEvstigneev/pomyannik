@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -60,6 +61,14 @@ class CustomNamesFragment : Fragment(), RecyclerViewItemClick<Name>, RecyclerVie
             findNavController().navigate(action)
         }
 
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack()
+                }
+            })
+
     }
 
     override fun onResume() {
@@ -102,7 +111,9 @@ class CustomNamesFragment : Fragment(), RecyclerViewItemClick<Name>, RecyclerVie
     }
 
     override fun onItemClick(item: Name) {
-        TODO("Not yet implemented")
+        val action =
+            CustomNamesFragmentDirections.actionCustomNamesFragmentToEditNameFragment(item.id!!)
+        findNavController().navigate(action)
     }
 
     override fun onDeleteElementClick(item: Name) {

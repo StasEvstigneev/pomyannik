@@ -1,53 +1,58 @@
-package com.example.prayforthem.addname.ui
+package com.example.prayforthem.editname.ui
 
 import android.os.Bundle
 import android.text.Editable
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.prayforthem.R
-import com.example.prayforthem.addname.presentation.AddNameViewModel
-import com.example.prayforthem.databinding.FragmentAddNameBinding
+import com.example.prayforthem.addname.ui.AddNameFragment
+import com.example.prayforthem.editname.presentation.EditNameViewModel
 import com.example.prayforthem.utils.DialogConstructor
 import com.example.prayforthem.utils.NameForms
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
-open class AddNameFragment : Fragment() {
+class EditNameFragment : AddNameFragment() {
 
-    private var _binding: FragmentAddNameBinding? = null
-    protected val binding get() = _binding!!
-    open val viewModel by viewModel<AddNameViewModel>()
-    protected var showExitDialog = false
-    protected lateinit var exitDialog: MaterialAlertDialogBuilder
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAddNameBinding.inflate(inflater, container, false)
-        return binding.root
+    private val args: EditNameFragmentArgs by navArgs()
+    override val viewModel: EditNameViewModel by viewModel {
+        parametersOf(args.nameIdArg)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.apply {
+            title = getString(R.string.edit_name)
             setNavigationOnClickListener {
                 leaveFragment()
             }
         }
 
+        binding.buttonSave.text = getString(R.string.update)
+
         viewModel.getSaveButtonState().observe(viewLifecycleOwner) { status ->
             binding.buttonSave.isEnabled = status
+            Log.d("UPDATED_NAME", "Save button = $status")
         }
 
         viewModel.getExitDialogStatus().observe(viewLifecycleOwner) { status ->
             showExitDialog = status
+            Log.d("UPDATED_NAME", "Exit dialog = $status")
+        }
+
+        viewModel.getNameData().observe(viewLifecycleOwner) { name ->
+            binding.apply {
+                textInputLayoutNom.editText?.setText(name.nameNominative)
+                textInputLayoutGen.editText?.setText(name.nameGenitive)
+                textInputLayoutDat.editText?.setText(name.nameDative)
+                textInputLayoutAcc.editText?.setText(name.nameAccusative)
+                textInputLayoutInst.editText?.setText(name.nameInstrumental)
+                textInputLayoutPrep.editText?.setText(name.namePrepositional)
+            }
         }
 
         binding.editTextNom.doAfterTextChanged { text: Editable? ->
@@ -97,18 +102,5 @@ open class AddNameFragment : Fragment() {
 
     }
 
-    protected fun leaveFragment() {
-        if (showExitDialog) {
-            binding.overlay.isVisible = true
-            exitDialog.show()
-        } else {
-            findNavController().popBackStack()
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
 }

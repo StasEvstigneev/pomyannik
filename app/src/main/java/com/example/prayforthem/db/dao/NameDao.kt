@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.prayforthem.db.entities.NameEntity
 import com.example.prayforthem.db.models.NameBasicDataDB
 
@@ -34,5 +35,8 @@ interface NameDao {
 
     @Delete
     suspend fun deleteName(name: NameEntity)
+
+    @Update(entity = NameEntity::class, onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateCustomName(name: NameEntity)
 
 }
