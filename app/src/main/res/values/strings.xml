@@ -93,5 +93,9 @@
     <string name="you_can_add_custom_names">Здесь Вы можете добавить имена, которых нет в базе приложения.</string>
     <string name="edit_name">Редактировать имя</string>
     <string name="update">Обновить</string>
+    <string name="share_list_as_text">Отправить список в виде текста</string>
+    <string name="share_list_as_image">Отправить список в виде изображения</string>
+    <string name="save_list_as_image">Сохранить список в виде изображения</string>
+
 
 </resources>
