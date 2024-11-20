@@ -13,7 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentListingDisplayBinding
-import com.example.prayforthem.listingdisplay.domain.ListingDisplayScreenState
+import com.example.prayforthem.listingdisplay.domain.models.ListingDisplayScreenState
 import com.example.prayforthem.listingdisplay.presentation.ListingDisplayViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -100,9 +100,15 @@ class ListingDisplayFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.shareAsText.setOnClickListener {
+            menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            shareListingAsText()
+        }
+
         binding.shareIcon.setOnClickListener {
             menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
+
     }
 
     private fun renderState(state: ListingDisplayScreenState) {
@@ -114,6 +120,12 @@ class ListingDisplayFragment : Fragment() {
                 listingAdapter.notifyDataSetChanged()
             }
         }
+    }
+
+    private fun shareListingAsText() {
+        val title = binding.title.text.toString()
+        val names = listingAdapter.list
+        viewModel.shareListingAsText(title, names)
     }
 
     override fun onResume() {

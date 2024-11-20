@@ -1,4 +1,4 @@
-package com.example.prayforthem.listingdisplay.domain
+package com.example.prayforthem.listingdisplay.domain.models
 
 import com.example.prayforthem.listings.domain.models.PersonDignityName
 
