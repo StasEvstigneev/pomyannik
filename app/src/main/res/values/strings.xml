@@ -29,11 +29,11 @@
     <string name="name_in_nominative">Имя в именительном падеже</string>
     <string name="name_nominative_helper">Пример: Кто? - Иоанн</string>
     <string name="name_in_genitive">Имя в родительном падеже</string>
-    <string name="name_genitive_helper">Пример: Кого? - Иоанна</string>
+    <string name="name_genitive_helper">Пример: Нет кого? - Иоанна</string>
     <string name="name_in_dative">Имя в дательном падеже</string>
     <string name="name_dative_helper">Пример: Кому? - Иоанну</string>
     <string name="name_in_accusative">Имя в винительном падеже</string>
-    <string name="name_accusative_helper">Пример: Кого? - Иоанна</string>
+    <string name="name_accusative_helper">Пример: Вижу кого? - Иоанна</string>
     <string name="name_in_instrumental">Имя в творительном падеже</string>
     <string name="name_instrumental_helper">Пример: Кем? - Иоанном</string>
     <string name="name_in_prepositional">Имя в предложном падеже</string>
