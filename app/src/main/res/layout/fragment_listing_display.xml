@@ -24,7 +24,7 @@
             android:id="@+id/shareIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_24dp"
             app:layout_constraintBottom_toBottomOf="@id/toolbar"
             app:layout_constraintEnd_toEndOf="@id/toolbar"
             app:layout_constraintTop_toTopOf="@id/toolbar"
@@ -34,7 +34,7 @@
             android:id="@+id/editIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_24dp"
             app:layout_constraintBottom_toBottomOf="@id/toolbar"
             app:layout_constraintEnd_toStartOf="@id/shareIcon"
             app:layout_constraintTop_toTopOf="@id/toolbar"
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        tools:visibility="invisible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomSheet"
@@ -125,7 +125,7 @@
         app:behavior_hideable="true"
         app:behavior_peekHeight="@dimen/_240dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <View
             android:id="@+id/bottom_sheet_divider"

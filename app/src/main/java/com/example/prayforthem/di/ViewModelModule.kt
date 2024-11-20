@@ -61,7 +61,7 @@ val viewModelModule = module {
     }
 
     viewModel<ListingDisplayViewModel> { (isForHealth: Boolean, listingId: Int) ->
-        ListingDisplayViewModel(isForHealth, listingId, get())
+        ListingDisplayViewModel(isForHealth, listingId, get(), get())
     }
 
     viewModel<EditListingViewModel> { (listingId: Int) ->
