@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.prayforthem.App
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentListingDisplayBinding
 import com.example.prayforthem.listingdisplay.domain.models.ListingDisplayScreenState
@@ -109,9 +107,14 @@ class ListingDisplayFragment : Fragment() {
             shareListingAsText()
         }
 
-        binding.saveAsImage.setOnClickListener {
-            saveListingAsImage()
+        binding.shareAsImage.setOnClickListener {
             menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            shareListingAsJpeg()
+        }
+
+        binding.saveAsImage.setOnClickListener {
+            menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            saveListingAsImage()
         }
 
         binding.shareIcon.setOnClickListener {
@@ -137,6 +140,19 @@ class ListingDisplayFragment : Fragment() {
         viewModel.shareListingAsText(title, names)
     }
 
+    private fun shareListingAsJpeg() {
+        val imageUri = ImageSaver.getUriFromView(requireContext(), binding.listCard)
+        if (imageUri == null) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.image_saving_failure), Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            viewModel.shareListingAsJpeg(imageUri)
+        }
+
+    }
+
     private fun saveListingAsImage() {
         if (
             ImageSaver
@@ -146,10 +162,13 @@ class ListingDisplayFragment : Fragment() {
                     fileName = args.listingTitleArg
                 )
         ) {
-            Toast.makeText(requireContext(), getString(R.string.image_saved), Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.image_saved), Toast.LENGTH_SHORT)
+                .show()
         } else {
-            Toast.makeText(requireContext(),
-                getString(R.string.image_saving_failure), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.image_saving_failure), Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
