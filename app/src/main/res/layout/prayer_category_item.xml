@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/prayer_item_list_height"
-    android:layout_marginVertical="@dimen/_4dp"
     android:background="?attr/background">
 
     <TextView
@@ -17,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Молитвы к святым праведным Богоотцам Иоаки́му и Анне о даровании детей" />
+        tools:text="Молитвы св. Николаю Чудотворцу" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

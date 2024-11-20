@@ -3,7 +3,7 @@ package com.example.prayforthem.prayerscategories.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prayforthem.databinding.PrayerItemBinding
+import com.example.prayforthem.databinding.PrayerCategoryItemBinding
 import com.example.prayforthem.listings.domain.RecyclerViewItemClick
 import com.example.prayforthem.prayerscategories.domain.models.PrayerCategory
 
@@ -14,7 +14,7 @@ class PrayerCategoriesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrayerCategoriesViewHolder {
         val layoutInspector = LayoutInflater.from(parent.context)
-        val binding = PrayerItemBinding.inflate(layoutInspector, parent, false)
+        val binding = PrayerCategoryItemBinding.inflate(layoutInspector, parent, false)
         return PrayerCategoriesViewHolder(binding)
     }
 
@@ -28,7 +28,7 @@ class PrayerCategoriesAdapter(
         }
     }
 
-    class PrayerCategoriesViewHolder(val binding: PrayerItemBinding) :
+    class PrayerCategoriesViewHolder(val binding: PrayerCategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(category: PrayerCategory) {
