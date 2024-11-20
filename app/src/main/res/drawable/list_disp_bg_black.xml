@@ -6,15 +6,16 @@
             <stroke
                 android:width="@dimen/_2dp"
                 android:color="?attr/textAppearanceBody1" />
+            <solid android:color="?attr/background" />
         </shape>
     </item>
 
     <item
-        android:top="@dimen/_6dp"
         android:bottom="@dimen/_6dp"
-        android:start="@dimen/_6dp"
         android:end="@dimen/_6dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:start="@dimen/_6dp"
+        android:top="@dimen/_6dp">
         <shape android:shape="rectangle">
             <stroke
                 android:width="@dimen/_2dp"

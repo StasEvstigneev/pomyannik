@@ -10,6 +10,7 @@ internal object Constants {
     const val NULL = 0
     const val SELECTED_LISTINGS_KEY = "listings_key"
     const val LISTINGS_IDS = "listings_ids"
+    const val PICTURES_DIRECTORY = "Pictures"
 
     //Ключи молитв
     const val NAMES_NOM = "NAMES_NOM"
