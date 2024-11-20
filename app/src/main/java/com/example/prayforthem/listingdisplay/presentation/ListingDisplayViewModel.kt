@@ -1,5 +1,6 @@
 package com.example.prayforthem.listingdisplay.presentation
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -51,6 +52,10 @@ class ListingDisplayViewModel(
             namesList.add(NameFormsConstructor.createPersonShortGenitive(item))
         }
         sharingInteractor.shareListAsText(title, namesList)
+    }
+
+    fun shareListingAsJpeg(image: Uri) {
+        sharingInteractor.shareListAsJpeg(image)
     }
 
 }

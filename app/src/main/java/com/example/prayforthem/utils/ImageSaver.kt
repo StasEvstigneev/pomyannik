@@ -10,6 +10,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import androidx.core.content.FileProvider
 import com.example.prayforthem.R
 import java.io.File
 import java.io.FileOutputStream
@@ -31,7 +32,7 @@ internal object ImageSaver {
         }
     }
 
-    fun getImageOfView(view: View): Bitmap? {
+    private fun getImageOfView(view: View): Bitmap? {
         var image: Bitmap? = null
         try {
             image = Bitmap.createBitmap(
@@ -84,6 +85,23 @@ internal object ImageSaver {
         }
         fos?.close()
 
+    }
+
+    fun getUriFromView(context: Context, view: View): Uri? {
+        val bitmap = getImageOfView(view)
+        if (bitmap == null) {
+            return null
+        } else {
+            return try {
+                val file = File(context.cacheDir, "shared_image_${System.currentTimeMillis()}.jpg")
+                FileOutputStream(file).use { outputStream ->
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                }
+                FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
+            } catch (e: Exception) {
+                null
+            }
+        }
     }
 
 }
