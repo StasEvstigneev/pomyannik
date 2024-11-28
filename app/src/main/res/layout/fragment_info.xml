@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/pamyatka_o_zapiskah"
-        style="@style/PrayerCategoryTextAppearance"
+        style="@style/PrayerCategoryItemTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_24dp"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/postanovlenie_ob_imenah"
-        style="@style/PrayerCategoryTextAppearance"
+        style="@style/PrayerCategoryItemTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_24dp"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/pozhertvovaniya"
-        style="@style/PrayerCategoryTextAppearance"
+        style="@style/PrayerCategoryItemTextAppearance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_24dp"
