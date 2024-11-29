@@ -99,7 +99,7 @@ class EditListingViewModel(
     }
 
     fun deleteItemFromList(item: PersonDignityName) {
-        deletedPerson.add(item)
+        if (item.person.id != null) deletedPerson.add(item)
         updatedList.remove(item)
         updateScreenState()
     }
