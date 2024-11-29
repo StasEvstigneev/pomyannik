@@ -4,6 +4,7 @@
     <dimen name="_1dp">1dp</dimen>
     <dimen name="_2dp">2dp</dimen>
     <dimen name="_4dp">4dp</dimen>
+    <dimen name="_4sp">4sp</dimen>
     <dimen name="_6dp">6dp</dimen>
     <dimen name="_8dp">8dp</dimen>
     <dimen name="_12dp">12dp</dimen>
@@ -14,6 +15,7 @@
     <dimen name="_22sp">22sp</dimen>
     <dimen name="_24dp">24dp</dimen>
     <dimen name="_24sp">24sp</dimen>
+    <dimen name="_28sp">28sp</dimen>
     <dimen name="_32dp">32dp</dimen>
     <dimen name="_32sp">32sp</dimen>
     <dimen name="_36sp">36sp</dimen>
