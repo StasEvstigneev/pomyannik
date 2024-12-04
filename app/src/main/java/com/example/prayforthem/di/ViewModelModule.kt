@@ -48,8 +48,8 @@ val viewModelModule = module {
         InfoViewModel()
     }
 
-    viewModel<CreateListingViewModel> {
-        CreateListingViewModel(get(), get(), get(), get())
+    viewModel<CreateListingViewModel> { (isForHealth: Boolean) ->
+        CreateListingViewModel(isForHealth, get(), get(), get(), get())
     }
 
     viewModel<NamesViewModel> {
