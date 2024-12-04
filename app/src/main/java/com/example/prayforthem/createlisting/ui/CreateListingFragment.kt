@@ -163,7 +163,6 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
                 buttonAddName.isEnabled = !state.isListFull
                 personAdapter.list = state.list
                 personAdapter.notifyDataSetChanged()
-
                 showExitDialog = (state.listSize > NULL || binding.editText.text.isNullOrEmpty())
             }
         }

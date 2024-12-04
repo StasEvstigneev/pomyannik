@@ -19,20 +19,44 @@ import java.io.OutputStream
 internal object ImageSaver {
 
     fun saveViewAsJpeg(context: Context, view: View, fileName: String): Boolean {
-        val bitmap = getImageOfView(view)
-        if (bitmap == null) {
-            return false
-        } else {
-            try {
-                saveImageToStorage(context, bitmap, fileName)
-                return true
-            } catch (e: Exception) {
+        try {
+            val bitmap = getImageOfView(context, view)
+            if (bitmap == null) {
                 return false
+            } else {
+                try {
+                    saveImageToStorage(context, bitmap, fileName)
+                    return true
+                } catch (e: Exception) {
+                    return false
+                }
             }
+        } catch (e: Exception) {
+            return false
         }
+
     }
 
-    private fun getImageOfView(view: View): Bitmap? {
+    private fun getImageOfView(context: Context, view: View): Bitmap? {
+        val originalViewParams = view.layoutParams
+        val originalWidth = originalViewParams.width
+        val originalHeight = originalViewParams.height
+        Log.d("View measure", "Original W = $originalWidth, original H = $originalHeight")
+
+        val fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
+        val fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
+        Log.d("View measure", "fixedWidthPx = $fixedWidthPx, fixedHeightPx = $fixedHeightPx")
+
+        view.layoutParams = originalViewParams.apply {
+            width = fixedWidthPx
+            height = fixedHeightPx
+        }
+        view.measure(
+            View.MeasureSpec.makeMeasureSpec(fixedWidthPx, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(fixedHeightPx, View.MeasureSpec.EXACTLY)
+        )
+        view.layout(0, 0, fixedWidthPx, fixedHeightPx)
+
         var image: Bitmap? = null
         try {
             image = Bitmap.createBitmap(
@@ -45,6 +69,12 @@ internal object ImageSaver {
         } catch (e: Exception) {
             Log.e("Image fom view", "Failure")
         }
+
+        view.layoutParams = originalViewParams.apply {
+            width = originalWidth
+            height = originalHeight
+        }
+
         return image
     }
 
@@ -88,7 +118,7 @@ internal object ImageSaver {
     }
 
     fun getUriFromView(context: Context, view: View): Uri? {
-        val bitmap = getImageOfView(view)
+        val bitmap = getImageOfView(context, view)
         if (bitmap == null) {
             return null
         } else {
