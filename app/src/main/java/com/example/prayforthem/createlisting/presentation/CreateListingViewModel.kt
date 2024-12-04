@@ -68,8 +68,8 @@ class CreateListingViewModel(
                 )
             saveButtonState.postValue(checkSavingPossibility())
             exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
-            Log.d("ADDED PERSON", "$person")
-            Log.d("ADDED PERSON", "$listOfPeople")
+            Log.d("CREATE LISTING", "Добавили: $person")
+            Log.d("CREATE LISTING", "Список после добавления: $listOfPeople")
         }
     }
 
@@ -86,6 +86,7 @@ class CreateListingViewModel(
     }
 
     fun removePersonFromList(position: Int) {
+        Log.d("CREATE LISTING", "Удаляем: ${listOfPeople[position]}")
         listOfPeople.removeAt(position)
         screenState.postValue(
             CreateListScreenState.Content(
@@ -94,6 +95,7 @@ class CreateListingViewModel(
                 listOfPeople.size >= LIST_MAX_SIZE
             )
         )
+        Log.d("CREATE LISTING", "Список после удаления: $listOfPeople")
         saveButtonState.postValue(checkSavingPossibility())
         exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
     }
@@ -110,6 +112,7 @@ class CreateListingViewModel(
                                 forHealth = isForHealth
                             )
                         ).toInt()
+                    Log.d("CREATE LISTING", "Создали список: $listTitle, c ID: $listingId")
 
                     listOfPeople.forEach { person ->
                         personInteractor.savePerson(
@@ -120,6 +123,7 @@ class CreateListingViewModel(
                                 parentListingId = listingId
                             )
                         )
+                        Log.d("CREATE LISTING", "Добавили в базу: $person")
                     }
                 }
             }
