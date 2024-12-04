@@ -106,7 +106,6 @@ class CreateListingViewModel(
         if (listOfPeople.size > ZERO && listTitle.isNotEmpty()) {
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
-
                     val listingId: Int = listingInteractor
                         .saveListing(
                             Listing(
@@ -115,7 +114,6 @@ class CreateListingViewModel(
                                 forHealth = isForHealth
                             )
                         ).toInt()
-
 
                     listOfPeople.forEach { person ->
                         personInteractor.savePerson(
@@ -126,7 +124,6 @@ class CreateListingViewModel(
                                 parentListingId = listingId
                             )
                         )
-
                     }
                 }
             }

@@ -129,7 +129,6 @@ class EditListingViewModel(
                 deletedPerson.forEach { item ->
                     personInteractor.deletePerson(item.person)
                 }
-
                 listingInteractor.updateListing(
                     Listing(
                         listingId = listingId,
@@ -137,7 +136,6 @@ class EditListingViewModel(
                         forHealth = initialListing.forHealth
                     )
                 )
-
                 updatedList.forEach { person ->
                     personInteractor.savePerson(person.person)
                 }
