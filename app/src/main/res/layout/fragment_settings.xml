@@ -72,7 +72,7 @@
         android:layout_marginTop="@dimen/_40dp"
         android:drawablePadding="@dimen/_8dp"
         android:text="@string/names_added_by_user"
-        app:drawableStartCompat="@drawable/ic_arrow_forward"
+        app:drawableStartCompat="@drawable/ic_added_person"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/themeSettings" />
