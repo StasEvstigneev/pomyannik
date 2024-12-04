@@ -19,13 +19,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CreateListingViewModel(
+    private val isForHealth: Boolean,
     private val namesInteractor: NamesInteractor,
     private val dignityInteractor: DignityInteractor,
     private val personInteractor: PersonInteractor,
     private val listingInteractor: ListingInteractor
 ) : ViewModel() {
 
-    private var isForHealth = true
     private var isListFull = false
     private var listTitle = ""
     private var listOfPeople = ArrayList<PersonBasicData>()
@@ -43,10 +43,6 @@ class CreateListingViewModel(
         screenState
             .postValue(CreateListScreenState.Content(listOfPeople, listOfPeople.size, isListFull))
         exitDialogStatus.postValue(listTitle.isNotEmpty() || listOfPeople.size > ZERO)
-    }
-
-    fun setListType(type: Boolean) {
-        isForHealth = type
     }
 
     fun updateListTitle(title: String) {

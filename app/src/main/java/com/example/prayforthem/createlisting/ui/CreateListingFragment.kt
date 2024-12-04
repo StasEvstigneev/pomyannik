@@ -12,6 +12,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prayforthem.R
 import com.example.prayforthem.createlisting.domain.CreateListScreenState
@@ -21,19 +22,20 @@ import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.DialogConstructor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class CreateListingFragment : Fragment(), TempPersonClickInterface {
 
     private var _binding: FragmentCreateListingBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModel<CreateListingViewModel>()
+    private val args: CreateListingFragmentArgs by navArgs()
+    private val viewModel: CreateListingViewModel by viewModel {
+        parametersOf(args.isForHealthArg)
+    }
     private val personAdapter = TempPersonListingAdapter(
         ArrayList(),
         this
     )
-    private var isForHealth: Boolean = true
-    private lateinit var listType: String
-
     private var showExitDialog = false
     private lateinit var exitDialog: MaterialAlertDialogBuilder
 
@@ -42,18 +44,17 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCreateListingBinding.inflate(inflater, container, false)
-        isForHealth = CreateListingFragmentArgs.fromBundle(requireArguments()).isForHealthArg
-        listType =
-            if (isForHealth) getString(R.string.for_the_health).lowercase()
-            else getString(R.string.for_the_repose).lowercase()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setListType(isForHealth)
         binding.toolbar.apply {
-            title = getString(R.string.new_list, listType)
+            title = getString(
+                R.string.new_list,
+                if (args.isForHealthArg) getString(R.string.for_the_health).lowercase()
+                else getString(R.string.for_the_repose).lowercase()
+            )
             setNavigationOnClickListener {
                 leaveFragment()
             }
