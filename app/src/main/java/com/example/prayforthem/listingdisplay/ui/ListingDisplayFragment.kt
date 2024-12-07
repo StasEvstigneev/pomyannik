@@ -5,6 +5,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -59,6 +60,7 @@ class ListingDisplayFragment : Fragment() {
                 cross.setImageResource(R.drawable.cross_orthodox_black)
                 divider.setImageResource(R.drawable.divider_ornament_black)
                 title.setTextColor(color)
+
             }
         }
 
@@ -87,8 +89,21 @@ class ListingDisplayFragment : Fragment() {
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
-                    BottomSheetBehavior.STATE_COLLAPSED -> binding.overlay.isVisible = true
-                    else -> binding.overlay.isVisible = false
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        if (!binding.overlay.isVisible) showOverlay()
+                    }
+
+                    BottomSheetBehavior.STATE_DRAGGING -> {
+                        binding.overlay.isVisible = true
+                    }
+
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                        hideOverlay()
+                    }
+
+                    else -> {
+                        binding.overlay.isVisible = true
+                    }
                 }
             }
 
@@ -119,6 +134,7 @@ class ListingDisplayFragment : Fragment() {
 
         binding.shareIcon.setOnClickListener {
             menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            showOverlay()
         }
 
     }
@@ -150,7 +166,22 @@ class ListingDisplayFragment : Fragment() {
         } else {
             viewModel.shareListingAsJpeg(imageUri)
         }
+    }
 
+    private fun showOverlay() {
+        binding.overlay.apply {
+            isVisible = true
+            animation = AnimationUtils.loadAnimation(requireContext(), R.anim.overlay_fade_in)
+            animate()
+        }
+    }
+
+    private fun hideOverlay() {
+        binding.overlay.apply {
+            animation = AnimationUtils.loadAnimation(requireContext(), R.anim.overlay_fade_out)
+            animate()
+            isVisible = false
+        }
     }
 
     private fun saveListingAsImage() {
