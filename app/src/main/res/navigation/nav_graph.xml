@@ -9,7 +9,7 @@
         android:id="@+id/listsFragment"
         android:name="com.example.prayforthem.listings.ui.ListingsFragment"
         android:label="fragment_lists"
-        tools:layout="@layout/fragment_listings" >
+        tools:layout="@layout/fragment_listings">
         <action
             android:id="@+id/action_listsFragment_to_createListFragment"
             app:destination="@id/createListFragment" />
@@ -21,31 +21,37 @@
         android:id="@+id/prayersCategoriesFragment"
         android:name="com.example.prayforthem.prayerscategories.ui.PrayersCategoriesFragment"
         android:label="fragment_prayers"
-        tools:layout="@layout/fragment_prayers_categories" >
+        tools:layout="@layout/fragment_prayers_categories">
         <action
             android:id="@+id/action_prayersCategoriesFragment_to_prayersFragment"
-            app:destination="@id/prayersFragment" />
+            app:destination="@id/prayersFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.example.prayforthem.information.ui.InfoFragment"
         android:label="fragment_info"
-        tools:layout="@layout/fragment_info" >
+        tools:layout="@layout/fragment_info">
         <action
             android:id="@+id/action_infoFragment_to_articleDisplayFragment"
-            app:destination="@id/articleDisplayFragment" />
+            app:destination="@id/articleDisplayFragment"
+            app:enterAnim="@anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/forHealthFragment"
         android:name="com.example.prayforthem.listings_for_health.ui.ForHealthFragment"
         android:label="fragment_for_health"
-        tools:layout="@layout/fragment_for_health" >
+        tools:layout="@layout/fragment_for_health">
+
     </fragment>
     <fragment
         android:id="@+id/createListFragment"
         android:name="com.example.prayforthem.createlisting.ui.CreateListingFragment"
         android:label="fragment_create_list"
-        tools:layout="@layout/fragment_create_listing" >
+        tools:layout="@layout/fragment_create_listing">
         <argument
             android:name="isForHealthArg"
             app:argType="boolean" />
@@ -57,7 +63,7 @@
         android:id="@+id/namesFragment"
         android:name="com.example.prayforthem.names.ui.NamesFragment"
         android:label="fragment_names"
-        tools:layout="@layout/fragment_names" >
+        tools:layout="@layout/fragment_names">
         <action
             android:id="@+id/action_namesFragment_to_createListFragment"
             app:destination="@id/createListFragment" />
@@ -80,7 +86,7 @@
         android:id="@+id/listingDisplayFragment"
         android:name="com.example.prayforthem.listingdisplay.ui.ListingDisplayFragment"
         android:label="fragment_listing_display"
-        tools:layout="@layout/fragment_listing_display" >
+        tools:layout="@layout/fragment_listing_display">
         <argument
             android:name="isForHealthArg"
             app:argType="boolean" />
@@ -89,8 +95,8 @@
             app:argType="integer" />
         <argument
             android:name="listingTitleArg"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='""'
+            app:argType="string" />
         <action
             android:id="@+id/action_listingDisplayFragment_to_editListingFragment"
             app:destination="@id/editListingFragment" />
@@ -99,7 +105,7 @@
         android:id="@+id/editListingFragment"
         android:name="com.example.prayforthem.editlisting.ui.EditListingFragment"
         android:label="fragment_edit_listing"
-        tools:layout="@layout/fragment_edit_listing" >
+        tools:layout="@layout/fragment_edit_listing">
         <argument
             android:name="listingIdArg"
             app:argType="integer" />
@@ -111,23 +117,31 @@
         android:id="@+id/prayersFragment"
         android:name="com.example.prayforthem.prayers.ui.PrayersFragment"
         android:label="fragment_prayers"
-        tools:layout="@layout/fragment_prayers" >
+        tools:layout="@layout/fragment_prayers">
         <argument
             android:name="categoryIdArg"
             app:argType="integer" />
         <action
             android:id="@+id/action_prayersFragment_to_prayerAddNamesFragment"
-            app:destination="@id/prayerAddNamesFragment" />
+            app:destination="@id/prayerAddNamesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_prayersFragment_to_pomyannikAddDuhOtetsFragment"
-            app:destination="@id/pomyannikAddDuhOtetsFragment" />
+            app:destination="@id/pomyannikAddDuhOtetsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
     <fragment
         android:id="@+id/prayerDisplayFragment"
         android:name="com.example.prayforthem.prayerdisplay.ui.PrayerDisplayFragment"
         android:label="fragment_prayer_display"
-        tools:layout="@layout/fragment_prayer_display" >
+        tools:layout="@layout/fragment_prayer_display">
         <argument
             android:name="prayerFileNameArg"
             app:argType="string" />
@@ -139,13 +153,15 @@
         android:id="@+id/prayerAddNamesFragment"
         android:name="com.example.prayforthem.prayeraddnames.ui.PrayerAddNamesFragment"
         android:label="fragment_prayer_add_names"
-        tools:layout="@layout/fragment_prayer_add_names" >
+        tools:layout="@layout/fragment_prayer_add_names">
         <argument
             android:name="prayerFileNameArg"
             app:argType="string" />
         <action
             android:id="@+id/action_prayerAddNamesFragment_to_prayerDisplayFragment"
             app:destination="@id/prayerDisplayFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/prayersFragment" />
         <action
             android:id="@+id/action_prayerAddNamesFragment_to_namesFragment"
@@ -161,7 +177,7 @@
         android:id="@+id/chooseListingFragment"
         android:name="com.example.prayforthem.chooselisting.ui.ChooseListingFragment"
         android:label="fragment_choose_listing"
-        tools:layout="@layout/fragment_choose_listing" >
+        tools:layout="@layout/fragment_choose_listing">
         <argument
             android:name="forHealthArg"
             app:argType="boolean" />
@@ -169,7 +185,7 @@
     <fragment
         android:id="@+id/pomyannikAddDuhOtetsFragment"
         android:name="com.example.prayforthem.pomyannikduhotets.ui.PomyannikDuhOtetsFragment"
-        android:label="PomyannikAddDuhOtetsFragment" >
+        android:label="PomyannikAddDuhOtetsFragment">
         <argument
             android:name="prayerFileNameArg"
             app:argType="string" />
@@ -181,12 +197,16 @@
             app:destination="@id/chooseListingFragment" />
         <action
             android:id="@+id/action_pomyannikAddDuhOtetsFragment_to_pomyannikRoditeliFragment"
-            app:destination="@id/pomyannikRoditeliFragment" />
+            app:destination="@id/pomyannikRoditeliFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/pomyannikRoditeliFragment"
         android:name="com.example.prayforthem.pomyannikroditeli.ui.PomyannikRoditeliFragment"
-        android:label="PomyannikRoditeliFragment" >
+        android:label="PomyannikRoditeliFragment">
         <action
             android:id="@+id/action_pomyannikRoditeliFragment_to_chooseListingFragment"
             app:destination="@id/chooseListingFragment" />
@@ -195,12 +215,16 @@
             app:destination="@id/namesFragment" />
         <action
             android:id="@+id/action_pomyannikRoditeliFragment_to_pomyannikSrodnikiFragment"
-            app:destination="@id/pomyannikSrodnikiFragment" />
+            app:destination="@id/pomyannikSrodnikiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/pomyannikSrodnikiFragment"
         android:name="com.example.prayforthem.pomyanniksrodniki.ui.PomyannikSrodnikiFragment"
-        android:label="PomyannikSrodnikiFragment" >
+        android:label="PomyannikSrodnikiFragment">
         <action
             android:id="@+id/action_pomyannikSrodnikiFragment_to_namesFragment"
             app:destination="@id/namesFragment" />
@@ -209,12 +233,16 @@
             app:destination="@id/chooseListingFragment" />
         <action
             android:id="@+id/action_pomyannikSrodnikiFragment_to_pomyannikDrugiFragment"
-            app:destination="@id/pomyannikDrugiFragment" />
+            app:destination="@id/pomyannikDrugiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/pomyannikDrugiFragment"
         android:name="com.example.prayforthem.pomyannikdrugi.ui.PomyannikDrugiFragment"
-        android:label="PomyannikDrugiFragment" >
+        android:label="PomyannikDrugiFragment">
         <action
             android:id="@+id/action_pomyannikDrugiFragment_to_namesFragment"
             app:destination="@id/namesFragment" />
@@ -223,12 +251,16 @@
             app:destination="@id/chooseListingFragment" />
         <action
             android:id="@+id/action_pomyannikDrugiFragment_to_pomyannikUsopSrodFragment"
-            app:destination="@id/pomyannikUsopSrodFragment" />
+            app:destination="@id/pomyannikUsopSrodFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/pomyannikUsopSrodFragment"
         android:name="com.example.prayforthem.pomyannikusopsrod.ui.PomyannikUsopSrodFragment"
-        android:label="PomyannikUsopSrodFragment" >
+        android:label="PomyannikUsopSrodFragment">
         <action
             android:id="@+id/action_pomyannikUsopSrodFragment_to_namesFragment"
             app:destination="@id/namesFragment" />
@@ -238,12 +270,14 @@
         <action
             android:id="@+id/action_pomyannikUsopSrodFragment_to_pomyannikDisplayFragment"
             app:destination="@id/pomyannikDisplayFragment"
-            app:popUpTo="@id/prayersFragment" />
+            app:enterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@id/prayersCategoriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/pomyannikDisplayFragment"
         android:name="com.example.prayforthem.pomyannikdisplay.ui.PomyannikDisplayFragment"
-        android:label="PomyannikDisplayFragment" >
+        android:label="PomyannikDisplayFragment">
         <argument
             android:name="prayerFileNameArg"
             app:argType="string" />
@@ -252,7 +286,7 @@
         android:id="@+id/articleDisplayFragment"
         android:name="com.example.prayforthem.articledisplay.ui.ArticleDisplayFragment"
         android:label="fragment_article_display"
-        tools:layout="@layout/fragment_article_display" >
+        tools:layout="@layout/fragment_article_display">
         <argument
             android:name="articleFileNameArg"
             app:argType="string" />
@@ -261,7 +295,7 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.prayforthem.settings.ui.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_customNamesFragment"
             app:destination="@id/customNamesFragment" />
@@ -270,7 +304,7 @@
         android:id="@+id/customNamesFragment"
         android:name="com.example.prayforthem.customnames.ui.CustomNamesFragment"
         android:label="fragment_custom_names"
-        tools:layout="@layout/fragment_custom_names" >
+        tools:layout="@layout/fragment_custom_names">
         <action
             android:id="@+id/action_customNamesFragment_to_addNameFragment"
             app:destination="@id/addNameFragment" />
@@ -281,7 +315,7 @@
     <fragment
         android:id="@+id/editNameFragment"
         android:name="com.example.prayforthem.editname.ui.EditNameFragment"
-        android:label="EditNameFragment" >
+        android:label="EditNameFragment">
         <argument
             android:name="nameIdArg"
             app:argType="integer" />
