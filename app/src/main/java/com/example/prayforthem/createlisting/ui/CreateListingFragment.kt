@@ -95,6 +95,7 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
         }
 
         binding.buttonSave.setOnClickListener {
+            it.isEnabled = false
             viewModel.saveList()
             findNavController().popBackStack()
         }

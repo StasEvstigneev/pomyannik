@@ -39,7 +39,7 @@ val repositoryModule = module {
     }
 
     single<ListingRepository> {
-        ListingRepositoryImpl(get(), get(), get())
+        ListingRepositoryImpl(get(), get(), get(), get())
     }
 
     single<PrayersCategoriesRepository> {

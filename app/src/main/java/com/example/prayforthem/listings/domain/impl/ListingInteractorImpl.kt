@@ -4,11 +4,12 @@ import com.example.prayforthem.listings.domain.ListingInteractor
 import com.example.prayforthem.listings.domain.ListingRepository
 import com.example.prayforthem.listings.domain.models.Listing
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
+import com.example.prayforthem.listings.domain.models.Person
 import kotlinx.coroutines.flow.Flow
 
 class ListingInteractorImpl(private val repository: ListingRepository) : ListingInteractor {
-    override suspend fun saveListing(listing: Listing): Long {
-        return repository.saveListing(listing)
+    override suspend fun createListing(listing: Listing, personData: List<Pair<Int?, Int>>) {
+        return repository.createListing(listing, personData)
     }
 
     override suspend fun getListingById(id: Int): ListingWithPerson {
@@ -23,8 +24,12 @@ class ListingInteractorImpl(private val repository: ListingRepository) : Listing
         repository.deleteListing(listing)
     }
 
-    override suspend fun updateListing(listing: Listing) {
-        repository.updateListing(listing)
+    override suspend fun updateListing(
+        personDel: List<Person>,
+        listing: Listing,
+        personAdd: List<Person>
+    ) {
+        repository.updateListing(personDel, listing, personAdd)
     }
 
     override suspend fun getReservedListingById(id: Int): ListingWithPerson {

@@ -86,6 +86,7 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
         }
 
         binding.buttonSave.setOnClickListener {
+            it.isEnabled = false
             viewModel.updateListing()
             findNavController().popBackStack()
         }
