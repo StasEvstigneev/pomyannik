@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prayforthem.createlisting.domain.CreateListScreenState
 import com.example.prayforthem.listings.domain.ListingInteractor
-import com.example.prayforthem.listings.domain.PersonInteractor
 import com.example.prayforthem.listings.domain.models.Listing
-import com.example.prayforthem.listings.domain.models.Person
 import com.example.prayforthem.listings.domain.models.PersonBasicData
 import com.example.prayforthem.names.domain.DignityInteractor
 import com.example.prayforthem.names.domain.NamesInteractor
@@ -22,7 +20,6 @@ class CreateListingViewModel(
     private val isForHealth: Boolean,
     private val namesInteractor: NamesInteractor,
     private val dignityInteractor: DignityInteractor,
-    private val personInteractor: PersonInteractor,
     private val listingInteractor: ListingInteractor
 ) : ViewModel() {
 
@@ -102,29 +99,24 @@ class CreateListingViewModel(
 
     fun saveList() {
         if (listOfPeople.size > ZERO && listTitle.isNotEmpty()) {
+            saveButtonState.postValue(false)
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
-                    val listingId: Int = listingInteractor
-                        .saveListing(
-                            Listing(
-                                listingId = null,
-                                title = listTitle,
-                                forHealth = isForHealth
-                            )
-                        ).toInt()
-                    Log.d("CREATE LISTING", "Создали список: $listTitle, c ID: $listingId")
-
+                    val listing = Listing(
+                        listingId = null,
+                        title = listTitle,
+                        forHealth = isForHealth
+                    )
+                    val personData = ArrayList<Pair<Int?, Int>>()
                     listOfPeople.forEach { person ->
-                        personInteractor.savePerson(
-                            Person(
-                                id = null,
-                                idDignity = person.dignity?.dignityId,
-                                idName = person.name.nameId,
-                                parentListingId = listingId
+                        personData.add(
+                            Pair(
+                                first = person.dignity?.dignityId,
+                                second = person.name.nameId
                             )
                         )
-                        Log.d("CREATE LISTING", "Добавили в базу: $person")
                     }
+                    listingInteractor.createListing(listing, personData)
                 }
             }
         }

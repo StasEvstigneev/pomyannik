@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.prayforthem.editlisting.domain.EditListingScreenState
 import com.example.prayforthem.listings.domain.ListingInteractor
-import com.example.prayforthem.listings.domain.PersonInteractor
 import com.example.prayforthem.listings.domain.models.Listing
 import com.example.prayforthem.listings.domain.models.ListingWithPerson
 import com.example.prayforthem.listings.domain.models.Person
@@ -21,7 +20,6 @@ import kotlinx.coroutines.withContext
 class EditListingViewModel(
     private val listingId: Int,
     private val listingInteractor: ListingInteractor,
-    private val personInteractor: PersonInteractor,
     private val dignityInteractor: DignityInteractor,
     private val namesInteractor: NamesInteractor
 ) : ViewModel() {
@@ -126,19 +124,16 @@ class EditListingViewModel(
     fun updateListing() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                deletedPerson.forEach { item ->
-                    personInteractor.deletePerson(item.person)
-                }
-                listingInteractor.updateListing(
-                    Listing(
-                        listingId = listingId,
-                        title = updatedTitle,
-                        forHealth = initialListing.forHealth
-                    )
+                val personDel = ArrayList<Person>()
+                val personAdd = ArrayList<Person>()
+                val listing = Listing(
+                    listingId = listingId,
+                    title = updatedTitle,
+                    forHealth = initialListing.forHealth
                 )
-                updatedList.forEach { person ->
-                    personInteractor.savePerson(person.person)
-                }
+                deletedPerson.forEach { item -> personDel.add(item.person) }
+                updatedList.forEach { item -> personAdd.add(item.person) }
+                listingInteractor.updateListing(personDel, listing, personAdd)
             }
         }
     }

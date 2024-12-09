@@ -33,11 +33,11 @@ val viewModelModule = module {
     }
 
     viewModel<ForHealthViewModel> {
-        ForHealthViewModel(get(), get(), FOR_HEALTH)
+        ForHealthViewModel(get(), FOR_HEALTH)
     }
 
     viewModel<ForReposeViewModel> {
-        ForReposeViewModel(get(), get(), FOR_REPOSE)
+        ForReposeViewModel(get(), FOR_REPOSE)
     }
 
     viewModel<PrayersCategoriesViewModel> {
@@ -49,7 +49,7 @@ val viewModelModule = module {
     }
 
     viewModel<CreateListingViewModel> { (isForHealth: Boolean) ->
-        CreateListingViewModel(isForHealth, get(), get(), get(), get())
+        CreateListingViewModel(isForHealth, get(), get(), get())
     }
 
     viewModel<NamesViewModel> {
@@ -65,7 +65,7 @@ val viewModelModule = module {
     }
 
     viewModel<EditListingViewModel> { (listingId: Int) ->
-        EditListingViewModel(listingId, get(), get(), get(), get())
+        EditListingViewModel(listingId, get(), get(), get())
     }
 
     viewModel<PrayersViewModel> { (categoryId: Int) ->

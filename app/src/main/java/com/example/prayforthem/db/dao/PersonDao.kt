@@ -13,7 +13,7 @@ import com.example.prayforthem.db.models.PersonDignityNameDB
 @Dao
 interface PersonDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(entity = PersonEntity::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun addPerson(person: PersonEntity)
 
     @Transaction
