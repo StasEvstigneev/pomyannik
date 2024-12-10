@@ -24,7 +24,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 open class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<PersonDignityName> {
-
     private var _binding: FragmentPrayerAddNamesBinding? = null
     open val binding get() = _binding!!
     private val args: PrayerAddNamesFragmentArgs by navArgs()
