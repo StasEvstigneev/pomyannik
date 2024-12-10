@@ -135,7 +135,7 @@ open class PrayerDisplayViewModel(
     companion object {
         private const val LIST_HEALTH = 1
         private const val LIST_REPOSE = 2
-        private const val IMYAREK = "<b><i>(имярек)</i></b>"
+        private const val IMYAREK = "<i>(имярек)</i>"
         private const val NAMES_NOM = "NAMES_NOM"
         private const val NAMES_GEN = "NAMES_GEN"
         private const val NAMES_DAT = "NAMES_DAT"

@@ -133,7 +133,7 @@ class PomyannikDisplayViewModel(
         private const val LIST_DUH_OTETS = 3
         private const val LIST_PARENTS = 4
         private const val LIST_RELATIVES = 5
-        private const val IMYAREK = "<b><i>(имярек)</i></b>"
+        private const val IMYAREK = "<i>(имярек)</i>"
         private const val PATRIARH_ACC = "PATRIARH_ACC"
         private const val PATRIARH_NAME_ACC = "Кирилла"
         private const val DUHOVN_OTEC_ACC = "DUHOVN_OTEC_ACC"

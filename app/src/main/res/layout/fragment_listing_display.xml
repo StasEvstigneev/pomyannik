@@ -81,6 +81,7 @@
                 android:layout_marginHorizontal="@dimen/_12dp"
                 android:layout_marginTop="@dimen/_32dp"
                 android:layout_marginBottom="@dimen/_24dp"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toTopOf="@id/divider"
                 app:layout_constraintEnd_toEndOf="@id/listCard"
                 app:layout_constraintStart_toStartOf="@id/listCard"
