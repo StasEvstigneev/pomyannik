@@ -9,8 +9,8 @@ class TempPersonInteractorImpl(
     private val repository: TempPersonRepository
 ) : TempPersonInteractor {
 
-    override suspend fun addTempPerson(person: Person) {
-        repository.addTempPerson(person)
+    override suspend fun addTempPerson(list: List<Person>) {
+        repository.addTempPerson(list)
     }
 
     override suspend fun deleteTempPerson(person: Person) {

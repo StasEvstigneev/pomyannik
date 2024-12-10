@@ -161,7 +161,8 @@
             android:id="@+id/action_prayerAddNamesFragment_to_prayerDisplayFragment"
             app:destination="@id/prayerDisplayFragment"
             app:enterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/prayersFragment" />
         <action
             android:id="@+id/action_prayerAddNamesFragment_to_namesFragment"
@@ -271,7 +272,8 @@
             android:id="@+id/action_pomyannikUsopSrodFragment_to_pomyannikDisplayFragment"
             app:destination="@id/pomyannikDisplayFragment"
             app:enterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/prayersCategoriesFragment" />
     </fragment>
     <fragment

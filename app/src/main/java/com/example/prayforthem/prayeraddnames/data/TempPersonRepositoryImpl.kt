@@ -13,10 +13,10 @@ class TempPersonRepositoryImpl(
 
 ) : TempPersonRepository {
 
-    override suspend fun addTempPerson(person: Person) {
+    override suspend fun addTempPerson(list: List<Person>) {
         database
             .tempPersonDao()
-            .addPerson(personTempDbConverter.map(person))
+            .saveTempPersonList(list.map { item -> personTempDbConverter.map(item) })
     }
 
     override suspend fun deleteTempPerson(person: Person) {

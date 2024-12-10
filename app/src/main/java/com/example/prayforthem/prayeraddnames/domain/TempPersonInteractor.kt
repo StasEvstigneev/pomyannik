@@ -5,7 +5,7 @@ import com.example.prayforthem.listings.domain.models.PersonDignityName
 
 interface TempPersonInteractor {
 
-    suspend fun addTempPerson(person: Person)
+    suspend fun addTempPerson(list: List<Person>)
 
     suspend fun deleteTempPerson(person: Person)
 

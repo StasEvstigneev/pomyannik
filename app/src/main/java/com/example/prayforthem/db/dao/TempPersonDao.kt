@@ -12,7 +12,7 @@ import com.example.prayforthem.db.models.PersonTempDignityNameDB
 @Dao
 interface TempPersonDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(entity = PersonTempEntity::class, onConflict = OnConflictStrategy.IGNORE)
     suspend fun addPerson(person: PersonTempEntity)
 
     @Transaction
@@ -33,5 +33,10 @@ interface TempPersonDao {
     @Transaction
     @Query("DELETE FROM person_temp")
     suspend fun clearAll()
+
+    @Transaction
+    suspend fun saveTempPersonList(list: List<PersonTempEntity>) {
+        list.forEach { item -> addPerson(item) }
+    }
 
 }

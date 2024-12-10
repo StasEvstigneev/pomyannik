@@ -76,14 +76,16 @@ open class PrayerAddNamesViewModel(
                 // очистка предыдущих temp_person
                 tempPersonInteractor.deleteTempPersonByListingId(getListingId())
                 val savedTempPersonList = tempPersonInteractor.getAllTempPerson()
+                val listToSave = ArrayList<Person>()
                 if (tempPersonList.isNotEmpty()) {
                     var id = savedTempPersonList.size + ONE
                     tempPersonList.forEach { item ->
                         val person = preparePersonToSave(item.person, id)
                         id += ONE
-                        tempPersonInteractor.addTempPerson(person)
+                        listToSave.add(person)
                     }
                 }
+                tempPersonInteractor.addTempPerson(listToSave)
             }
         }
     }
