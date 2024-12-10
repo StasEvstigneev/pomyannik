@@ -23,7 +23,6 @@ open class PrayerAddNamesViewModel(
     private val namesInteractor: NamesInteractor,
     private val dignityInteractor: DignityInteractor
 ) : ViewModel() {
-
     private val tempPersonList: ArrayList<PersonDignityName> = arrayListOf()
     private val personFromListings: ArrayList<PersonDignityName> = arrayListOf()
 

@@ -37,8 +37,8 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
     private var showExitDialog = false
     private lateinit var exitDialog: MaterialAlertDialogBuilder
     private lateinit var deleteDialog: MaterialAlertDialogBuilder
-
     private val personAdapter = EditListingAdapter(this)
+    private var isClickAllowed = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,9 +86,11 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
         }
 
         binding.buttonSave.setOnClickListener {
-            it.isEnabled = false
-            viewModel.updateListing()
-            findNavController().popBackStack()
+            if (isClickAllowed) {
+                isClickAllowed = false
+                viewModel.updateListing()
+                findNavController().popBackStack()
+            }
         }
 
         exitDialog = DialogConstructor
@@ -111,6 +113,7 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
 
     override fun onResume() {
         super.onResume()
+        isClickAllowed = true
         setFragmentResultListener(Constants.REQUEST_PERSON_KEY) { _, bundle ->
             val dignityIdArg = bundle.getInt(Constants.DIGNITY_KEY)
             val nameIdArg = bundle.getInt(Constants.NAME_KEY)

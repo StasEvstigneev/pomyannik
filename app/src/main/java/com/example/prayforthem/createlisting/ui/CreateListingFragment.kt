@@ -2,7 +2,6 @@ package com.example.prayforthem.createlisting.ui
 
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +21,8 @@ import com.example.prayforthem.databinding.FragmentCreateListingBinding
 import com.example.prayforthem.utils.Constants
 import com.example.prayforthem.utils.DialogConstructor
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -38,6 +40,7 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
     )
     private var showExitDialog = false
     private lateinit var exitDialog: MaterialAlertDialogBuilder
+    private var isClickAllowed = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,9 +98,11 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
         }
 
         binding.buttonSave.setOnClickListener {
-            it.isEnabled = false
-            viewModel.saveList()
-            findNavController().popBackStack()
+            if (isClickAllowed) {
+                isClickAllowed = false
+                viewModel.saveList()
+                findNavController().popBackStack()
+            }
         }
 
         exitDialog = DialogConstructor
@@ -134,13 +139,10 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
 
     override fun onResume() {
         super.onResume()
+        isClickAllowed = true
         setFragmentResultListener(Constants.REQUEST_PERSON_KEY) { _, bundle ->
             val dignityId = bundle.getInt(Constants.DIGNITY_KEY)
             val nameId = bundle.getInt(Constants.NAME_KEY)
-
-            Log.d("RECEIVED DIG_id FRAGMENT", "$dignityId")
-            Log.d("RECEIVED NAME_id FRAGMENT", "$nameId")
-
             if (dignityId != NULL) {
                 viewModel.createNewPersonBasicData(dignityId, nameId)
             } else {
@@ -171,11 +173,27 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
     }
 
     override fun onTrashBinClick(position: Int) {
-        viewModel.removePersonFromList(position)
+        if (clickDebounce()) {
+            viewModel.removePersonFromList(position)
+        }
+    }
+
+    private fun clickDebounce(): Boolean {
+        val clickStatus = isClickAllowed
+        if (isClickAllowed) {
+            isClickAllowed = false
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(CLICK_DEBOUNCE_DELAY)
+                isClickAllowed = true
+            }
+
+        }
+        return clickStatus
     }
 
     companion object {
         private const val NULL = 0
+        private const val CLICK_DEBOUNCE_DELAY = 700L
     }
 
 }
