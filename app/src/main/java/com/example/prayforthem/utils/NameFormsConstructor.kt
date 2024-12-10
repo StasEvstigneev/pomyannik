@@ -59,7 +59,10 @@ internal object NameFormsConstructor {
         return result
     }
 
-    fun preparePersonListForPrayer(personListing: List<PersonDignityName>, form: NameForms): String {
+    fun preparePersonListForPrayer(
+        personListing: List<PersonDignityName>,
+        form: NameForms
+    ): String {
         val result = ArrayList<String>()
         personListing.forEach { item ->
             result.add(
@@ -75,8 +78,8 @@ internal object NameFormsConstructor {
         }
         return result.joinToString(
             separator = ", ",
-            prefix = "<b><i>",
-            postfix = "</i></b>"
+            prefix = "<b>",
+            postfix = "</b>"
         )
     }
 

@@ -79,6 +79,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_16dp"
         android:layout_marginBottom="@dimen/_4dp"
+        android:scrollbars="vertical"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/button_save"
