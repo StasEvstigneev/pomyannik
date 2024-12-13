@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Православный помянник</string>
+    <string name="app_name">Помянник</string>
     <string name="heading">Заголовок</string>
     <string name="lists">Списки</string>
     <string name="prayers">Молитвы</string>
@@ -98,6 +98,7 @@
     <string name="save_list_as_image">Сохранить список в виде изображения</string>
     <string name="image_saved">Изображение сохранено</string>
     <string name="image_saving_failure">Ошибка сохранения</string>
+    <string name="version_n">Версия: %1s</string>
 
 
 </resources>

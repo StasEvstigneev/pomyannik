@@ -1,5 +1,6 @@
 package com.example.prayforthem
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -15,6 +16,10 @@ class RootActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         rootBinding = ActivityRootBinding.inflate(layoutInflater)
         setContentView(rootBinding.root)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, R.anim.fade_out)
+        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment

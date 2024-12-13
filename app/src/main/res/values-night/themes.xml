@@ -1,7 +1,6 @@
-<resources>
-    <!-- Base application theme. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Base.Theme.PrayForThem" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/red</item>
         <item name="colorSecondary">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -11,5 +10,8 @@
         <item name="colorError">@color/red</item>
         <item name="textAppearanceBody1">@color/white</item>
         <item name="background">@color/black</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/black</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/ic_splash_screen</item>
+
     </style>
 </resources>
