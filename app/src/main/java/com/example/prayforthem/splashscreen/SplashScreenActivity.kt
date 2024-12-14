@@ -28,7 +28,7 @@ class SplashScreenActivity : AppCompatActivity() {
         binding.version.text = getString(R.string.version_n, appVersion)
 
         lifecycleScope.launch {
-            delay(1500)
+            delay(2000)
             closeSplashScreen()
         }
 
@@ -38,10 +38,10 @@ class SplashScreenActivity : AppCompatActivity() {
         val intent = Intent(this, RootActivity::class.java)
         startActivity(intent)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, R.anim.fade_out)
-            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.fade_in, R.anim.fade_out)
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, 0, 0)
+            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, 0)
         } else {
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            overridePendingTransition(0, 0)
         }
         this.finish()
     }

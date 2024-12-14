@@ -18,7 +18,7 @@ class RootActivity : AppCompatActivity() {
         setContentView(rootBinding.root)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, R.anim.fade_out)
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.splash_screen_fade_in, 0)
         }
 
         val navHostFragment =
