@@ -7,6 +7,7 @@ import com.example.prayforthem.di.interactorModule
 import com.example.prayforthem.di.repositoryModule
 import com.example.prayforthem.di.viewModelModule
 import com.example.prayforthem.settings.domain.SettingsRepository
+import com.markodevcic.peko.PermissionRequester
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -20,6 +21,7 @@ class App : Application() {
         }
         val settingsRepository by inject<SettingsRepository>()
         switchTheme(settingsRepository.getThemeSettings().themeCode)
+        PermissionRequester.initialize(applicationContext)
     }
 
     fun switchTheme(themeCode: Int) {

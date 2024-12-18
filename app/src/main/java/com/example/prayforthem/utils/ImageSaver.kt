@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import androidx.core.content.FileProvider
@@ -22,16 +23,19 @@ internal object ImageSaver {
         try {
             val bitmap = getImageOfView(context, view)
             if (bitmap == null) {
+                Log.e("Save JPEG", "bitmap = null")
                 return false
             } else {
                 try {
                     saveImageToStorage(context, bitmap, fileName)
                     return true
                 } catch (e: Exception) {
+                    Log.e("Save JPEG", "$e")
                     return false
                 }
             }
         } catch (e: Exception) {
+            Log.e("Save JPEG", "$e")
             return false
         }
 
@@ -43,8 +47,44 @@ internal object ImageSaver {
         val originalHeight = originalViewParams.height
         Log.d("View measure", "Original W = $originalWidth, original H = $originalHeight")
 
-        val fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
-        val fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
+        val density = context.resources.displayMetrics.densityDpi
+        Log.d("View measure", "Density Dpi = $density")
+
+        var fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
+        var fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
+
+        when (density) {
+            DisplayMetrics.DENSITY_XXXHIGH -> {
+                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
+                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
+            }
+
+            DisplayMetrics.DENSITY_XXHIGH -> {
+                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
+                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
+            }
+
+            DisplayMetrics.DENSITY_XHIGH -> {
+                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_xhdpi)
+                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_xhdpi)
+            }
+
+            DisplayMetrics.DENSITY_HIGH -> {
+                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_hdpi)
+                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_hdpi)
+            }
+
+            DisplayMetrics.DENSITY_MEDIUM -> {
+                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_mdpi)
+                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_mdpi)
+            }
+
+            DisplayMetrics.DENSITY_LOW -> {
+                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_ldpi)
+                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_ldpi)
+            }
+        }
+
         Log.d("View measure", "fixedWidthPx = $fixedWidthPx, fixedHeightPx = $fixedHeightPx")
 
         view.layoutParams = originalViewParams.apply {
@@ -67,7 +107,7 @@ internal object ImageSaver {
             val canvas = Canvas(image)
             view.draw(canvas)
         } catch (e: Exception) {
-            Log.e("Image fom view", "Failure")
+            Log.e("Get Image of View", "$e")
         }
 
         view.layoutParams = originalViewParams.apply {
@@ -107,7 +147,11 @@ internal object ImageSaver {
                         )
                     }"
                 )
-            val image = File(imagesDirectory, fileName)
+            if (!imagesDirectory.exists()) {
+                imagesDirectory.mkdirs()
+            }
+            Log.e("Save JPEG", "Does directory exist? ${imagesDirectory.exists()}")
+            val image = File(imagesDirectory, "$fileName.jpeg")
             fos = FileOutputStream(image)
         }
         fos?.use {
