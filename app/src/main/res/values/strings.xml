@@ -99,6 +99,7 @@
     <string name="image_saved">Изображение сохранено</string>
     <string name="image_saving_failure">Ошибка сохранения</string>
     <string name="version_n">Версия: %1s</string>
+    <string name="provide_permissions">Предоставьте приложению доступ к памяти в настройках вашего устройства</string>
 
 
 </resources>

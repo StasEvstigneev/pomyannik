@@ -28,7 +28,7 @@ val dataModule = module {
         Room
             .databaseBuilder(androidContext(), AppDatabase::class.java, DB_NAME)
             .createFromAsset(DB_ASSETS_PATH)
-            .fallbackToDestructiveMigration()
+//            .fallbackToDestructiveMigration()
             .build()
     }
 
