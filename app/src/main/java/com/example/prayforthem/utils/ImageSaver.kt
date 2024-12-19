@@ -65,23 +65,31 @@ internal object ImageSaver {
             }
 
             DisplayMetrics.DENSITY_XHIGH -> {
-                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_xhdpi)
-                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_xhdpi)
+                fixedWidthPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_xhdpi)
+                fixedHeightPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_xhdpi)
             }
 
             DisplayMetrics.DENSITY_HIGH -> {
-                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_hdpi)
-                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_hdpi)
+                fixedWidthPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_hdpi)
+                fixedHeightPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_hdpi)
             }
 
             DisplayMetrics.DENSITY_MEDIUM -> {
-                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_mdpi)
-                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_mdpi)
+                fixedWidthPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_mdpi)
+                fixedHeightPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_mdpi)
             }
 
             DisplayMetrics.DENSITY_LOW -> {
-                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_ldpi)
-                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_ldpi)
+                fixedWidthPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_ldpi)
+                fixedHeightPx =
+                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_ldpi)
             }
         }
 
