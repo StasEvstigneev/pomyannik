@@ -154,6 +154,9 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
             is EditListingScreenState.UpdatedContent -> {
                 personAdapter.submitList(state.list)
                 personAdapter.notifyDataSetChanged()
+                if (state.list.size > ZERO) {
+                    binding.recyclerView.smoothScrollToPosition(state.list.size - ONE)
+                }
                 binding.apply {
                     progressBar.isVisible = false
                     recyclerView.isVisible = true
@@ -184,6 +187,11 @@ class EditListingFragment : Fragment(), RecyclerViewDeleteItem<PersonDignityName
             )
         )
         deleteDialog.show()
+    }
+
+    companion object {
+        private const val ZERO = 0
+        private const val ONE = 1
     }
 
 }

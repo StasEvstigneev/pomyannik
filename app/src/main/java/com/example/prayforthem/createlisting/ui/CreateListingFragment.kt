@@ -167,6 +167,9 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
                 buttonAddName.isEnabled = !state.isListFull
                 personAdapter.list = state.list
                 personAdapter.notifyDataSetChanged()
+                if (state.list.size > NULL) {
+                    recyclerView.smoothScrollToPosition(personAdapter.list.size - ONE)
+                }
                 showExitDialog = (state.listSize > NULL || binding.editText.text.isNullOrEmpty())
             }
         }
@@ -193,6 +196,7 @@ class CreateListingFragment : Fragment(), TempPersonClickInterface {
 
     companion object {
         private const val NULL = 0
+        private const val ONE = 1
         private const val CLICK_DEBOUNCE_DELAY = 700L
     }
 
