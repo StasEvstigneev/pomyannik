@@ -33,7 +33,10 @@ open class PrayerAddNamesFragment : Fragment(), TempPersonRemoveClickInterface<P
     private var showExitDialog: Boolean = false
     internal var areNamesAdded: Boolean = false
 
-    private val tempNamesAdapter = PrayerAddNamesAdapter(arrayListOf(), this)
+    private val tempNamesAdapter = PrayerAddNamesAdapter(
+        arrayListOf(),
+        onDeleteClickInterface = this
+    )
     private lateinit var exitDialog: MaterialAlertDialogBuilder
     private lateinit var deleteDialog: MaterialAlertDialogBuilder
     private lateinit var navigateForwardDialog: MaterialAlertDialogBuilder

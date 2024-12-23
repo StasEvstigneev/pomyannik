@@ -25,7 +25,6 @@ import com.example.prayforthem.settings.domain.impl.SettingsInteractorImpl
 import org.koin.dsl.module
 
 val interactorModule = module {
-
     factory<NamesInteractor> {
         NamesInteractorImpl(get())
     }

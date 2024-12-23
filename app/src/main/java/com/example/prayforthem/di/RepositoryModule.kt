@@ -25,7 +25,6 @@ import com.example.prayforthem.settings.domain.SettingsRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-
     single<NamesRepository> {
         NamesRepositoryImpl(get(), get())
     }

@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ListingDisplayViewModel(
-    private val isForHealth: Boolean,
     private val listingId: Int,
     private val listingInteractor: ListingInteractor,
     private val sharingInteractor: SharingInteractor

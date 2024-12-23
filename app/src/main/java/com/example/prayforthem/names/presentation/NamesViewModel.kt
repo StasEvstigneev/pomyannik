@@ -23,10 +23,10 @@ class NamesViewModel(
     private val screenState = MutableLiveData<NamesScreenState>(NamesScreenState.Loading)
     fun getScreenState(): LiveData<NamesScreenState> = screenState
 
-    var selectedDignity = MutableLiveData<DignityBasicData?>(null)
+    private var selectedDignity = MutableLiveData<DignityBasicData?>(null)
     fun getSelectedDignity(): LiveData<DignityBasicData?> = selectedDignity
 
-    var selectedName = MutableLiveData<NameBasicData?>(null)
+    private var selectedName = MutableLiveData<NameBasicData?>(null)
     fun getSelectedName(): LiveData<NameBasicData?> = selectedName
 
     init {

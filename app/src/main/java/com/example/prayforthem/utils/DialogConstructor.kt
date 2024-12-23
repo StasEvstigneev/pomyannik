@@ -17,10 +17,10 @@ object DialogConstructor {
         val exitDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
             .setTitle(R.string.close)
             .setMessage(message)
-            .setPositiveButton(R.string.exit) { dialog, _ ->
+            .setPositiveButton(R.string.exit) { _, _ ->
                 action()
             }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
+            .setNegativeButton(R.string.cancel) { _, _ ->
                 view.isVisible = false
             }
             .setCancelable(false)
@@ -37,11 +37,11 @@ object DialogConstructor {
         val deleteDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
             .setTitle(R.string.delete)
             .setMessage(message)
-            .setPositiveButton(R.string.delete) { dialog, _ ->
+            .setPositiveButton(R.string.delete) { _, _ ->
                 action()
                 view.isVisible = false
             }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
+            .setNegativeButton(R.string.cancel) { _, _ ->
                 view.isVisible = false
             }
             .setCancelable(false)
@@ -57,10 +57,10 @@ object DialogConstructor {
     ): MaterialAlertDialogBuilder {
         val navDialog = MaterialAlertDialogBuilder(context, R.style.CustomExitDialogTheme)
             .setMessage(message)
-            .setPositiveButton(R.string.next) { dialog, _ ->
+            .setPositiveButton(R.string.next) { _, _ ->
                 action()
             }
-            .setNegativeButton(R.string.cancel) { dialog, _ ->
+            .setNegativeButton(R.string.cancel) { _, _ ->
                 view.isVisible = false
             }
             .setCancelable(false)
