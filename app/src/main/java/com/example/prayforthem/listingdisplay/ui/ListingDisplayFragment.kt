@@ -33,16 +33,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class ListingDisplayFragment : Fragment() {
-
     private var _binding: FragmentListingDisplayBinding? = null
     private val binding get() = _binding!!
     private val args: ListingDisplayFragmentArgs by navArgs()
     private val viewModel: ListingDisplayViewModel by viewModel {
-        parametersOf(args.isForHealthArg, args.listingIdArg)
+        parametersOf(args.listingIdArg)
     }
     private val listingAdapter = ListingDisplayAdapter(listOf())
     private lateinit var menuBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
-    val requester = PermissionRequester.instance()
+    private val requester = PermissionRequester.instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -140,7 +139,6 @@ class ListingDisplayFragment : Fragment() {
             } else {
                 shareListingAsJpeg()
             }
-
         }
 
         binding.saveAsImage.setOnClickListener {
@@ -156,7 +154,6 @@ class ListingDisplayFragment : Fragment() {
             menuBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             showOverlay()
         }
-
     }
 
     private fun renderState(state: ListingDisplayScreenState) {

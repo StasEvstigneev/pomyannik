@@ -32,7 +32,6 @@ import com.example.prayforthem.db.entities.PrayerEntity
     ]
 )
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun nameDao(): NameDao
     abstract fun dignityDao(): DignityDao
     abstract fun personDao(): PersonDao

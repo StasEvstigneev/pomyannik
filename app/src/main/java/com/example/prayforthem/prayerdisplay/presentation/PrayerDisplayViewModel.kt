@@ -28,7 +28,6 @@ open class PrayerDisplayViewModel(
     private val tempPersonInteractor: TempPersonInteractor,
     private val listingInteractor: ListingInteractor
 ) : ViewModel() {
-
     private val listOfPerson: ArrayList<PersonDignityName> = arrayListOf()
 
     internal val screenState =
@@ -38,7 +37,7 @@ open class PrayerDisplayViewModel(
 
     init {
         screenState.postValue(PrayersDisplayScreenState.Loading)
-        prepareContent()
+        this.prepareContent()
     }
 
     open fun prepareContent() {

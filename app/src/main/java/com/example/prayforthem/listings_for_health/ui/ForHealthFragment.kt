@@ -27,7 +27,10 @@ open class ForHealthFragment : Fragment(), RecyclerViewItemClick<ListingWithPers
     private var _binding: FragmentForHealthBinding? = null
     open val binding get() = _binding!!
     open val viewModel by viewModel<ForHealthViewModel>()
-    private val listingsAdapter = ListingsAdapter(this, this)
+    private val listingsAdapter = ListingsAdapter(
+        itemClickInterface = this,
+        deleteItemInterface = this
+    )
     private lateinit var deleteDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(

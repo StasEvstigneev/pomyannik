@@ -10,7 +10,7 @@ import com.example.prayforthem.databinding.ActivityRootBinding
 
 class RootActivity : AppCompatActivity() {
 
-    lateinit var rootBinding: ActivityRootBinding
+    private lateinit var rootBinding: ActivityRootBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,6 @@ class RootActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
 }
