@@ -84,7 +84,7 @@ class NamesFragment : Fragment() {
         binding.inputDignity.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE))
 
-            setOnItemClickListener { parent, view, position, id ->
+            setOnItemClickListener { parent, _, position, _ ->
                 val dignity = parent.getItemAtPosition(position) as DignityBasicData
                 selectedDignity = dignity
                 viewModel.updateSelectedDignity(dignity)
@@ -103,7 +103,7 @@ class NamesFragment : Fragment() {
         binding.inputName.apply {
             setDropDownBackgroundDrawable(ColorDrawable(Color.WHITE))
 
-            setOnItemClickListener { parent, view, position, id ->
+            setOnItemClickListener { parent, _, position, _ ->
                 val name = parent.getItemAtPosition(position) as NameBasicData
                 selectedName = name
                 viewModel.updateSelectedName(name)

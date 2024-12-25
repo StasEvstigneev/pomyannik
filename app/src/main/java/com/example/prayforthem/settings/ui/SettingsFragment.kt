@@ -35,7 +35,7 @@ class SettingsFragment : Fragment() {
             renderState(state)
         }
 
-        binding.themeSettings.setOnCheckedChangeListener { group, checkedId ->
+        binding.themeSettings.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.system_theme -> {
                     viewModel.changeTheme(ThemeSettings.SYSTEM)
