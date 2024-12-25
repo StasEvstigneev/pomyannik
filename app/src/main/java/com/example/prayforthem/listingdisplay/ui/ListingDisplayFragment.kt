@@ -158,11 +158,21 @@ class ListingDisplayFragment : Fragment() {
 
     private fun renderState(state: ListingDisplayScreenState) {
         when (state) {
-            is ListingDisplayScreenState.Loading -> true
+            is ListingDisplayScreenState.Loading -> {
+                binding.apply {
+                    listCard.isVisible = false
+                    progressBar.isVisible = true
+                }
+            }
+
             is ListingDisplayScreenState.Content -> {
                 binding.toolbar.title = state.listingTitle
                 listingAdapter.list = state.list
                 listingAdapter.notifyDataSetChanged()
+                binding.apply {
+                    listCard.isVisible = true
+                    progressBar.isVisible = false
+                }
             }
         }
     }
@@ -234,15 +244,19 @@ class ListingDisplayFragment : Fragment() {
                     is PermissionResult.Granted -> {
                         action()
                     }
+
                     is PermissionResult.Denied.NeedsRationale -> requestPermissions()
                     is PermissionResult.Denied.DeniedPermanently -> {
-                        Toast.makeText(requireContext(),
-                            getString(R.string.provide_permissions), Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.provide_permissions), Toast.LENGTH_LONG
+                        ).show()
                         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.data = Uri.fromParts("package", requireContext().packageName, null)
                         requireContext().startActivity(intent)
                     }
+
                     is PermissionResult.Cancelled -> {
                         return@collect
                     }
