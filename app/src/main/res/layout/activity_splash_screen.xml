@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="?attr/background"
     android:paddingHorizontal="@dimen/_16dp"
+    android:fitsSystemWindows="true"
     tools:context=".splashscreen.SplashScreenActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
