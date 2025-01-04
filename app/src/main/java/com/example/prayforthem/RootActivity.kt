@@ -2,6 +2,7 @@ package com.example.prayforthem
 
 import android.os.Build
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
@@ -13,6 +14,7 @@ class RootActivity : AppCompatActivity() {
     private lateinit var rootBinding: ActivityRootBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         rootBinding = ActivityRootBinding.inflate(layoutInflater)
         setContentView(rootBinding.root)

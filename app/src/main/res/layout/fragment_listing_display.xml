@@ -18,7 +18,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/list" />
+            app:title="@string/list"
+            app:titleMarginEnd="@dimen/_100dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/shareIcon"
