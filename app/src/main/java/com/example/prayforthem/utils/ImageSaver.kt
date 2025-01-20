@@ -47,53 +47,29 @@ internal object ImageSaver {
         val originalHeight = originalViewParams.height
         Log.d("View measure", "Original W = $originalWidth, original H = $originalHeight")
 
-        val density = context.resources.displayMetrics.densityDpi
-        Log.d("View measure", "Density Dpi = $density")
+        val densityDpi = context.resources.displayMetrics.densityDpi
+        Log.d("View measure", "Density Dpi = $densityDpi")
 
         var fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
         var fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
 
-        when (density) {
-            DisplayMetrics.DENSITY_XXXHIGH -> {
-                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
-                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
-            }
-
-            DisplayMetrics.DENSITY_XXHIGH -> {
-                fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width)
-                fixedHeightPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
-            }
-
-            DisplayMetrics.DENSITY_XHIGH -> {
-                fixedWidthPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_xhdpi)
-                fixedHeightPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_xhdpi)
-            }
-
-            DisplayMetrics.DENSITY_HIGH -> {
-                fixedWidthPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_hdpi)
-                fixedHeightPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_hdpi)
-            }
-
-            DisplayMetrics.DENSITY_MEDIUM -> {
-                fixedWidthPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_mdpi)
-                fixedHeightPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_mdpi)
-            }
-
-            DisplayMetrics.DENSITY_LOW -> {
-                fixedWidthPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_width_ldpi)
-                fixedHeightPx =
-                    context.resources.getDimensionPixelSize(R.dimen.screenshot_height_ldpi)
-            }
+        if (!isDeviceTablet(context)) {
+            val fixedPhoneSizes = getPhoneFixedSizes(densityDpi, context)
+            fixedWidthPx = fixedPhoneSizes.first
+            fixedHeightPx = fixedPhoneSizes.second
+            Log.d(
+                "View measure",
+                "It is phone. Phone Width = $fixedWidthPx; Phone Height = $fixedHeightPx"
+            )
+        } else {
+            fixedWidthPx = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_tablet)
+            fixedHeightPx =
+                context.resources.getDimensionPixelSize(R.dimen.screenshot_height_tablet)
+            Log.d(
+                "View measure",
+                "It is tablet. Tablet Width = $fixedWidthPx; Tablet Height = $fixedHeightPx"
+            )
         }
-
-        Log.d("View measure", "fixedWidthPx = $fixedWidthPx, fixedHeightPx = $fixedHeightPx")
 
         view.layoutParams = originalViewParams.apply {
             width = fixedWidthPx
@@ -184,6 +160,71 @@ internal object ImageSaver {
                 null
             }
         }
+    }
+
+    private fun getPhoneFixedSizes(densityDpi: Int, context: Context): Pair<Int, Int> {
+        val sizes = when (densityDpi) {
+            in DisplayMetrics.DENSITY_XXHIGH..Int.MAX_VALUE -> {
+                Pair(
+                    first = context.resources.getDimensionPixelSize(R.dimen.screenshot_width),
+                    second = context.resources.getDimensionPixelSize(R.dimen.screenshot_height)
+                )
+            }
+
+            in DisplayMetrics.DENSITY_XHIGH until DisplayMetrics.DENSITY_XXHIGH -> {
+                Pair(
+                    first = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_xhdpi),
+                    second = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_xhdpi)
+                )
+            }
+
+            in DisplayMetrics.DENSITY_HIGH until DisplayMetrics.DENSITY_XHIGH -> {
+                Pair(
+                    first = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_hdpi),
+                    second = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_hdpi)
+                )
+            }
+
+            in DisplayMetrics.DENSITY_MEDIUM until DisplayMetrics.DENSITY_HIGH -> {
+                Pair(
+                    first = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_mdpi),
+                    second = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_mdpi)
+                )
+            }
+
+            in DisplayMetrics.DENSITY_LOW until DisplayMetrics.DENSITY_MEDIUM -> {
+                Pair(
+                    first = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_ldpi),
+                    second = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_ldpi)
+                )
+            }
+
+            else -> {
+                Pair(
+                    first = context.resources.getDimensionPixelSize(R.dimen.screenshot_width_ldpi),
+                    second = context.resources.getDimensionPixelSize(R.dimen.screenshot_height_ldpi)
+                )
+            }
+        }
+        Log.d("View measure", "Sizes. Phone Width = ${sizes.first}; Phone Height = ${sizes.second}")
+        return sizes
+    }
+
+    private fun isDeviceTablet(context: Context): Boolean {
+        val resources = context.resources
+        val displayMetrics = resources.displayMetrics
+        val screenWidthPx = displayMetrics.widthPixels.toFloat()
+        Log.d("View measure", "screenWidthPx = $screenWidthPx")
+
+        val scale = resources.displayMetrics.density
+        val minWidthDp = context.resources.getDimensionPixelSize(R.dimen.tab_smallest_width) / scale
+        val screenWidthDp = (screenWidthPx / scale).toInt()
+
+        Log.d("View measure", "screenWidthDp = $screenWidthDp")
+        Log.d("View measure", "minWidthDp = $minWidthDp")
+        Log.d("View measure", "isTablet? = ${(screenWidthDp >= minWidthDp)}")
+
+        return screenWidthDp >= minWidthDp
     }
 
 }
