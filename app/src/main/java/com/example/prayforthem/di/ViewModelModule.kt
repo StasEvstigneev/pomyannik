@@ -9,7 +9,6 @@ import com.example.prayforthem.editlisting.presentation.EditListingViewModel
 import com.example.prayforthem.editname.presentation.EditNameViewModel
 import com.example.prayforthem.information.presentation.InfoViewModel
 import com.example.prayforthem.listingdisplay.presentation.ListingDisplayViewModel
-import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.presentation.ForHealthViewModel
 import com.example.prayforthem.listings_for_repose.presentation.ForReposeViewModel
 import com.example.prayforthem.names.presentation.NamesViewModel
@@ -28,10 +27,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel<ListingsViewModel> {
-        ListingsViewModel()
-    }
-
     viewModel<ForHealthViewModel> {
         ForHealthViewModel(get(), FOR_HEALTH)
     }

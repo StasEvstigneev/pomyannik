@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.prayforthem.R
 import com.example.prayforthem.databinding.FragmentListingsBinding
-import com.example.prayforthem.listings.presentation.ListingsViewModel
 import com.example.prayforthem.listings_for_health.ui.ForHealthFragment
 import com.example.prayforthem.listings_for_repose.ui.ForReposeFragment
 import com.example.prayforthem.utils.DialogConstructor
@@ -24,7 +23,6 @@ class ListingsFragment : Fragment() {
     private var _binding: FragmentListingsBinding? = null
     private val binding get() = _binding!!
     private var tabsMediator: TabLayoutMediator? = null
-    private val viewModel by viewModel<ListingsViewModel>()
     private lateinit var exitDialog: MaterialAlertDialogBuilder
 
     override fun onCreateView(

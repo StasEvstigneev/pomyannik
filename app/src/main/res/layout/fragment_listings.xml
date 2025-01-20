@@ -22,7 +22,7 @@
         android:background="?attr/background"
         app:tabTextColor="?attr/textAppearanceBody1"
         app:tabSelectedTextColor="?attr/colorPrimary"
-        app:tabMode="fixed"
+        app:tabMode="auto"
         app:tabGravity="fill"
         app:tabRippleColor="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
